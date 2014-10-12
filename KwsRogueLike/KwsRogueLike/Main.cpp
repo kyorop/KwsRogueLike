@@ -9,7 +9,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	int handle_wall = LoadGraph("img/Wall.png");
+	int handle_wall = LoadGraph("img/item/Wall.png");
 	int handle_floor = LoadGraph("img/GrayFloor.png");
 
 	const int mapWidth = 5;
