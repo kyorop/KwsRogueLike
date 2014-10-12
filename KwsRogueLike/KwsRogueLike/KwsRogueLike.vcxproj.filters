@@ -51,7 +51,7 @@
     <ClCompile Include="Equipable.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="Weapon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="NormalEnemy.cpp">
@@ -95,16 +95,13 @@
     <ClInclude Include="ItemBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Equipable.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="IDrawable.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
+    <ClInclude Include="Equipable.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Attack.h">
+    <ClInclude Include="Weapon.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="NormalEnemy.h">
@@ -122,5 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

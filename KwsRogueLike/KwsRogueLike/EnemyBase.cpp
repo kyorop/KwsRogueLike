@@ -1,23 +1,17 @@
 #include "EnemyBase.h"
+#include "DxLib.h"
 
-EnemyBase::EnemyBase(hp, offense, diffense, moveSpeed)
+EnemyBase::EnemyBase()
 {
-	this->hp = hp;
-	this->offense = offense;
-	this->diffense = diffense;
-	this->moveSpeed = moveSpeed;
-}
-
-EnemyBase::EnemyBase(hp, offense, diffense, moveSpeed, level)
-{
-	this->hp = hp;
-	this->offense = offense;
-	this->diffense = diffense;
-	this->moveSpeed = moveSpeed;
-	this->level = level;
 }
 
 
 EnemyBase::~EnemyBase()
 {
+}
+
+void EnemyBase::Draw()
+{
+	LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32, charactor);
+	DrawGraph(this->coordinate.x, this->coordinate.y, charactor[0], true);
 }
