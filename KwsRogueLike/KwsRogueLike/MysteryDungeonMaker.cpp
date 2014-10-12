@@ -137,7 +137,7 @@ void MysteryDungeonMaker::MakePath()
 					int diff = info.roomStartPoint.y - i*sectionHeight;
 					for (int k = 0; k < diff; k++)
 					{
-						map[v.y+k][v.x] = MapObject::PATH;
+						map[v.y-k][v.x] = MapObject::PATH;
 					}
 				}
 			}
