@@ -4,7 +4,7 @@ class ObjectBase
 {
 private:
 	Vector2 coordinate;
-	int Layer;
+	int layer;
 public:
 	ObjectBase();
 	~ObjectBase();
