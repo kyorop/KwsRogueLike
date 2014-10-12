@@ -1,7 +1,8 @@
 #include "PlayerBase.h"
 
 
-PlayerBase::PlayerBase()
+PlayerBase::PlayerBase(int hp, int offense, int diffense, int moveSpeed)
+	:CharacterBase(hp, offense, diffense, offense, moveSpeed)
 {
 }
 

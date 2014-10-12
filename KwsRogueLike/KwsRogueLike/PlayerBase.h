@@ -1,10 +1,10 @@
 #pragma once
 #include "CharacterBase.h"
 class PlayerBase
-	:public CharacterBase
+	:CharacterBase
 {
 public:
-	PlayerBase();
+	PlayerBase(int hp, int offense, int diffense, int moveSpeed);
 	~PlayerBase();
 };
 

@@ -10,8 +10,11 @@ private:
 protected:
 	void GetHp(int hp);
 	void Damage(int damage);
+	void HpChanger(int value);
 	
-	CharacterBase();
+public:
 	~CharacterBase();
+	CharacterBase(int hp, int offense, int diffense, int moveSpeed);
+	CharacterBase(int hp, int offense, int diffense, int moveSpeed, int level);
 };
 
