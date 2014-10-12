@@ -1,4 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+<ClassDiagram /> 
+=======
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CharacterBase">
     <Position X="1.5" Y="4.75" Width="1.5" />
@@ -87,3 +90,4 @@
   </Class>
   <Font Name="Meiryo UI" Size="9" />
 </ClassDiagram>
+>>>>>>> e151929ccc7c0e364a11ec117796634d22ba8f59
