@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Images">
-      <UniqueIdentifier>{e32685b6-57c4-4898-98c0-0e5b339ffeae}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -102,55 +99,5 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="img\GrayFloor.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\BrownFloor.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\icon-3_1.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\icon-16.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\item.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\present2.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\Wall.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\おにぎり.jpg">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\ピストル.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\book.jpg">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\icon-1_1.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\icon-1_2.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\item\icon-2_1.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\Enemies\enemy3.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\Enemies\enemy.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\Enemies\enemy2.jpg">
-      <Filter>Images</Filter>
-    </Image>
   </ItemGroup>
 </Project>

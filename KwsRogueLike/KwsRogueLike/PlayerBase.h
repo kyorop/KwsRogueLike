@@ -4,10 +4,11 @@ class PlayerBase
 	:public CharacterBase
 {
 public:
-	int charactor;
+	int charactor[96];
 	PlayerBase();
 	~PlayerBase();
 
 	void Draw()override;
+	void Move();
 };
 
