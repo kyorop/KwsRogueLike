@@ -80,7 +80,10 @@
     <ClCompile Include="Equipable.cpp" />
     <ClCompile Include="ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapData.cpp" />
+    <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="MysteryDungeonMaker.cpp" />
+    <ClCompile Include="NormalEnemy.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="PlayerBase.cpp" />
     <ClCompile Include="RandExtended.cpp" />
@@ -93,9 +96,13 @@
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="Equipable.h" />
+    <ClInclude Include="GameConstant.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="ItemBase.h" />
+    <ClInclude Include="MapData.h" />
+    <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
+    <ClInclude Include="NormalEnemy.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="PlayerBase.h" />
     <ClInclude Include="RandExtended.h" />
