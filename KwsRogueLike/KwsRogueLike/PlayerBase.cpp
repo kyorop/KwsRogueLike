@@ -12,5 +12,6 @@ PlayerBase::~PlayerBase()
 
 void PlayerBase::Draw()
 {
-	DrawGraph()
+	charactor = LoadGraph("img/BrownFloor.png");
+	DrawGraph(0,0,charactor,true);
 }

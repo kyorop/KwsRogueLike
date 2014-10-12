@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "MysteryDungeonMaker.h"
+#include"PlayerBase.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
@@ -18,11 +19,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int sectionHeight = 10;
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
 	int** map = dungeonMaker.CreateDungeon();
+	PlayerBase player;
 
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
-
+		player.Draw();
 		for (size_t i = 0; i < sectionHeight*mapHeight; i++)
 		{
 			for (size_t j = 0; j < sectionWidth*mapWidth; j++)

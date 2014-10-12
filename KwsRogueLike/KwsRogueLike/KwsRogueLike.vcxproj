@@ -45,12 +45,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>F:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>F:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -106,6 +106,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="img\BrownFloor.png" />
+    <Image Include="img\Enemies\enemy.png" />
+    <Image Include="img\Enemies\enemy2.jpg" />
+    <Image Include="img\Enemies\enemy3.png" />
+    <Image Include="img\GrayFloor.png" />
+    <Image Include="img\item\book.jpg" />
+    <Image Include="img\item\icon-16.png" />
+    <Image Include="img\item\icon-1_1.png" />
+    <Image Include="img\item\icon-1_2.png" />
+    <Image Include="img\item\icon-2_1.png" />
+    <Image Include="img\item\icon-3_1.png" />
+    <Image Include="img\item\item.png" />
+    <Image Include="img\item\present2.png" />
+    <Image Include="img\item\Wall.png" />
+    <Image Include="img\item\おにぎり.jpg" />
+    <Image Include="img\item\ピストル.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
