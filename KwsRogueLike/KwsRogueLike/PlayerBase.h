@@ -5,7 +5,7 @@ class PlayerBase
 {
 public:
 	int charactor[96];
-	PlayerBase();
+	PlayerBase(int hp, int offense, int diffense, int moveSpeed);
 	~PlayerBase();
 
 	void Draw()override;
