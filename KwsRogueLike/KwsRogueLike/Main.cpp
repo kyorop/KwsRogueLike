@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "MysteryDungeonMaker.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
@@ -8,11 +9,32 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	while (true)
+	int handle_wall = LoadGraph("img/Wall.png");
+	int handle_floor = LoadGraph("img/GrayFloor.png");
+
+	const int mapWidth = 5;
+	const int mapHeight = 3;
+	const int sectionWidth = 10;
+	const int sectionHeight = 10;
+	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
+	int** map = dungeonMaker.CreateDungeon();
+
+	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
 
-		DrawBox(0, 0, 50, 50, GetColor(255, 0, 0), true);
+		for (size_t i = 0; i < sectionHeight*mapHeight; i++)
+		{
+			for (size_t j = 0; j < sectionWidth*mapWidth; j++)
+			{
+				if (map[i][j] == MysteryDungeonMaker::MapObject::WALL)
+					DrawGraph(j * 12, i * 12, handle_wall, false);
+				else if (map[i][j] == MysteryDungeonMaker::MapObject::FLOOR)
+					DrawGraph(j * 12, i * 12, handle_floor, false);
+				else
+					int a = 1;
+			}
+		}
 
 		ScreenFlip();
 
