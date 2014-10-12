@@ -72,16 +72,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CharacterBase.cpp" />
+    <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MysteryDungeonMaker.cpp" />
+    <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="PlayerBase.cpp" />
     <ClCompile Include="RandExtended.cpp" />
     <ClCompile Include="ReducedMap.cpp" />
+    <ClCompile Include="ScrollableObject.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CharacterBase.h" />
+    <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="ItemBase.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
+    <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="PlayerBase.h" />
     <ClInclude Include="RandExtended.h" />
     <ClInclude Include="ReducedMap.h" />
+    <ClInclude Include="ScrollableObject.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
