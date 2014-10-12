@@ -45,12 +45,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -75,25 +75,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CharacterBase.cpp" />
-    <ClCompile Include="EnemyBase.cpp" />
-    <ClCompile Include="Equipable.cpp" />
-    <ClCompile Include="ItemBase.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MapData.cpp" />
-    <ClCompile Include="MapInfo.cpp" />
-    <ClCompile Include="MysteryDungeonMaker.cpp" />
-    <ClCompile Include="NormalEnemy.cpp" />
-    <ClCompile Include="ObjectBase.cpp" />
-    <ClCompile Include="PlayerBase.cpp" />
-    <ClCompile Include="RandExtended.cpp" />
-    <ClCompile Include="ReducedMap.cpp" />
-    <ClCompile Include="ScrollableObject.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Weapon.cpp" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Attack.h" />
     <ClInclude Include="CharacterBase.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="Equipable.h" />
     <ClInclude Include="GameConstant.h" />
@@ -112,8 +100,23 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
+    <ClCompile Include="CharacterBase.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="Equipable.cpp" />
+    <ClCompile Include="ItemBase.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapData.cpp" />
+    <ClCompile Include="MapInfo.cpp" />
+    <ClCompile Include="MysteryDungeonMaker.cpp" />
+    <ClCompile Include="NormalEnemy.cpp" />
+    <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="PlayerBase.cpp" />
+    <ClCompile Include="RandExtended.cpp" />
+    <ClCompile Include="ReducedMap.cpp" />
+    <ClCompile Include="ScrollableObject.cpp" />
+    <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

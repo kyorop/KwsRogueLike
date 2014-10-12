@@ -6,7 +6,7 @@ class Enemy :
 	public EnemyBase,Attack
 {
 public:
-	Enemy(int hp, int offense, int diffense, int moveSpeed, int level);
+	Enemy(int hp, int offense, int diffense, int moveSpeed);
 	~Enemy();
 };
 

@@ -19,4 +19,3 @@ public:
 	MapInfo** GetMapInfo();
 };
 
-MapData* MapData::mapdata = new MapData();

@@ -1,5 +1,7 @@
 #include "MapData.h"
 
+MapData* MapData::mapdata = new MapData();
+
 void MapData::Register(int x, int y,int i)
 {
 	switch (i)
@@ -22,7 +24,7 @@ void MapData::Register(int x, int y,int i)
 	case 5:
 		mapinfo[y / 32][x / 32].isWall = true;
 		break;
-	default:
+	default:;
 	}
 }
 
