@@ -26,7 +26,7 @@ void MapData::Register(int x, int y,int i)
 	}
 }
 
-MapInfo** MapData::GetType()
+MapInfo** MapData::GetMapInfo()
 {
 	return (MapInfo**)mapinfo;
 }

@@ -16,7 +16,7 @@ public:
 	void end(void);
 
 
-	MapInfo** GetType();
+	MapInfo** GetMapInfo();
 };
 
 MapData* MapData::mapdata = new MapData();
