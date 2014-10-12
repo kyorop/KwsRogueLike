@@ -4,7 +4,7 @@
 class ObjectBase
 	:public IDrawable
 {
-private:
+protected:
 	Vector2 coordinate;
 	int layer;
 public:
