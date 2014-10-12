@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="CharacterBase.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="Equipable.cpp" />
     <ClCompile Include="ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MysteryDungeonMaker.cpp" />
@@ -87,10 +88,12 @@
     <ClCompile Include="ReducedMap.cpp" />
     <ClCompile Include="ScrollableObject.cpp" />
     <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="Equipable.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="ItemBase.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
@@ -100,6 +103,7 @@
     <ClInclude Include="ReducedMap.h" />
     <ClInclude Include="ScrollableObject.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
