@@ -3,8 +3,10 @@
 class PlayerBase
 	:public CharacterBase
 {
+private:
+	int satiety;
 public:
-	PlayerBase();
+	PlayerBase(hp, offense, diffense,  moveSpeed, level);
 	~PlayerBase();
 };
 

@@ -1,11 +1,11 @@
 #include "PlayerBase.h"
 
 
-PlayerBase::PlayerBase()
+PlayerBase::PlayerBase(int hp,int offense, int diffense, int moveSpeed, int level)
 {
-}
-
-
-PlayerBase::~PlayerBase()
-{
+	this->hp = hp;
+	this->offense = offense;
+	this->diffense = diffense;
+	this->moveSpeed = moveSpeed;
+	this->level = level;
 }

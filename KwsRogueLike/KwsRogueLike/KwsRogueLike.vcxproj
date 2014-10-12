@@ -52,9 +52,6 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <AdditionalLibraryDirectories>F:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <Bscmake>
-      <PreserveSbr>true</PreserveSbr>
-    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -76,6 +73,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CharacterBase.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Equipable.cpp" />
     <ClCompile Include="ItemBase.cpp" />
@@ -87,10 +85,11 @@
     <ClCompile Include="ReducedMap.cpp" />
     <ClCompile Include="ScrollableObject.cpp" />
     <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Attack.h" />
     <ClInclude Include="CharacterBase.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="Equipable.h" />
     <ClInclude Include="IDrawable.h" />
@@ -102,7 +101,6 @@
     <ClInclude Include="ReducedMap.h" />
     <ClInclude Include="ScrollableObject.h" />
     <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

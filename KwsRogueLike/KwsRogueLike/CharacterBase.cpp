@@ -14,6 +14,7 @@ protected:
 	}
 
 	void HpChanger(int hpChanger) //HP‚ð‰ñ•œ‚·‚é‚Æ‚«‚Í³‚Ì—ÊAHP‚ðŒ¸‚ç‚·‚Æ‚«‚Í•‰‚Ì—Ê‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢B
+
 	{
 		this->hp += hpChanger;
 	}
