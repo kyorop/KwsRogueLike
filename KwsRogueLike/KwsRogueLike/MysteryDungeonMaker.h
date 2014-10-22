@@ -4,6 +4,7 @@ class Vector2;
 class ReducedMap;
 class Section;
 class Rect;
+class Component;
 class MysteryDungeonMaker
 {
 private:
@@ -32,8 +33,7 @@ public:
 private:
 	void NewMap();
 	void DeleteMap();
-	void MakeRoom(Vector2* startingPoint, Vector2* roomSize);
-	void MakeRoom(const Rect& room);
+	void MakeRoom(const Component& startPoint, int roomWidth, int roomHeight);
 	void ResetMap();
 	void MakePath();
 	Vector2 ConvertToSectionCoord(const Vector2& mapCoord);

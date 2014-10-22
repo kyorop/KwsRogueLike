@@ -5,6 +5,7 @@
 #include "ReducedMap.h"
 #include "Section.h"
 #include "Rect.h"
+#include "Component.h"
 
 MysteryDungeonMaker::MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight)
 	:mapWidth(mapWidth),
@@ -64,57 +65,42 @@ int** MysteryDungeonMaker::CreateDungeon()
 	{
 		int i_section = sectionCoordinate[i].y;
 		int j_section = sectionCoordinate[i].x;
-		section[i_section][j_section].hasRoom = true;
+		section[i_section][j_section].PutRoomMark();
 
-		Rect room;
-		room.x1 = sectionWidth * j_section;
-		room.y1 = sectionHeight * i_section;
-		room.x2 = room.x1 + GetRandInRange(4, sectionWidth - 2);
-		room.y2 = GetRandInRange(4, sectionHeight - 2);
-		MakeRoom(&putRoomCoord, &roomSize);
-		MakeRoom(room);
-
-
-		section[i_section][j_section].roomSize = roomSize;
-		section[i_section][j_section].SetRoom(put)
+		Component startPoint;
+		startPoint.i = sectionHeight * i_section;
+		startPoint.j = sectionWidth * j_section;
+		int width = GetRandInRange(4, sectionWidth - 2);
+		int height = GetRandInRange(4, sectionHeight - 2);
+		MakeRoom(startPoint, width, height);
 	}
 	MakePath();
 	return map;
 }
 
-
-void MysteryDungeonMaker::MakeRoom(Vector2* startPoint, Vector2* roomSize)
+void MysteryDungeonMaker::MakeRoom(Component const& startPoint, int roomWidth, int roomHeight)
 {
-	int endColumnIndex = startPoint->x + sectionWidth - 1;
-	int endRowIndex = startPoint->y + sectionHeight - 1;
-	Vector2 puttableStartPoint;
-	Vector2 puttableEndPoint;
-	puttableStartPoint.x = startPoint->x + 1;
-	puttableStartPoint.y = startPoint->y + 1;
-	puttableEndPoint.x = endColumnIndex - roomSize->x;
-	puttableEndPoint.y = endRowIndex - roomSize->y;
-	
-	Vector2 roomStartPoint;
-	roomStartPoint.x = GetRandInRange(puttableStartPoint.x, puttableEndPoint.x);
-	roomStartPoint.y = GetRandInRange(puttableStartPoint.y, puttableEndPoint.y);
+	Rect temp;//部屋の始点設置可能領域
+	temp.x1 = startPoint.j + 1;
+	temp.y1 = startPoint.i + 1;
+	temp.x2 = startPoint.j + sectionWidth - 1 - roomWidth;
+	temp.y2 = startPoint.i + sectionHeight - 1 - roomHeight;
 
-	Vector2 v = ConvertToSectionCoord(*startPoint);
-	section[v.y][v.x].roomStart.x = roomStartPoint.x;
-	section[v.y][v.x].roomStart.y = roomStartPoint.y;
-	section[v.y][v.x].roomEnd = Vector2(roomStartPoint.x + roomSize->x-1, roomStartPoint.y+roomSize->y-1);
+	Rect room;//実際に配置される部屋
+	room.x1 = GetRandInRange(temp.x1, temp.x2);
+	room.y1 = GetRandInRange(temp.y1, temp.y2);
+	room.x2 = room.x1 + roomWidth;
+	room.y2 = room.y1 + roomHeight;
 
-	for (size_t i = 0; i < roomSize->y; i++)
+	section[startPoint.i/sectionHeight][startPoint.j/sectionWidth].SetRoom(room);
+
+	for (int i = 0; i < roomHeight; ++i)
 	{
-		for (size_t j = 0; j < roomSize->x; j++)
+		for (int j = 0; j < roomWidth; ++j)
 		{
-			map[roomStartPoint.y+i][roomStartPoint.x+j] = 1;
+			map[room.y1 + i][room.x1 + j] = 1;
 		}
 	}
-}
-
-void MysteryDungeonMaker::MakeRoom(Rect const& room)
-{
-
 }
 
 void MysteryDungeonMaker::ResetMap()
@@ -135,15 +121,16 @@ void MysteryDungeonMaker::MakePath()
 	{
 		for (int j = 0; j < mapWidth; j++)
 		{
-			Section info = section[i][j];
-			if (info.hasRoom)
+			Section sec = section[i][j];
+			Rect room = sec.GetRoom();
+			if (sec.HasRoom())
 			{
 				Vector2 v;
 				if(i - 1>= 0)
 				{
-					v.x = GetRandInRange(info.roomStart.x, info.roomStart.x + info.roomSize.x - 1);
-					v.y = info.roomStart.y-1;
-					int diff = info.roomStart.y - i*sectionHeight;
+					v.x = GetRandInRange(room.x1, room.x2 - 1);
+					v.y = room.y1-1;
+					int diff = room.y1 - i*sectionHeight;
 					for (int k = 0; k < diff; k++)
 					{
 						map[v.y-k][v.x] = MapObject::PATH;

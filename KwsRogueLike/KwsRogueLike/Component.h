@@ -8,4 +8,5 @@ public:
 
 public:
 	Component(int i, int j);
+	Component();
 };

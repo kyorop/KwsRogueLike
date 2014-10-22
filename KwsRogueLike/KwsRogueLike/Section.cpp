@@ -21,6 +21,11 @@ void Section::PutRoomMark()
 	hasRoom = true;
 }
 
+bool Section::HasRoom()
+{
+	return hasRoom;
+}
+
 void Section::SetComponent(int i, int j)
 {
 
@@ -42,4 +47,9 @@ void Section::SetRoom(int i, int j, int w, int h)
 void Section::SetRoom(Rect const& rect)
 {
 	*room = rect;
+}
+
+Rect Section::GetRoom()
+{
+	return *room;
 }

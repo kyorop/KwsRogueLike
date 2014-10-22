@@ -8,6 +8,14 @@ Rect::Rect(int x1, int y1, int x2, int y2)
 {
 }
 
+Rect::Rect()
+{
+}
+
+Rect::~Rect()
+{
+}
+
 Rect Rect::ConvertToComponent(int x_divisor, int y_divisor)
 {
 	return Rect(x1 / x_divisor, y1 / y_divisor, x2 / x_divisor, y2 / y_divisor);

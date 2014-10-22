@@ -16,8 +16,10 @@ public:
 	~Section();
 
 	void PutRoomMark();
+	bool HasRoom();
 	void SetComponent(int i, int j);
 	void SetComponent(Component component);
 	void SetRoom(int i, int j, int w, int h);
 	void SetRoom(const Rect& rect);
+	Rect GetRoom();
 };

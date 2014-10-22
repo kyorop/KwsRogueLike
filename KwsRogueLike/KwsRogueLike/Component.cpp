@@ -5,3 +5,7 @@ Component::Component(int i, int j)
 	j(j)
 {
 }
+
+Component::Component()
+{
+}
