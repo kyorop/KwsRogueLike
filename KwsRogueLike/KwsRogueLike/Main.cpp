@@ -15,7 +15,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	int handle_floor = LoadGraph("img/GrayFloor.png");
 
 	const int mapWidth = 5;
-	const int mapHeight = 3;
+	const int mapHeight = 5;
 	const int sectionWidth = 10;
 	const int sectionHeight = 10;
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);

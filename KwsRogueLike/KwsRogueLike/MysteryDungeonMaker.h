@@ -1,6 +1,9 @@
 #pragma once
+
 class Vector2;
 class ReducedMap;
+class Section;
+class Rect;
 class MysteryDungeonMaker
 {
 private:
@@ -10,6 +13,8 @@ private:
 	const int sectionHeight;
 	int** map;
 	ReducedMap** rmap;
+	Section** section;
+
 public:
 	enum MapObject
 	{
@@ -28,7 +33,8 @@ private:
 	void NewMap();
 	void DeleteMap();
 	void MakeRoom(Vector2* startingPoint, Vector2* roomSize);
+	void MakeRoom(const Rect& room);
 	void ResetMap();
 	void MakePath();
-	Vector2 ConvertToRMapCoord(Vector2 mapCoord);
+	Vector2 ConvertToSectionCoord(const Vector2& mapCoord);
 };

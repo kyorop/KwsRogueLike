@@ -81,6 +81,8 @@
   <ItemGroup>
     <ClInclude Include="Attack.h" />
     <ClInclude Include="CharacterBase.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ConvertRect.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="Equipable.h" />
@@ -94,13 +96,17 @@
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="PlayerBase.h" />
     <ClInclude Include="RandExtended.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="ReducedMap.h" />
     <ClInclude Include="ScrollableObject.h" />
+    <ClInclude Include="Section.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharacterBase.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ConvertRect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Equipable.cpp" />
@@ -113,8 +119,10 @@
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="PlayerBase.cpp" />
     <ClCompile Include="RandExtended.cpp" />
+    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="ReducedMap.cpp" />
     <ClCompile Include="ScrollableObject.cpp" />
+    <ClCompile Include="Section.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
