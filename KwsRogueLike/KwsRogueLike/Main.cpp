@@ -6,7 +6,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
 	ChangeWindowMode(true);
-	SetGraphMode(640, 480, 16);
+	SetGraphMode(640*2, 480*2, 16);
 	if (DxLib_Init() == -1)
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -16,8 +16,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 
 	const int mapWidth = 5;
 	const int mapHeight = 5;
-	const int sectionWidth = 10;
-	const int sectionHeight = 10;
+	const int sectionWidth = 15;
+	const int sectionHeight = 15;
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
 	int** map = dungeonMaker.CreateDungeon();
 	PlayerBase player(4,4,4,4);

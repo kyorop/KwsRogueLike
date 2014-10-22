@@ -11,7 +11,9 @@ MysteryDungeonMaker::MysteryDungeonMaker(int mapWidth, int mapHeight, int sectio
 	:mapWidth(mapWidth),
 	mapHeight(mapHeight),
 	sectionWidth(sectionWidth),
-	sectionHeight(sectionHeight)
+	sectionHeight(sectionHeight),
+	minRoomWidth(4),
+	minRoomHeight(4)
 {
 	NewMap();
 	ResetMap();
@@ -70,8 +72,8 @@ int** MysteryDungeonMaker::CreateDungeon()
 		Component startPoint;
 		startPoint.i = sectionHeight * i_section;
 		startPoint.j = sectionWidth * j_section;
-		int width = GetRandInRange(4, sectionWidth - 2);
-		int height = GetRandInRange(4, sectionHeight - 2);
+		int width = GetRandInRange(minRoomWidth, sectionWidth - 4);
+		int height = GetRandInRange(minRoomHeight, sectionHeight - 4);
 		MakeRoom(startPoint, width, height);
 	}
 	MakePath();
@@ -81,10 +83,10 @@ int** MysteryDungeonMaker::CreateDungeon()
 void MysteryDungeonMaker::MakeRoom(Component const& startPoint, int roomWidth, int roomHeight)
 {
 	Rect temp;//部屋の始点設置可能領域
-	temp.x1 = startPoint.j + 1;
-	temp.y1 = startPoint.i + 1;
-	temp.x2 = startPoint.j + sectionWidth - 1 - roomWidth;
-	temp.y2 = startPoint.i + sectionHeight - 1 - roomHeight;
+	temp.x1 = startPoint.j + 2;
+	temp.y1 = startPoint.i + 2;
+	temp.x2 = startPoint.j + sectionWidth - 2 - roomWidth;
+	temp.y2 = startPoint.i + sectionHeight - 2 - roomHeight;
 
 	Rect room;//実際に配置される部屋
 	room.x1 = GetRandInRange(temp.x1, temp.x2);
@@ -139,13 +141,4 @@ void MysteryDungeonMaker::MakePath()
 			}
 		}
 	}
-}
-
-
-Vector2 MysteryDungeonMaker::ConvertToSectionCoord(const Vector2& mapCoord)
-{
-	Vector2 v;
-	v.x = mapCoord.x / sectionWidth;
-	v.y = mapCoord.y / sectionHeight;
-	return v;
 }

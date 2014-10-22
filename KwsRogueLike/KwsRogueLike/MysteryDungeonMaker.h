@@ -1,9 +1,6 @@
 #pragma once
 
-class Vector2;
-class ReducedMap;
 class Section;
-class Rect;
 class Component;
 class MysteryDungeonMaker
 {
@@ -12,8 +9,9 @@ private:
 	const int mapHeight;
 	const int sectionWidth;
 	const int sectionHeight;
+	const int minRoomWidth;
+	const int minRoomHeight;
 	int** map;
-	ReducedMap** rmap;
 	Section** section;
 
 public:
@@ -36,5 +34,4 @@ private:
 	void MakeRoom(const Component& startPoint, int roomWidth, int roomHeight);
 	void ResetMap();
 	void MakePath();
-	Vector2 ConvertToSectionCoord(const Vector2& mapCoord);
 };
