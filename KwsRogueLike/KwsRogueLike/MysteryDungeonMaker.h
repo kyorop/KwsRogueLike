@@ -5,9 +5,9 @@ class Component;
 class MysteryDungeonMaker
 {
 private:
-	const int mapWidth;
+	const int mapWidth;//‹æ‰æ‚Ì”
 	const int mapHeight;
-	const int sectionWidth;
+	const int sectionWidth;//ˆê‚Â‚Ì‹æ‰æ‚Ì’†‚Ìƒ}ƒX‚Ì”
 	const int sectionHeight;
 	const int minRoomWidth;
 	const int minRoomHeight;
@@ -20,18 +20,26 @@ public:
 		WALL,
 		FLOOR,
 		PATH,
-		FOOD,
-		ITEM,
+	};
+	enum Direction
+	{
+		UP,
+		RIGHT,
+		DOWN,
+		LEFT,
 	};
 
 public:
-	MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
+	explicit MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
 	~MysteryDungeonMaker();
 	int** CreateDungeon();
+
 private:
 	void NewMap();
 	void DeleteMap();
-	void MakeRoom(const Component& startPoint, int roomWidth, int roomHeight);
 	void ResetMap();
+
+	void MakeRoom(const Component& startPoint, int roomWidth, int roomHeight);
 	void MakePath();
+	void ConnectAdjacentRoom(const Section& center, Direction to, const Section& around);
 };

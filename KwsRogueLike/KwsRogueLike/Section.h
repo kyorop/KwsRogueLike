@@ -8,7 +8,7 @@ class Section
 private:
 	Component* myComponent;
 	Rect* room;
-	std::vector<Component> roomConnected;
+	std::vector<const Section*> roomConnected;
 	bool hasRoom;
 
 public:
@@ -18,8 +18,9 @@ public:
 	void PutRoomMark();
 	bool HasRoom();
 	void SetComponent(int i, int j);
-	void SetComponent(Component component);
+	void SetComponent(const Component& component);
 	void SetRoom(int i, int j, int w, int h);
 	void SetRoom(const Rect& rect);
-	Rect GetRoom();
+	Rect GetRoom() const;
+	void SetRoomConnected(const Section* room);
 };
