@@ -78,11 +78,13 @@ bool Section::isConnected(Section const& section)
 		for (std::vector<const Section*>::iterator itr = roomConnected.begin(); itr != roomConnected.end(); ++itr)
 		{
 			if ((*itr)->EqualTo(current_section))
-			{
-				
-			}
+				return true;
+
+			next.push(*itr);
 		}
 	}
+
+	return false;
 }
 
 bool Section::EqualTo(Section const& section)const
