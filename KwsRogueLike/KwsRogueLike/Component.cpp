@@ -6,6 +6,7 @@ Component::Component(int i, int j)
 {
 }
 
-Component::Component()
+bool Component::operator==(Component const& rhs)
 {
+	return i == rhs.i && j == rhs.j;
 }

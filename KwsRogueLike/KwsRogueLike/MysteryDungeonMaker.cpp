@@ -75,9 +75,7 @@ int** MysteryDungeonMaker::CreateDungeon()
 		int j_section = sections[i].j;
 		section[i_section][j_section].PutRoomMark();
 		
-		Component startPoint;
-		startPoint.i = sectionHeight * i_section;
-		startPoint.j = sectionWidth * j_section;
+		Component startPoint(sectionHeight * i_section, sectionWidth * j_section);
 		int width = GetRandInRange(minRoomWidth, sectionWidth - 4);
 		int height = GetRandInRange(minRoomHeight, sectionHeight - 4);
 		MakeRoom(startPoint, width, height);
@@ -139,9 +137,8 @@ void MysteryDungeonMaker::MakePath()
 					{
 						if (section[i_rota][j_rota].HasRoom())
 						{
-							if (k==0)
-								ConnectAdjacentRoom(section[i][j], static_cast<Direction>(k), section[i_rota][j_rota]);
 							section[i_rota][j_rota].SetRoomConnected(&section[i_rota][j_rota]);
+							ConnectAdjacentRoom(section[i][j], section[i_rota][j_rota]);
 						}
 					}
 				}
@@ -162,52 +159,96 @@ void MysteryDungeonMaker::MakePath()
 	}
 }
 
-void MysteryDungeonMaker::ConnectAdjacentRoom(Section const& center, Direction to, Section const& around)
+void MysteryDungeonMaker::ConnectAdjacentRoom(Section const& center, Section const& around)
 {
-	Rect room1 = center.GetRoom();
-	Rect room2 = around.GetRoom();
-	Component start;
-	Component goal;
+	Component comp_center = center.GetComponent();
+	Component comp_around = around.GetComponent();
+	Rect room_center = center.GetRoom();
+	Rect room_around = around.GetRoom();
+	Component start(0,0);
+	Component goal(0,0);
 
-	switch (to)
+	int door;
+	if (comp_center.i == comp_around.i)
 	{
-	case UP: 
-		int door;
-		door = GetRandInRange(room1.x1, room1.x2);
-		int i_path1 = room1.y1;
-		map[--i_path1][door] = PATH;
-		map[--i_path1][door] = PATH;
-		start.i = i_path1;
-		start.j = door;
-		door = GetRandInRange(room2.x1, room2.x2);
-		int i_path2 = room2.y2;
-		map[++i_path2][door] = PATH;
-		map[++i_path2][door] = PATH;
-		goal.i = i_path2;
-		goal.j = door;
-		break;
+		if (comp_center.j > comp_around.j)
+		{
+			Component comp_temp = comp_center;
+			comp_center = comp_around;
+			comp_around = comp_temp;
+
+			Rect room_temp = room_center;
+			room_center = room_around;
+			room_around = room_temp;
+		}
+		if ()
+		{
+			door = GetRandInRange(room_center.y1, room_center.y2);
+			for (int j = room_center.x2 + 1; j <= (comp_center.j + 1)*sectionWidth; j++)
+			{
+				map[door][j] = PATH;
+			}
+			door = GetRandInRange(room_around.y1, room_around.y2);
+			for (int j = room_around.x1 - 1; j >= (comp_center.j + 1)*sectionWidth + 1; j--)
+			{
+				map[door][j] = PATH;
+			}
+		}
+
+	}
+	else
+	{
+	}
+
+	//switch (to)
+	//{
+	//case UP: 
+	//	int door;
+	//	door = GetRandInRange(room1.x1, room1.x2);
+	//	int i_path1 = room1.y1;
+	//	map[--i_path1][door] = PATH;
+	//	map[--i_path1][door] = PATH;
+	//	start.i = i_path1;
+	//	start.j = door;
+	//	door = GetRandInRange(room_around.x1, room_around.x2);
+	//	int i_path2 = room_around.y2;
+	//	map[++i_path2][door] = PATH;
+	//	map[++i_path2][door] = PATH;
+	//	goal.i = i_path2;
+	//	goal.j = door;
+	//	break;
 	//case RIGHT: break;
 	//case DOWN: break;
 	//case LEFT: break;
 	//default: break;
-	}
+	//}
+
+	//int i_initial = start.i;
+	//int distance = abs(i_initial - goal.i);
+	//int sign = (goal.i-start.i) / distance;
+	//for (; start.i < i_initial+sign*distance; start.i += sign)
+	//{
+	//	map[start.i][start.j] = PATH;
+	//}
+	//for (; start.i != goal.i; start.i += sign)
+	//{
+	//	map[start.i][start.j] = PATH;
+	//}
+
+	//int j;
+	//for (j = fmin(start.j, goal.j); j < fmax(start.j, goal.j); ++j)
+	//{
+	//	map[start.i][j] = PATH;
+	//}
+
 
 	if (start.i == goal.i)
 	{
-		for (int j = fmin(start.j, goal.j)+1; j < fmax(start.j, goal.j); ++j)
-		{
-			map[start.i][j] = PATH;
-		}
+
 	}
 	else if (start.j == goal.j)
 	{
-		
-	}
-	else
-	{
-		if (start.i<goal.i)
-		{
-		}
+
 	}
 	int i_larger = fmax(start.i, goal.i);
 	int j_larger = fmax(start.j, goal.j);

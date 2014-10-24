@@ -41,5 +41,5 @@ private:
 
 	void MakeRoom(const Component& startPoint, int roomWidth, int roomHeight);
 	void MakePath();
-	void ConnectAdjacentRoom(const Section& center, Direction to, const Section& around);
+	void ConnectAdjacentRoom(const Section& center, const Section& around);
 };

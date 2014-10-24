@@ -8,5 +8,6 @@ public:
 
 public:
 	Component(int i, int j);
-	Component();
+
+	bool operator==(const Component& rhs);
 };
