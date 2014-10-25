@@ -74,7 +74,6 @@ int** MysteryDungeonMaker::CreateDungeon()
 	{
 		int i_section = sections[i].i;
 		int j_section = sections[i].j;
-		section[i_section][j_section].PutRoomMark();
 		
 		Component startPoint(sectionHeight * i_section, sectionWidth * j_section);
 		int width = GetRandInRange(minRoomWidth, sectionWidth - 4);
@@ -85,13 +84,13 @@ int** MysteryDungeonMaker::CreateDungeon()
 	return map;
 }
 
-void MysteryDungeonMaker::MakeRoom(Component const& startPoint, int roomWidth, int roomHeight)
+void MysteryDungeonMaker::MakeRoom(Component const& sectionStartPoint, int roomWidth, int roomHeight)
 {
 	Rect temp;//部屋の始点設置可能領域
-	temp.x1 = startPoint.j + 2;
-	temp.y1 = startPoint.i + 2;
-	temp.x2 = startPoint.j + sectionWidth - 2 - roomWidth;
-	temp.y2 = startPoint.i + sectionHeight - 2 - roomHeight;
+	temp.x1 = sectionStartPoint.j + 2;
+	temp.y1 = sectionStartPoint.i + 2;
+	temp.x2 = sectionStartPoint.j + sectionWidth - 2 - roomWidth;
+	temp.y2 = sectionStartPoint.i + sectionHeight - 2 - roomHeight;
 
 	Rect room;//実際に配置される部屋
 	room.x1 = GetRandInRange(temp.x1, temp.x2);
@@ -99,7 +98,7 @@ void MysteryDungeonMaker::MakeRoom(Component const& startPoint, int roomWidth, i
 	room.x2 = room.x1 + roomWidth-1;
 	room.y2 = room.y1 + roomHeight-1;
 
-	section[startPoint.i/sectionHeight][startPoint.j/sectionWidth].SetRoom(room);
+	section[sectionStartPoint.i/sectionHeight][sectionStartPoint.j/sectionWidth].SetRoom(room);
 
 	for (int i = 0; i < roomHeight; ++i)
 	{
@@ -109,6 +108,7 @@ void MysteryDungeonMaker::MakeRoom(Component const& startPoint, int roomWidth, i
 		}
 	}
 }
+
 
 void MysteryDungeonMaker::ResetMap()
 {
@@ -138,9 +138,44 @@ void MysteryDungeonMaker::MakePath()
 					{
 						if (section[i_rota][j_rota].HasRoom())
 						{
-							ConnectAdjacentRoom(section[i][j], section[i_rota][j_rota]);
-							SectionUtil::ConnectToEachOther(&section[i][j], &section[i_rota][j_rota]);
+							ConnectAdjacentRoom(&section[i][j], &section[i_rota][j_rota]);
 						}
+					}
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < mapHeight; i++)
+	{
+		for (int j = 0; j < mapWidth; j++)
+		{
+			if ( ! section[i][j].HasRoom())
+			{
+				std::vector<Section*> aroundSections;
+				for (int k = 0; k < 4; ++k)
+				{
+					int i_rota = i + up_down[k];
+					int j_rota = j + right_left[k];
+					if ((0 <= i_rota && i_rota < mapHeight) && (0 <= j_rota && j_rota < mapWidth))
+					{
+						if (section[i_rota][j_rota].HasRoom())
+							aroundSections.push_back(&section[i_rota][j_rota]);
+					}
+				}
+
+				if (aroundSections.size() == 2)
+				{
+					if( ! aroundSections[0]->isConnectedTo(*aroundSections[1]))
+					{
+						MakeRoom(Component(i*sectionHeight, j*sectionWidth), 1, 1);
+
+						ConnectAdjacentRoom(&section[i][j], aroundSections[0]);
+						ConnectAdjacentRoom(&section[i][j], aroundSections[1]);
+
+						Rect tempRoom = section[i][j].GetRoom();
+//						map[tempRoom.y1][tempRoom.x1] = PATH;
+						section[i][j].RemoveRoom();
 					}
 				}
 			}
@@ -148,18 +183,18 @@ void MysteryDungeonMaker::MakePath()
 	}
 }
 
-void MysteryDungeonMaker::ConnectAdjacentRoom(Section const& center, Section const& around)
+void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 {
-	Component sectionComp_center = center.GetComponent();
-	Component sectionComp_around = around.GetComponent();
-	Rect room_center = center.GetRoom();
-	Rect room_around = around.GetRoom();
+	Component sectionComp_center = center->GetComponent();
+	Component sectionComp_around = around->GetComponent();
+	Rect room_center = center->GetRoom();
+	Rect room_around = around->GetRoom();
 	Component start(0,0);
 	Component goal(0,0);
 
 	int door_center;
 	int door_around;
-	if (!center.isConnectedTo(around))
+	if (!center->isConnectedTo(*around))
 	{
 		if (sectionComp_center.i == sectionComp_around.i)//部屋が横並びの時
 		{
@@ -220,5 +255,7 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section const& center, Section con
 				map[i_border][j] = PATH;
 			}
 		}
+
+		SectionUtil::ConnectToEachOther(center, around);
 	}
 }

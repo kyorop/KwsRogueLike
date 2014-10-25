@@ -16,13 +16,13 @@ public:
 	Section(const Section& section);
 	~Section();
 
-	void PutRoomMark();
 	bool HasRoom()const;
 	void SetComponent(int i, int j);
 	void SetComponent(const Component& component);
 	Component GetComponent() const;
 	void SetRoom(int i, int j, int w, int h);
 	void SetRoom(const Rect& rect);
+	void RemoveRoom();
 	Rect GetRoom() const;
 	void SetRoomConnected(Section* room);
 	std::vector<const Section*> GetConnectedRooms()const;

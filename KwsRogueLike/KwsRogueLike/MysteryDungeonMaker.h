@@ -39,7 +39,7 @@ private:
 	void DeleteMap();
 	void ResetMap();
 
-	void MakeRoom(const Component& startPoint, int roomWidth, int roomHeight);
+	void MakeRoom(const Component& sectionStartPoint, int roomWidth, int roomHeight);
 	void MakePath();
-	void ConnectAdjacentRoom(const Section& center, const Section& around);
+	void ConnectAdjacentRoom(Section *center, Section *around);
 };

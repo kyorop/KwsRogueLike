@@ -28,11 +28,6 @@ Section::~Section()
 	delete room;
 }
 
-void Section::PutRoomMark()
-{
-	hasRoom = true;
-}
-
 bool Section::HasRoom()const
 {
 	return hasRoom;
@@ -60,11 +55,22 @@ void Section::SetRoom(int i, int j, int w, int h)
 	room->y1 = i;
 	room->x2 = j + w;
 	room->y2 = i + h;
+
+	hasRoom = true;
 }
 
 void Section::SetRoom(Rect const& rect)
 {
 	*room = rect;
+	hasRoom = true;
+}
+
+void Section::RemoveRoom()
+{
+	hasRoom = false;
+	roomConnected.clear();
+	delete room;
+	room = new Rect;
 }
 
 Rect Section::GetRoom() const
