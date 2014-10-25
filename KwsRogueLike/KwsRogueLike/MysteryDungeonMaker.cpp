@@ -7,6 +7,7 @@
 #include "Section.h"
 #include "Rect.h"
 #include "Component.h"
+#include "SectionUtil.h"
 
 const int up_down[] = { -1, 0, 1, 0 };
 const int right_left[] = { 0, 1, 0, -1 };
@@ -137,8 +138,8 @@ void MysteryDungeonMaker::MakePath()
 					{
 						if (section[i_rota][j_rota].HasRoom())
 						{
-							section[i_rota][j_rota].SetRoomConnected(&section[i_rota][j_rota]);
 							ConnectAdjacentRoom(section[i][j], section[i_rota][j_rota]);
+							SectionUtil::ConnectToEachOther(&section[i][j], &section[i_rota][j_rota]);
 						}
 					}
 				}
@@ -181,7 +182,7 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section const& center, Section con
 			room_center = room_around;
 			room_around = room_temp;
 		}
-		if ()
+		if (!center.isConnectedTo(around))
 		{
 			door = GetRandInRange(room_center.y1, room_center.y2);
 			for (int j = room_center.x2 + 1; j <= (comp_center.j + 1)*sectionWidth; j++)
@@ -193,6 +194,7 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section const& center, Section con
 			{
 				map[door][j] = PATH;
 			}
+
 		}
 
 	}

@@ -100,6 +100,7 @@
     <ClInclude Include="ReducedMap.h" />
     <ClInclude Include="ScrollableObject.h" />
     <ClInclude Include="Section.h" />
+    <ClInclude Include="SectionUtil.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
@@ -123,6 +124,7 @@
     <ClCompile Include="ReducedMap.cpp" />
     <ClCompile Include="ScrollableObject.cpp" />
     <ClCompile Include="Section.cpp" />
+    <ClCompile Include="SectionUtil.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>

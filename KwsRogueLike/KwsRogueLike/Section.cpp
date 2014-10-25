@@ -12,6 +12,16 @@ Section::Section()
 
 }
 
+Section::Section(Section const& section)
+	:myComponent(new Component),
+	room(new Rect),
+	hasRoom(section.HasRoom())
+{
+	*myComponent = *section.myComponent;
+	*room = *section.room;
+	roomConnected = section.roomConnected;
+}
+
 Section::~Section()
 {
 	delete myComponent;
@@ -23,7 +33,7 @@ void Section::PutRoomMark()
 	hasRoom = true;
 }
 
-bool Section::HasRoom()
+bool Section::HasRoom()const
 {
 	return hasRoom;
 }
@@ -62,22 +72,37 @@ Rect Section::GetRoom() const
 	return *room;
 }
 
-void Section::SetRoomConnected(const Section* room)
+void Section::SetRoomConnected(Section* room)
 {
 	roomConnected.push_back(room);
 }
 
-bool Section::isConnected(Section const& section)
+std::vector<Section const*> Section::GetConnectedRooms()const
+{
+	return roomConnected;
+}
+
+bool Section::isConnectedTo(Section const& section)const
 {
 	std::queue<const Section*> next;
 	next.push(this);
-	while (!next.empty())
+	std::vector<Component> comp_checked;
+
+	while(!next.empty())
 	{
 		Section current_section = *next.front();
+		comp_checked.push_back(current_section.GetComponent());
 		next.pop();
-		for (std::vector<const Section*>::iterator itr = roomConnected.begin(); itr != roomConnected.end(); ++itr)
+
+		std::vector<const Section*>::const_iterator itr;
+		std::vector<const Section*> adjacentRooms = current_section.GetConnectedRooms();
+		for (itr = adjacentRooms.begin(); itr != adjacentRooms.end(); ++itr)
 		{
-			if ((*itr)->EqualTo(current_section))
+			std::vector<Component>::iterator itr_checked_comp;
+			itr_checked_comp = std::find(comp_checked.begin(), comp_checked.end(), (*itr)->GetComponent());
+			if (itr_checked_comp != comp_checked.end())
+				continue;
+			if((*itr)->EqualTo(section))
 				return true;
 
 			next.push(*itr);
@@ -95,4 +120,16 @@ bool Section::EqualTo(Section const& section)const
 bool Section::operator==(Section const& section)
 {
 	return *myComponent == section.GetComponent();
+}
+
+void Section::operator=(Section const& section)
+{
+	delete myComponent;
+	delete room;
+
+	myComponent = new Component;
+	room = new Rect;
+	*myComponent = section.GetComponent();
+	*room = section.GetRoom();
+	roomConnected = section.GetConnectedRooms();
 }
