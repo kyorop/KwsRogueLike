@@ -143,18 +143,6 @@ void MysteryDungeonMaker::MakePath()
 						}
 					}
 				}
-
-				//Component component;
-				//if(i - 1>= 0)
-				//{
-				//	component.j = GetRandInRange(room.x1, room.x2 - 1);
-				//	component.i = room.y1-1;
-				//	int diff = room.y1 - i*sectionHeight;
-				//	for (int k = 0; k < diff; k++)
-				//	{
-				//		map[component.i-k][component.j] = MapObject::PATH;
-				//	}
-				//}
 			}
 		}
 	}
@@ -162,44 +150,51 @@ void MysteryDungeonMaker::MakePath()
 
 void MysteryDungeonMaker::ConnectAdjacentRoom(Section const& center, Section const& around)
 {
-	Component comp_center = center.GetComponent();
-	Component comp_around = around.GetComponent();
+	Component sectionComp_center = center.GetComponent();
+	Component sectionComp_around = around.GetComponent();
 	Rect room_center = center.GetRoom();
 	Rect room_around = around.GetRoom();
 	Component start(0,0);
 	Component goal(0,0);
 
-	int door;
-	if (comp_center.i == comp_around.i)
+	int door_center;
+	int door_around;
+	if (sectionComp_center.i == sectionComp_around.i)//•”‰®‚ª‰¡•À‚Ñ‚ÌŽž
 	{
-		if (comp_center.j > comp_around.j)
+		if (sectionComp_center.j > sectionComp_around.j)
 		{
-			Component comp_temp = comp_center;
-			comp_center = comp_around;
-			comp_around = comp_temp;
+			Component comp_temp = sectionComp_center;
+			sectionComp_center = sectionComp_around;
+			sectionComp_around = comp_temp;
 
 			Rect room_temp = room_center;
 			room_center = room_around;
 			room_around = room_temp;
 		}
+
 		if (!center.isConnectedTo(around))
 		{
-			door = GetRandInRange(room_center.y1, room_center.y2);
-			for (int j = room_center.x2 + 1; j <= (comp_center.j + 1)*sectionWidth; j++)
+			int j_border = (sectionComp_center.j + 1)*sectionWidth-1;
+			door_center = GetRandInRange(room_center.y1, room_center.y2);
+			for (int j = room_center.x2 + 1; j <= j_border; j++)
 			{
-				map[door][j] = PATH;
+				map[door_center][j] = PATH;
 			}
-			door = GetRandInRange(room_around.y1, room_around.y2);
-			for (int j = room_around.x1 - 1; j >= (comp_center.j + 1)*sectionWidth + 1; j--)
+			door_around = GetRandInRange(room_around.y1, room_around.y2);
+			for (int j = room_around.x1 - 1; j > j_border; j--)
 			{
-				map[door][j] = PATH;
+				map[door_around][j] = PATH;
 			}
 
+			for (int i = fmin(door_center, door_around); i <= fmax(door_center, door_around);i++)
+			{
+				map[i][j_border] = PATH;
+			}
 		}
-
 	}
-	else
+	else//•”‰®‚ªc•À‚Ñ‚ÌŽž
 	{
+//		if (sectionComp_center.i)
 	}
 
 	//switch (to)

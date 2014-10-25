@@ -12,7 +12,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	int handle_wall = LoadGraph("img/item/Wall.png");
-	int handle_floor = LoadGraph("img/GrayFloor.png");
+	int handle_floor = LoadGraph("img/BrownFloor.png");
+	int handle_path = LoadGraph("img/GrayFloor.png");
 
 	const int mapWidth = 5;
 	const int mapHeight = 5;
@@ -34,8 +35,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 					DrawGraph(j * 12, i * 12, handle_wall, false);
 				else if (map[i][j] == MysteryDungeonMaker::MapObject::FLOOR)
 					DrawGraph(j * 12, i * 12, handle_floor, false);
-				else
-					int a = 1;
+				else if (map[i][j] == MysteryDungeonMaker::MapObject::PATH)
+					DrawGraph(j * 12, i * 12, handle_path, false);
 			}
 		}
 		enemy.Draw();
