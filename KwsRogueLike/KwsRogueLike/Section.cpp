@@ -65,7 +65,7 @@ void Section::SetRoom(Rect const& rect)
 	hasRoom = true;
 }
 
-void Section::RemoveRoom()
+void Section::RemoveRoom()//todoÄ‹A“I‚Éíœ‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
 {
 	hasRoom = false;
 	roomConnected.clear();
@@ -105,7 +105,7 @@ bool Section::isConnectedTo(Section const& section)const
 		for (itr = adjacentRooms.begin(); itr != adjacentRooms.end(); ++itr)
 		{
 			std::vector<Component>::iterator itr_checked_comp;
-			itr_checked_comp = std::find(comp_checked.begin(), comp_checked.end(), (*itr)->GetComponent());
+			itr_checked_comp = find(comp_checked.begin(), comp_checked.end(), (*itr)->GetComponent());
 			if (itr_checked_comp != comp_checked.end())
 				continue;
 			if((*itr)->EqualTo(section))

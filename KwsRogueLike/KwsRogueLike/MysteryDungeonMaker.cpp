@@ -174,7 +174,7 @@ void MysteryDungeonMaker::MakePath()
 						ConnectAdjacentRoom(&section[i][j], aroundSections[1]);
 
 						Rect tempRoom = section[i][j].GetRoom();
-//						map[tempRoom.y1][tempRoom.x1] = PATH;
+						map[tempRoom.y1][tempRoom.x1] = PATH;
 						section[i][j].RemoveRoom();
 					}
 				}
