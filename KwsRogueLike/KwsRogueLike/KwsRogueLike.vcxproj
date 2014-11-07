@@ -77,17 +77,18 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Attack.h" />
+    <ClInclude Include="IAttack.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConvertRect.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBase.h" />
-    <ClInclude Include="Equipable.h" />
     <ClInclude Include="GameConstant.h" />
     <ClInclude Include="IDrawable.h" />
+    <ClInclude Include="IEquipable.h" />
     <ClInclude Include="ItemBase.h" />
     <ClInclude Include="MapData.h" />
     <ClInclude Include="MapInfo.h" />
@@ -110,7 +111,6 @@
     <ClCompile Include="ConvertRect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
-    <ClCompile Include="Equipable.cpp" />
     <ClCompile Include="ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapData.cpp" />

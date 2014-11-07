@@ -1,8 +1,9 @@
 #pragma once
-#include "Equipable.h"
+#include "ItemBase.h"
+#include "IEquipable.h"
 
-class Weapon :
-	public Equipable
+class Weapon
+	:public ItemBase, virtual public IEquipable
 {
 public:
 	Weapon();

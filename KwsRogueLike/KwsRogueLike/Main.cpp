@@ -27,21 +27,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
-		for (size_t i = 0; i < sectionHeight*mapHeight; i++)
-		{
-			for (size_t j = 0; j < sectionWidth*mapWidth; j++)
-			{
-				if (map[i][j] == MysteryDungeonMaker::MapObject::WALL)
-					DrawGraph(j * 12, i * 12, handle_wall, false);
-				else if (map[i][j] == MysteryDungeonMaker::MapObject::FLOOR)
-					DrawGraph(j * 12, i * 12, handle_floor, false);
-				else if (map[i][j] == MysteryDungeonMaker::MapObject::PATH)
-					DrawGraph(j * 12, i * 12, handle_path, false);
-			}
-		}
-		enemy.Draw();
-		player.Move();
-		player.Draw();
+//		for (size_t i = 0; i < sectionHeight*mapHeight; i++)
+//		{
+//			for (size_t j = 0; j < sectionWidth*mapWidth; j++)
+//			{
+//				if (map[i][j] == MysteryDungeonMaker::MapObject::WALL)
+//					DrawGraph(j * 12, i * 12, handle_wall, false);
+//				else if (map[i][j] == MysteryDungeonMaker::MapObject::FLOOR)
+//					DrawGraph(j * 12, i * 12, handle_floor, false);
+//				else if (map[i][j] == MysteryDungeonMaker::MapObject::PATH)
+//					DrawGraph(j * 12, i * 12, handle_path, false);
+//			}
+//		}
+//		enemy.Draw();
+//		player.Move();
+//		player.Draw();
 		ScreenFlip();
 
 		if (ProcessMessage() < 0)
