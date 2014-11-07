@@ -8,5 +8,7 @@ class Enemy :
 public:
 	Enemy(int hp, int offense, int diffense, int moveSpeed);
 	~Enemy();
+public:
+	void cAttack() override;
 };
 

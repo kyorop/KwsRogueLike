@@ -30,6 +30,7 @@ MysteryDungeonMaker::~MysteryDungeonMaker()
 	DeleteMap();
 }
 
+
 void MysteryDungeonMaker::NewMap()
 {
 	map = new int*[sectionHeight*mapHeight];
@@ -45,6 +46,7 @@ void MysteryDungeonMaker::NewMap()
 	}
 }
 
+
 void MysteryDungeonMaker::DeleteMap()
 {
 	for (size_t i = 0; i < sectionHeight*mapHeight; i++)
@@ -53,6 +55,7 @@ void MysteryDungeonMaker::DeleteMap()
 	}
 	delete[] map;
 }
+
 
 int** MysteryDungeonMaker::CreateDungeon()
 {
@@ -83,6 +86,7 @@ int** MysteryDungeonMaker::CreateDungeon()
 	MakePath();
 	return map;
 }
+
 
 void MysteryDungeonMaker::MakeRoom(Component const& sectionStartPoint, int roomWidth, int roomHeight)
 {
@@ -182,6 +186,7 @@ void MysteryDungeonMaker::MakePath()
 		}
 	}
 }
+
 
 void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 {
