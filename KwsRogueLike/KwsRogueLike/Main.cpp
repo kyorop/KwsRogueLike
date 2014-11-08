@@ -33,8 +33,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int mapWidth = 20;
 	const int mapHeight = 15;
 
-	EnemyBase enemy(32 * mapHeight / 2, 32 * (mapWidth-1));
-	PlayerBase player(32 * mapHeight / 2, 32 * 1);
+	EnemyBase enemy(32 * (mapWidth - 2), 32 * mapHeight / 2);
+	PlayerBase player(32 * 1, 32 * mapHeight / 2);
 
 	int map[mapHeight][mapWidth];
 	for (int i = 0; i < mapHeight; i++)
@@ -91,6 +91,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 			}
 		}
 
+		player.Move();
 		player.Draw();
 		enemy.Draw();
 		

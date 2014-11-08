@@ -12,6 +12,7 @@ EnemyBase::EnemyBase(int x, int y)
 	:CharacterBase(0, 0, 0, 0)
 {
 	SetCoordinate(x, y);
+	LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32, charactor);
 }
 
 EnemyBase::~EnemyBase()
