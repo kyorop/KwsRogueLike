@@ -58,15 +58,46 @@ void PlayerBase::Draw()
 
 void PlayerBase::Move()
 {
-	if (CheckHitKey(KEY_INPUT_RIGHT) != 0)
-		AddCoordinate(32, 0);
+	char buf[256];
+	GetHitKeyStateAll(buf);
 
-	if (CheckHitKey(KEY_INPUT_LEFT) != 0)
-		AddCoordinate(-32, 0);
+	if (!IsMoving())
+	{
+		if (buf[KEY_INPUT_R] != 0)
+		{
+			SetMoving(true);
+			if ((buf[KEY_INPUT_UP] != 0) && (buf[KEY_INPUT_RIGHT] != 0))
+				SetDirection(UPRIGHT);
 
-	if (CheckHitKey(KEY_INPUT_DOWN) != 0)
-		AddCoordinate(0, 32);
+			else if ((buf[KEY_INPUT_UP] != 0) && (buf[KEY_INPUT_LEFT] != 0))
+				SetDirection(UPLEFT);
 
-	if (CheckHitKey(KEY_INPUT_UP) != 0)
-		AddCoordinate(0, -32);
+			else if ((buf[KEY_INPUT_DOWN] != 0) && (buf[KEY_INPUT_RIGHT] != 0))
+				SetDirection(DOWNRIGHT);
+
+			else if ((buf[KEY_INPUT_DOWN] != 0) && (buf[KEY_INPUT_LEFT] != 0))
+				SetDirection(DOWNLEFT);
+			else
+				SetMoving(false);
+		}
+		else
+		{
+			SetMoving(true);
+			if (CheckHitKey(KEY_INPUT_RIGHT) != 0)
+				SetDirection(RIGHT);
+
+			else if (CheckHitKey(KEY_INPUT_LEFT) != 0)
+				SetDirection(LEFT);
+
+			else if (CheckHitKey(KEY_INPUT_DOWN) != 0)
+				SetDirection(DOWN);
+
+			else if (CheckHitKey(KEY_INPUT_UP) != 0)
+				SetDirection(UP);
+			else
+				SetMoving(false);
+		}
+	}
+	else
+		Moving();
 }

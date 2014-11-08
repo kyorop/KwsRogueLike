@@ -7,7 +7,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
 	ChangeWindowMode(true);
-	SetGraphMode(640*2, 480*2, 16);
+	SetGraphMode(640, 480, 16);
 	if (DxLib_Init() == -1)
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -33,8 +33,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int mapWidth = 20;
 	const int mapHeight = 15;
 
-	EnemyBase enemy(32 * (mapWidth - 2), 32 * mapHeight / 2);
-	PlayerBase player(32 * 1, 32 * mapHeight / 2);
+	EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
+	PlayerBase player(32 * 1, 32 * (mapHeight/2));
+	enemy.SetCharacter(&player);
 
 	int map[mapHeight][mapWidth];
 	for (int i = 0; i < mapHeight; i++)
@@ -100,6 +101,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 
 		if (ProcessMessage() < 0)
 			break;
+
 	}
 
 	DxLib_End();
