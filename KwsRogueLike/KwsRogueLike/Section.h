@@ -8,7 +8,7 @@ class Section
 private:
 	Component* myComponent;
 	Rect* room;
-	std::vector<const Section*> roomConnected;
+	std::vector<Section*> roomConnected;
 	bool hasRoom;
 
 public:
@@ -16,6 +16,10 @@ public:
 	Section(const Section& section);
 	~Section();
 
+private:
+	void RemoveRoom(Section* section);
+
+public:
 	bool HasRoom()const;
 	void SetComponent(int i, int j);
 	void SetComponent(const Component& component);
@@ -25,7 +29,7 @@ public:
 	void RemoveRoom();
 	Rect GetRoom() const;
 	void SetRoomConnected(Section* room);
-	std::vector<const Section*> GetConnectedRooms()const;
+	std::vector<Section*> GetConnectedRooms()const;
 	bool isConnectedTo(const Section& section)const;
 
 	bool EqualTo(const Section& section)const;
