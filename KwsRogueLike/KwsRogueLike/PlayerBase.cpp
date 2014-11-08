@@ -11,6 +11,7 @@ PlayerBase::PlayerBase(int hp, int offense, int diffense, int moveSpeed)
 }
 
 PlayerBase::PlayerBase(int x, int y)
+	:CharacterBase(0, 0, 0, 0)
 {
 	SetCoordinate(x, y);
 }
@@ -56,14 +57,14 @@ void PlayerBase::Draw()
 void PlayerBase::Move()
 {
 	if (CheckHitKey(KEY_INPUT_RIGHT) != 0)
-		this->coordinate.x += 32;
+		AddCoordinate(32, 0);
 
 	if (CheckHitKey(KEY_INPUT_LEFT) != 0)
-		this->coordinate.x -= 32;
+		AddCoordinate(-32, 0);
 
 	if (CheckHitKey(KEY_INPUT_DOWN) != 0)
-		this->coordinate.y += 32;
+		AddCoordinate(0, 32);
 
 	if (CheckHitKey(KEY_INPUT_UP) != 0)
-		this->coordinate.y -= 32;
+		AddCoordinate(0, -32);
 }

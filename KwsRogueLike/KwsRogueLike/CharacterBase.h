@@ -13,8 +13,8 @@ protected:
 	void HpChanger(int value);
 	
 public:
-	~CharacterBase();
 	CharacterBase(int hp, int offense, int diffense, int moveSpeed);
 	CharacterBase(int hp, int offense, int diffense, int moveSpeed, int level);
+	~CharacterBase();
 };
 

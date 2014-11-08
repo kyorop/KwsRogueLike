@@ -17,6 +17,7 @@ public:
 protected:
 	void SetCoordinate(int x, int y);
 	void SetCoordinate(const Vector2& coordinate);
-	Vector2 GetCoordinate();
+	Vector2 GetCoordinate()const;
+	void AddCoordinate(int x, int y);
 };
 

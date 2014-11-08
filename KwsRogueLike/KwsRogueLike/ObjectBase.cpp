@@ -24,7 +24,13 @@ void ObjectBase::SetCoordinate(Vector2 const& coordinate)
 	this->coordinate->y = coordinate.y;
 }
 
-Vector2 ObjectBase::GetCoordinate()
+Vector2 ObjectBase::GetCoordinate()const
 {
 	return Vector2(coordinate->x, coordinate->y);
+}
+
+void ObjectBase::AddCoordinate(int x, int y)
+{
+	coordinate->x += x;
+	coordinate->y += y;
 }
