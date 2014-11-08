@@ -3,7 +3,7 @@
   <Class Name="Attack" Collapsed="true">
     <Position X="7.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>IAttack.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -50,21 +50,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MapData" Collapsed="true">
-    <Position X="13.75" Y="0.5" Width="1.5" />
+    <Position X="12" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAEAAAAAAAAAAAAAABAAQAAQAAAEAAAAA=</HashCode>
       <FileName>MapData.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MapInfo" Collapsed="true">
-    <Position X="10.25" Y="1.5" Width="1.5" />
+    <Position X="13.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAAAAAAgAAAEAAIgAYAAAAACAAA=</HashCode>
       <FileName>MapInfo.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MysteryDungeonMaker" Collapsed="true">
-    <Position X="12" Y="1.5" Width="1.5" />
+    <Position X="10.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAQEAAABAAAAAAAgCAgAAAAIAAAQAIAYACAEAAAgAA=</HashCode>
       <FileName>MysteryDungeonMaker.h</FileName>
@@ -92,14 +92,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Rect" Collapsed="true">
-    <Position X="13.75" Y="1.5" Width="1.5" />
+    <Position X="12" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAIAAAAAEAAAyCAAACAAQAAAAAAAAA=</HashCode>
       <FileName>Rect.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ReducedMap" Collapsed="true">
-    <Position X="10.25" Y="2.5" Width="1.5" />
+    <Position X="13.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAAAAhAAABAAAAAAAAABAAAAAAgAAAAAAAA=</HashCode>
       <FileName>ReducedMap.h</FileName>
@@ -113,14 +113,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Section" Collapsed="true">
-    <Position X="12" Y="2.5" Width="1.5" />
+    <Position X="10.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAUBAgBAAAIQAAAAAIABQAQAAAAAAAAAAIoEMAAAAI=</HashCode>
       <FileName>Section.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Vector2" Collapsed="true">
-    <Position X="13.75" Y="2.5" Width="1.5" />
+    <Position X="12" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAABAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
       <FileName>Vector2.h</FileName>

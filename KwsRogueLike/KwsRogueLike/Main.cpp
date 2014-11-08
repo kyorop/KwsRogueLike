@@ -11,8 +11,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	int handle_wall = LoadGraph("img/item/Wall.png");
-	int handle_floor = LoadGraph("img/BrownFloor.png");
+	int handle_wall = LoadGraph("img/wall32.png");
+	int handle_floor = LoadGraph("img/floor32.png");
 	int handle_path = LoadGraph("img/GrayFloor.png");
 
 	const int mapWidth = 5;
@@ -21,7 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int sectionHeight = 15;
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
 	int** map = dungeonMaker.CreateDungeon();
-	PlayerBase player(4,4,4,4);
+	PlayerBase player(32, 32);
 	EnemyBase enemy(3,3,3,3);
 
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
@@ -42,6 +42,39 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 //		enemy.Draw();
 //		player.Move();
 //		player.Draw();
+
+		enum MapState
+		{
+			FLOOR,
+			WALL,
+		};
+		const int mapWidth = 20;
+		const int mapHeight = 15;
+		int map[mapHeight][mapWidth];
+		for (int i = 0; i < mapHeight; i++)
+		{
+			for (int j = 0; j < mapWidth; j++)
+			{
+				if (i == 0 || i == mapHeight - 1)
+					map[i][j] = WALL;
+				else if (j == 0 || j == mapWidth - 1)
+					map[i][j] = WALL;
+				else
+					map[i][j] = FLOOR;
+			}
+		}
+
+		for (int i = 0; i < mapHeight; i++)
+		{
+			for (int j = 0; j < mapWidth; j++)
+			{
+				if (map[i][j] == WALL)
+					DrawGraph(32 * j, 32 * i, handle_wall, true);
+				else
+					DrawGraph(32 * j, i * 32, handle_floor, true);
+			}
+		}
+
 		ScreenFlip();
 
 		if (ProcessMessage() < 0)

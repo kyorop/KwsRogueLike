@@ -4,13 +4,16 @@
 PlayerBase::PlayerBase(int hp, int offense, int diffense, int moveSpeed)
 	:CharacterBase(hp, offense, diffense, moveSpeed)
 {
-	coordinate.x = 0;
-	coordinate.y = 0;
+	SetCoordinate(0,0);
 	LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32, charactor);
 
 	direction = 0;
 }
 
+PlayerBase::PlayerBase(int x, int y)
+{
+	SetCoordinate(x, y);
+}
 
 PlayerBase::~PlayerBase()
 {
@@ -33,18 +36,19 @@ void PlayerBase::Draw()
 			direction = 3;
 	}
 
+	Vector2 coordinate = GetCoordinate();
 	switch (direction){
 	case 0:
-		DrawGraph(this->coordinate.x, this->coordinate.y, charactor[0], true);
+		DrawGraph(coordinate.x, coordinate.y, charactor[0], true);
 		break;
 	case 1:
-		DrawGraph(this->coordinate.x, this->coordinate.y, charactor[24], true);
+		DrawGraph(coordinate.x, coordinate.y, charactor[24], true);
 		break;
 	case 2:
-		DrawGraph(this->coordinate.x, this->coordinate.y, charactor[12], true);
+		DrawGraph(coordinate.x, coordinate.y, charactor[12], true);
 		break;
 	default:
-		DrawGraph(this->coordinate.x, this->coordinate.y, charactor[36], true);
+		DrawGraph(coordinate.x, coordinate.y, charactor[36], true);
 		break;
 	}
 }
