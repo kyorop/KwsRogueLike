@@ -182,3 +182,4 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 KwsRogueLike/KwsRogueLike/Log.txt
+KwsRogueLike/lib/
