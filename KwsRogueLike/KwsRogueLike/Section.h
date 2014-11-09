@@ -10,11 +10,14 @@ private:
 	Rect* room;
 	std::vector<Section*> roomConnected;
 	bool hasRoom;
+	int groupId;
 
 public:
 	Section();
 	Section(const Section& section);
 	~Section();
+	bool operator==(const Section& section);
+	void operator=(const Section& section);
 
 private:
 	void RemoveRoom(Section* section);
@@ -31,8 +34,7 @@ public:
 	void SetRoomConnected(Section* room);
 	std::vector<Section*> GetConnectedRooms()const;
 	bool isConnectedTo(const Section& section)const;
+	std::vector<Section*> SetGroupId(const int id);
 
 	bool EqualTo(const Section& section)const;
-	bool operator==(const Section& section);
-	void operator=(const Section& section);
 };

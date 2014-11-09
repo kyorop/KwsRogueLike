@@ -8,6 +8,7 @@
 #include "Rect.h"
 #include "Component.h"
 #include "SectionUtil.h"
+#include "DungeonMakerHelper.h"
 
 const int up_down[] = { -1, 0, 1, 0 };
 const int right_left[] = { 0, 1, 0, -1 };
@@ -18,7 +19,8 @@ MysteryDungeonMaker::MysteryDungeonMaker(int mapWidth, int mapHeight, int sectio
 	sectionWidth(sectionWidth),
 	sectionHeight(sectionHeight),
 	minRoomWidth(4),
-	minRoomHeight(4)
+	minRoomHeight(4),
+	id(0)
 {
 	NewMap();
 	ResetMap();
@@ -56,6 +58,17 @@ void MysteryDungeonMaker::DeleteMap()
 	delete[] map;
 }
 
+void MysteryDungeonMaker::ResetMap()
+{
+	for (size_t i = 0; i < sectionHeight*mapHeight; i++)
+	{
+		for (size_t j = 0; j < sectionWidth*mapWidth; j++)
+		{
+			map[i][j] = 0;
+		}
+	}
+}
+
 
 int** MysteryDungeonMaker::CreateDungeon()
 {
@@ -70,7 +83,6 @@ int** MysteryDungeonMaker::CreateDungeon()
 			section[i][j].SetComponent(i, j);
 		}
 	}
-
 	std::random_shuffle(sections.begin(), sections.end());
 
 	for (int i = 0; i < roomNum; i++)
@@ -105,29 +117,14 @@ void MysteryDungeonMaker::MakeRoom(Component const& sectionStartPoint, int roomW
 	section[sectionStartPoint.i/sectionHeight][sectionStartPoint.j/sectionWidth].SetRoom(room);
 
 	for (int i = 0; i < roomHeight; ++i)
-	{
 		for (int j = 0; j < roomWidth; ++j)
-		{
 			map[room.y1 + i][room.x1 + j] = FLOOR;
-		}
-	}
-}
-
-
-void MysteryDungeonMaker::ResetMap()
-{
-	for (size_t i = 0; i < sectionHeight*mapHeight; i++)
-	{
-		for (size_t j = 0; j < sectionWidth*mapWidth; j++)
-		{
-			map[i][j] = 0;
-		}
-	}
 }
 
 
 void MysteryDungeonMaker::MakePath()
 {
+	//ステップ1
 	for (int i = 0; i < mapHeight; i++)
 	{
 		for (int j = 0; j < mapWidth; j++)
@@ -150,6 +147,7 @@ void MysteryDungeonMaker::MakePath()
 		}
 	}
 
+	//ステップ2
 	for (int i = 0; i < mapHeight; i++)
 	{
 		for (int j = 0; j < mapWidth; j++)
@@ -185,6 +183,38 @@ void MysteryDungeonMaker::MakePath()
 			}
 		}
 	}
+
+	//ステップ3
+	std::vector<std::vector<Section*>> groups;
+	for (int i = 0; i < mapHeight; i++)
+	{
+		for (int j = 0; j < mapWidth; j++)
+		{
+			Section* current = &section[i][j];
+			if (current->HasRoom())
+			{ 
+				if (groups.empty())
+				{
+					groups.push_back(current->SetGroupId(id++));
+				}
+				else
+				{
+					int  notMarked = 0;
+					for (int i_groups = 0; i_groups < groups.size(); i_groups++)
+					{
+						if (!DungeonMakerHelper::HasComponent(groups[i_groups], current->GetComponent()))
+						{
+							notMarked++;
+						}
+					}
+					if (notMarked == groups.size())
+						groups.push_back(current->SetGroupId(id++));
+				}
+			}
+		}
+	}
+
+	int a = 0;
 }
 
 

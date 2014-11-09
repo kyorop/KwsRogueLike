@@ -12,4 +12,5 @@ public:
 	Component(const Component&);
 
 	bool operator==(const Component& rhs);
+	bool operator!=(const Component& rhs);
 };

@@ -40,6 +40,7 @@ private:
 	void ResetMap();
 
 	void MakeRoom(const Component& sectionStartPoint, int roomWidth, int roomHeight);
+	int id;
 	void MakePath();
 	void ConnectAdjacentRoom(Section *center, Section *around);
 };

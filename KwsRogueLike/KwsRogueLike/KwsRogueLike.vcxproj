@@ -78,8 +78,10 @@
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DungeonMakerHelper.h" />
     <ClInclude Include="IAttack.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="Component.h" />
@@ -109,6 +111,7 @@
     <ClCompile Include="CharacterBase.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConvertRect.cpp" />
+    <ClCompile Include="DungeonMakerHelper.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="ItemBase.cpp" />
