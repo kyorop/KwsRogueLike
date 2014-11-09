@@ -19,19 +19,16 @@ MysteryDungeonMaker::MysteryDungeonMaker(int mapWidth, int mapHeight, int sectio
 	sectionWidth(sectionWidth),
 	sectionHeight(sectionHeight),
 	minRoomWidth(4),
-	minRoomHeight(4),
-	id(0)
+	minRoomHeight(4)
 {
 	NewMap();
 	ResetMap();
 }
 
-
 MysteryDungeonMaker::~MysteryDungeonMaker()
 {
 	DeleteMap();
 }
-
 
 void MysteryDungeonMaker::NewMap()
 {
@@ -47,7 +44,6 @@ void MysteryDungeonMaker::NewMap()
 		section[i] = new Section[mapWidth];
 	}
 }
-
 
 void MysteryDungeonMaker::DeleteMap()
 {
@@ -68,7 +64,6 @@ void MysteryDungeonMaker::ResetMap()
 		}
 	}
 }
-
 
 int** MysteryDungeonMaker::CreateDungeon()
 {
@@ -99,7 +94,6 @@ int** MysteryDungeonMaker::CreateDungeon()
 	return map;
 }
 
-
 void MysteryDungeonMaker::MakeRoom(Component const& sectionStartPoint, int roomWidth, int roomHeight)
 {
 	Rect temp;//部屋の始点設置可能領域
@@ -120,7 +114,6 @@ void MysteryDungeonMaker::MakeRoom(Component const& sectionStartPoint, int roomW
 		for (int j = 0; j < roomWidth; ++j)
 			map[room.y1 + i][room.x1 + j] = FLOOR;
 }
-
 
 void MysteryDungeonMaker::MakePath()
 {
@@ -185,38 +178,16 @@ void MysteryDungeonMaker::MakePath()
 	}
 
 	//ステップ3
-	std::vector<std::vector<Section*>> groups;
-	for (int i = 0; i < mapHeight; i++)
+	std::vector<std::vector<Section*>> groups = ClassifyGroups();
+	while (groups.size() > 1)
 	{
-		for (int j = 0; j < mapWidth; j++)
-		{
-			Section* current = &section[i][j];
-			if (current->HasRoom())
-			{ 
-				if (groups.empty())
-				{
-					groups.push_back(current->SetGroupId(id++));
-				}
-				else
-				{
-					int  notMarked = 0;
-					for (int i_groups = 0; i_groups < groups.size(); i_groups++)
-					{
-						if (!DungeonMakerHelper::HasComponent(groups[i_groups], current->GetComponent()))
-						{
-							notMarked++;
-						}
-					}
-					if (notMarked == groups.size())
-						groups.push_back(current->SetGroupId(id++));
-				}
-			}
-		}
+		int isolatedIslandNum = groups.size();
+		DungeonMakerHelper::SortByGroupSize(&groups);
+		break;
 	}
 
 	int a = 0;
 }
-
 
 void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 {
@@ -293,4 +264,40 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 
 		SectionUtil::ConnectToEachOther(center, around);
 	}
+}
+
+std::vector<std::vector<Section*>> MysteryDungeonMaker::ClassifyGroups()
+{
+	std::vector<std::vector<Section*>> groups;
+	int groupId = 0;
+
+	for (int i = 0; i < mapHeight; i++)
+	{
+		for (int j = 0; j < mapWidth; j++)
+		{
+			Section* current = &section[i][j];
+			if (current->HasRoom())
+			{
+				if (groups.empty())
+				{
+					groups.push_back(current->SetGroupId(groupId++));
+				}
+				else
+				{
+					int  notMarked = 0;
+					for (int i_groups = 0; i_groups < groups.size(); i_groups++)
+					{
+						if (!DungeonMakerHelper::HasComponent(groups[i_groups], current->GetComponent()))
+						{
+							notMarked++;
+						}
+					}
+					if (notMarked == groups.size())
+						groups.push_back(current->SetGroupId(groupId++));
+				}
+			}
+		}
+	}
+
+	return groups;
 }

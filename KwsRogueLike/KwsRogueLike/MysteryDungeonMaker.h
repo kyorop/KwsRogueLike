@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class Section;
 class Component;
@@ -40,7 +41,8 @@ private:
 	void ResetMap();
 
 	void MakeRoom(const Component& sectionStartPoint, int roomWidth, int roomHeight);
-	int id;
 	void MakePath();
 	void ConnectAdjacentRoom(Section *center, Section *around);
+	std::vector<std::vector<Section*>> ClassifyGroups();
+	bool IsAbleToConnect();
 };

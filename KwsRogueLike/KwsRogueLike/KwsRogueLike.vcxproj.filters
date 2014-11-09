@@ -97,7 +97,7 @@
       <Filter>MapCreate</Filter>
     </ClInclude>
     <ClInclude Include="DungeonMakerHelper.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>MapCreate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -165,7 +165,7 @@
       <Filter>MapCreate</Filter>
     </ClCompile>
     <ClCompile Include="DungeonMakerHelper.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MapCreate</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
