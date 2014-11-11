@@ -1,5 +1,7 @@
 #include <cmath>
 #include <algorithm>
+#include <utility>
+#include <queue>
 #include "MysteryDungeonMaker.h"
 #include "RandExtended.h"
 #include "Vector2.h"
@@ -78,7 +80,7 @@ int** MysteryDungeonMaker::CreateDungeon()
 			section[i][j].SetComponent(i, j);
 		}
 	}
-	std::random_shuffle(sections.begin(), sections.end());
+	random_shuffle(sections.begin(), sections.end());
 
 	for (int i = 0; i < roomNum; i++)
 	{
@@ -183,10 +185,9 @@ void MysteryDungeonMaker::MakePath()
 	{
 		int isolatedIslandNum = groups.size();
 		DungeonMakerHelper::SortByGroupSize(&groups);
+		SearchShortestRoute(*groups[0][0]);
 		break;
 	}
-
-	int a = 0;
 }
 
 void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
@@ -195,8 +196,8 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 	Component sectionComp_around = around->GetComponent();
 	Rect room_center = center->GetRoom();
 	Rect room_around = around->GetRoom();
-	Component start(0,0);
-	Component goal(0,0);
+	Component start;
+	Component goal;
 
 	int door_center;
 	int door_around;
@@ -300,4 +301,55 @@ std::vector<std::vector<Section*>> MysteryDungeonMaker::ClassifyGroups()
 	}
 
 	return groups;
+}
+
+std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& start)
+{
+	std::queue<const Section*> queue;
+	std::vector <Component> visited;
+	std::vector<Component> back;
+	const Section* current;
+	const Section* goal;
+	bool isGoaled = false;
+
+	queue.push(&start);
+
+	while (!queue.empty() || !isGoaled)
+	{
+		current = queue.front();
+		queue.pop();
+
+		for (int k = 0; k < 4; k++)
+		{
+			int i = current->GetComponent().i + up_down[k];
+			int j = current->GetComponent().j + right_left[k];
+			Section* next = &section[i][j];
+			if ((0 <= i && i < mapHeight) && (0 <= j && j < mapWidth))
+			{
+				if (next->HasRoom())
+				{
+					if (next->GetGroupId() != start.GetGroupId())
+					{
+						goal = next;
+						isGoaled = true;
+					}
+
+					visited.push_back(next->GetComponent());
+					back.push_back(current->GetComponent());
+				}
+				else
+				{
+					if (find(visited.begin(), visited.end(), next->GetComponent()) == visited.end())
+					{
+						queue.push(next);
+						visited.push_back(next->GetComponent());
+						back.push_back(current->GetComponent());
+					}
+				}
+			}
+		}
+	}
+
+
+	return visited;
 }

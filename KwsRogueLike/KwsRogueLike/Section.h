@@ -13,6 +13,12 @@ private:
 	int groupId;
 
 public:
+	int GetGroupId() const
+	{
+		return groupId;
+	}
+
+public:
 	Section();
 	Section(const Section& section);
 	~Section();

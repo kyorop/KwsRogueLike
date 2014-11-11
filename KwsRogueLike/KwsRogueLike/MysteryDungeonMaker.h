@@ -44,5 +44,5 @@ private:
 	void MakePath();
 	void ConnectAdjacentRoom(Section *center, Section *around);
 	std::vector<std::vector<Section*>> ClassifyGroups();
-	bool IsAbleToConnect();
+	std::vector<Component> SearchShortestRoute(const Section& start);
 };
