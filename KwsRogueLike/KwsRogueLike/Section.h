@@ -10,12 +10,18 @@ private:
 	Rect* room;
 	std::vector<Section*> roomConnected;
 	bool hasRoom;
+	bool hasPath;
 	int groupId;
 
 public:
 	int GetGroupId() const
 	{
 		return groupId;
+	}
+
+	bool HasPath()const
+	{
+		return hasPath;
 	}
 
 public:

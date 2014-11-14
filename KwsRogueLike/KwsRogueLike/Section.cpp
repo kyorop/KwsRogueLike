@@ -10,6 +10,7 @@ Section::Section()
 	:myComponent(new Component(0, 0)),
 	room(new Rect),
 	hasRoom(false),
+	hasPath(false),
 	groupId(-1)
 {
 }
@@ -17,7 +18,8 @@ Section::Section()
 Section::Section(Section const& section)
 	:myComponent(new Component),
 	room(new Rect),
-	hasRoom(section.HasRoom())
+	hasRoom(section.HasRoom()),
+	hasPath(section.HasPath())
 {
 	*myComponent = *section.myComponent;
 	*room = *section.room;
@@ -47,6 +49,8 @@ void Section::operator=(Section const& section)
 	*room = section.GetRoom();
 	roomConnected = section.GetConnectedRooms();
 	groupId = section.groupId;
+	hasRoom = section.hasRoom;
+	hasPath = section.hasPath;
 }
 
 void Section::RemoveRoom(Section* section)

@@ -119,7 +119,7 @@ void MysteryDungeonMaker::MakeRoom(Component const& sectionStartPoint, int roomW
 
 void MysteryDungeonMaker::MakePath()
 {
-	//ステップ1
+	//ステップ1(部屋のあるセクションの上下左右をチェック)
 	for (int i = 0; i < mapHeight; i++)
 	{
 		for (int j = 0; j < mapWidth; j++)
@@ -142,7 +142,7 @@ void MysteryDungeonMaker::MakePath()
 		}
 	}
 
-	//ステップ2
+	//ステップ2(部屋のないセクションの上下左右をチェック)
 	for (int i = 0; i < mapHeight; i++)
 	{
 		for (int j = 0; j < mapWidth; j++)
@@ -170,9 +170,7 @@ void MysteryDungeonMaker::MakePath()
 						ConnectAdjacentRoom(&section[i][j], aroundSections[0]);
 						ConnectAdjacentRoom(&section[i][j], aroundSections[1]);
 
-						Rect tempRoom = section[i][j].GetRoom();
-						map[tempRoom.y1][tempRoom.x1] = PATH;
-						section[i][j].RemoveRoom();
+						RemoveOneRoom(section[i][j].GetRoom());
 					}
 				}
 			}
@@ -216,12 +214,30 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 				room_around = room_temp;
 			}
 			int j_border = (sectionComp_center.j + 1)*sectionWidth - 1;
-			door_center = GetRandInRange(room_center.y1, room_center.y2);
+
+			if (room_center.y2-room_center.y1 == 0)
+			{
+				door_center = GetRandInRange(room_center.y1, room_center.y2);
+			}
+			else
+			{
+				door_center = GetRandInRange(room_center.y1 + 1, room_center.y2 - 1);
+			}
+
+			if (room_around.y2 - room_around.y1 == 0)
+			{
+				door_around = GetRandInRange(room_around.y1, room_around.y2);
+			}
+			else
+			{
+				door_around = GetRandInRange(room_around.y1 + 1, room_around.y2 - 1);
+			}
+
 			for (int j = room_center.x2 + 1; j <= j_border; j++)
 			{
 				map[door_center][j] = PATH;
 			}
-			door_around = GetRandInRange(room_around.y1, room_around.y2);
+
 			for (int j = room_around.x1 - 1; j > j_border; j--)
 			{
 				map[door_around][j] = PATH;
@@ -246,8 +262,25 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 			}
 
 			int i_border = sectionComp_center.i*sectionHeight + sectionHeight - 1;
-			door_center = GetRandInRange(room_center.x1, room_center.x2);
-			door_around = GetRandInRange(room_around.x1, room_around.x2);
+			
+			if (room_center.x2 - room_center.x1 == 0)
+			{
+				door_center = GetRandInRange(room_center.x1, room_center.x2);
+			}
+			else
+			{
+				door_center = GetRandInRange(room_center.x1+1, room_center.x2-1);
+			}
+
+			if (room_around.x2 - room_around.x1 == 0)
+			{
+				door_around = GetRandInRange(room_around.x1, room_around.x2);
+			}
+			else
+			{
+				door_around = GetRandInRange(room_around.x1+1, room_around.x2-1);
+			}
+			
 			for (int i = room_center.y2 + 1; i <= i_border;i++)
 			{
 				map[i][door_center] = PATH;
@@ -265,6 +298,19 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 
 		SectionUtil::ConnectToEachOther(center, around);
 	}
+}
+
+void MysteryDungeonMaker::RemoveOneRoom(const Rect& room)
+{
+	map[room.y1][room.x1] = PATH;
+	for (int i = room.y1; i <= room.y2; i++)
+	{
+		for (int j = room.x1; j <= room.x2; j++)
+		{
+			map[i][j] = PATH;
+		}
+	}
+	section[room.y1 / sectionHeight][room.x1 / sectionWidth].RemoveRoom();
 }
 
 std::vector<std::vector<Section*>> MysteryDungeonMaker::ClassifyGroups()
