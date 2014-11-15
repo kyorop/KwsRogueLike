@@ -201,6 +201,11 @@ std::vector<Section*> Section::SetGroupId(int const id)
 	return ret;
 }
 
+void Section::ResetGroupId()
+{
+	groupId = -1;
+}
+
 bool Section::EqualTo(Section const& section)const
 {
 	return *myComponent == section.GetComponent();

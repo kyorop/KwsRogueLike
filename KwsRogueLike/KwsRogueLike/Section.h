@@ -24,6 +24,11 @@ public:
 		return hasPath;
 	}
 
+	void SetHasPath(bool hasPath)
+	{
+		this->hasPath = hasPath;
+	}
+
 public:
 	Section();
 	Section(const Section& section);

@@ -11,6 +11,7 @@ public:
 	Component();
 	Component(const Component&);
 
-	bool operator==(const Component& rhs);
-	bool operator!=(const Component& rhs);
+	bool operator==(const Component& rhs)const;
+	bool operator!=(const Component& rhs)const;
+	bool operator<(const Component& rhs)const;
 };

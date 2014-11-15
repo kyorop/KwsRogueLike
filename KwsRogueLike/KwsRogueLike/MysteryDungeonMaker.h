@@ -44,7 +44,7 @@ private:
 	void MakeRoom(const Component& sectionStartPoint, int roomWidth, int roomHeight);
 	void MakePath();
 	void ConnectAdjacentRoom(Section *center, Section *around);
-	void RemoveOneRoom(const Rect& room);
+	void RemoveRoom(const Rect& room);
 	std::vector<std::vector<Section*>> ClassifyGroups();
 	std::vector<Component> SearchShortestRoute(const Section& start);
 };

@@ -18,12 +18,23 @@ Component::Component(Component const& component)
 	j = component.j;
 }
 
-bool Component::operator==(Component const& rhs)
+bool Component::operator==(Component const& rhs)const
 {
 	return i == rhs.i && j == rhs.j;
 }
 
-bool Component::operator!=(Component const& rhs)
+bool Component::operator!=(Component const& rhs)const
 {
 	return !(*this == rhs);
+}
+
+bool Component::operator<(const Component& rhs)const
+{
+	if (i < rhs.i)
+		return true;
+	
+	if (i == rhs.i && j < rhs.j)
+		return true;
+
+	return false;
 }

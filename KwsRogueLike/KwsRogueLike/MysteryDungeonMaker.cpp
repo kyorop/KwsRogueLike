@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <utility>
 #include <queue>
+#include <map>
+#include <random>
 #include "MysteryDungeonMaker.h"
 #include "RandExtended.h"
 #include "Vector2.h"
@@ -70,7 +72,8 @@ void MysteryDungeonMaker::ResetMap()
 int** MysteryDungeonMaker::CreateDungeon()
 {
 	int sectionNum = mapWidth*mapHeight;
-	const int roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
+//	const int roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
+	const int roomNum = 7;
 	std::vector<Component> sections;
 	for (int i = 0; i < mapHeight; i++)
 	{
@@ -80,8 +83,10 @@ int** MysteryDungeonMaker::CreateDungeon()
 			section[i][j].SetComponent(i, j);
 		}
 	}
-	random_shuffle(sections.begin(), sections.end());
 
+	std::random_device rd;
+	shuffle(sections.begin(), sections.end(), std::mt19937_64(rd()));
+	
 	for (int i = 0; i < roomNum; i++)
 	{
 		int i_section = sections[i].i;
@@ -166,11 +171,10 @@ void MysteryDungeonMaker::MakePath()
 					if( ! aroundSections[0]->isConnectedTo(*aroundSections[1]))
 					{
 						MakeRoom(Component(i*sectionHeight, j*sectionWidth), 1, 1);
-
 						ConnectAdjacentRoom(&section[i][j], aroundSections[0]);
 						ConnectAdjacentRoom(&section[i][j], aroundSections[1]);
-
-						RemoveOneRoom(section[i][j].GetRoom());
+						RemoveRoom(section[i][j].GetRoom());
+						section[i][j].SetHasPath(true);
 					}
 				}
 			}
@@ -179,12 +183,24 @@ void MysteryDungeonMaker::MakePath()
 
 	//ステップ3
 	std::vector<std::vector<Section*>> groups = ClassifyGroups();
+	std::vector<Component>route;
 	while (groups.size() > 1)
 	{
 		int isolatedIslandNum = groups.size();
 		DungeonMakerHelper::SortByGroupSize(&groups);
-		SearchShortestRoute(*groups[0][0]);
-		break;
+		for (int i = 0; i < groups.size();i++)
+		{
+			route = SearchShortestRoute(*groups[0][i]);
+			if (!route.empty())
+				break;
+		}
+		
+		Component start = route[0];
+		Component goal = route[route.size() - 1];
+		for (int i = 0; i < route.size(); i++)
+		{
+			
+		}
 	}
 }
 
@@ -300,9 +316,8 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 	}
 }
 
-void MysteryDungeonMaker::RemoveOneRoom(const Rect& room)
+void MysteryDungeonMaker::RemoveRoom(const Rect& room)
 {
-	map[room.y1][room.x1] = PATH;
 	for (int i = room.y1; i <= room.y2; i++)
 	{
 		for (int j = room.x1; j <= room.x2; j++)
@@ -353,14 +368,15 @@ std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& s
 {
 	std::queue<const Section*> queue;
 	std::vector <Component> visited;
-	std::vector<Component> back;
-	const Section* current;
-	const Section* goal;
+	std::map<Component, Component> routeMap;//<key,back>
+	const Section* current = nullptr;
+	const Section* goal = nullptr;
 	bool isGoaled = false;
 
 	queue.push(&start);
+	visited.push_back(start.GetComponent());
 
-	while (!queue.empty() || !isGoaled)
+	while (!queue.empty() && !isGoaled)
 	{
 		current = queue.front();
 		queue.pop();
@@ -372,30 +388,41 @@ std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& s
 			Section* next = &section[i][j];
 			if ((0 <= i && i < mapHeight) && (0 <= j && j < mapWidth))
 			{
-				if (next->HasRoom())
+				if (next->HasRoom() && next->GetGroupId() != start.GetGroupId())
 				{
-					if (next->GetGroupId() != start.GetGroupId())
-					{
-						goal = next;
-						isGoaled = true;
-					}
+					goal = next;
+					isGoaled = true;
+					routeMap.insert(std::make_pair(next->GetComponent(), current->GetComponent()));
+					break;
+				}
 
-					visited.push_back(next->GetComponent());
-					back.push_back(current->GetComponent());
-				}
-				else
+				if (find(visited.begin(), visited.end(), next->GetComponent()) == visited.end() 
+					&& !section[i][j].HasPath()
+					&& !section[i][j].HasRoom())
 				{
-					if (find(visited.begin(), visited.end(), next->GetComponent()) == visited.end())
-					{
-						queue.push(next);
-						visited.push_back(next->GetComponent());
-						back.push_back(current->GetComponent());
-					}
+					queue.push(next);
+					routeMap.insert(std::make_pair(next->GetComponent(), current->GetComponent()));
 				}
+
+				visited.push_back(next->GetComponent());
 			}
 		}
 	}
 
+	std::vector<Component> route;
 
-	return visited;
+	if (isGoaled)
+	{
+		Component back;
+		back = goal->GetComponent();
+		route.push_back(goal->GetComponent());
+		while (back != start.GetComponent())
+		{
+			back = routeMap.find(back)->second;
+			route.push_back(back);
+		}
+	}
+
+	reverse(route.begin(), route.end());
+	return route;
 }
