@@ -1,2 +1,144 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IAttack" Collapsed="true">
+    <Position X="7.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>IAttack.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterBase" Collapsed="true">
+    <Position X="1.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAEAAAAAAAAAAgAAAAAQEAAAAAIIBABAAAgAA=</HashCode>
+      <FileName>CharacterBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Component" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAFAAAAAAAA=</HashCode>
+      <FileName>Component.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Enemy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyBase" Collapsed="true">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAACAAAAAACAAAAAAAACAAAA=</HashCode>
+      <FileName>EnemyBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IDrawable" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDrawable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IEquipable" Collapsed="true">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IEquipable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemBase" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ItemBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapData" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAEAAAAAAAAAAAAAABAAQAAQAAAEAAAAA=</HashCode>
+      <FileName>MapData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapInfo" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAgAAAEAAIgAYAAAAACAAA=</HashCode>
+      <FileName>MapInfo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MysteryDungeonMaker" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQEAAABAAAAAAAgCAgAAAAIAAAQAIAYACAEAAAgAA=</HashCode>
+      <FileName>MysteryDungeonMaker.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NormalEnemy" Collapsed="true">
+    <Position X="2.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAABEAAAAA=</HashCode>
+      <FileName>NormalEnemy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectBase" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAQAAEAABAAAAAQAAAAAAAAAAAAAAAAABAAIAAA=</HashCode>
+      <FileName>ObjectBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerBase" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAIgAAAAAEAACQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlayerBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rect" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAIAAAAAEAAAyCAAACAAQAAAAAAAAA=</HashCode>
+      <FileName>Rect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReducedMap" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAhAAABAAAAAAAAABAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>ReducedMap.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScrollableObject" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAgAAA=</HashCode>
+      <FileName>ScrollableObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Section" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAUBAgBQAAIRAAAAAIABQAQAAAAAAAAAAIoEMAAAAI=</HashCode>
+      <FileName>Section.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vector2" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAABAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Vector2.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Weapon" Collapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Weapon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Meiryo UI" Size="9" />
+</ClassDiagram>

@@ -1,5 +1,7 @@
 #pragma once
+#include <vector>
 
+class Rect;
 class Section;
 class Component;
 class MysteryDungeonMaker
@@ -32,14 +34,18 @@ public:
 public:
 	explicit MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
 	~MysteryDungeonMaker();
-	int** CreateDungeon();
+	void CreateDungeon(std::vector<std::vector<int>>* map);
 
 private:
 	void NewMap();
 	void DeleteMap();
 	void ResetMap();
+	void ResetGroupId();
 
-	void MakeRoom(const Component& sectionStartPoint, int roomWidth, int roomHeight);
+	void MakeRoom(const Component& section, int roomWidth, int roomHeight);
 	void MakePath();
 	void ConnectAdjacentRoom(Section *center, Section *around);
+	void RemoveRoom(const Rect& room);
+	std::vector<std::vector<Section*>> ClassifyGroups();
+	std::vector<Component> SearchShortestRoute(const Section& start);
 };
