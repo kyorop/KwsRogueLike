@@ -34,7 +34,7 @@ public:
 public:
 	explicit MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
 	~MysteryDungeonMaker();
-	int** CreateDungeon();
+	void CreateDungeon(std::vector<std::vector<int>>* map);
 
 private:
 	void NewMap();

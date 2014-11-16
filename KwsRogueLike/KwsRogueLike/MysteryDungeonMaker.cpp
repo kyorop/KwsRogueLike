@@ -56,6 +56,8 @@ void MysteryDungeonMaker::DeleteMap()
 		delete[] map[i];
 	}
 	delete[] map;
+
+	map = nullptr;
 }
 
 void MysteryDungeonMaker::ResetMap()
@@ -80,10 +82,10 @@ void MysteryDungeonMaker::ResetGroupId()
 	}
 }
 
-int** MysteryDungeonMaker::CreateDungeon()
+void MysteryDungeonMaker::CreateDungeon(std::vector<std::vector<int>>* map)
 {
 	int sectionNum = mapWidth*mapHeight;
-//	const int roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
+	//	const int roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
 	const int roomNum = 7;
 	std::vector<Component> sections;
 	for (int i = 0; i < mapHeight; i++)
@@ -97,18 +99,26 @@ int** MysteryDungeonMaker::CreateDungeon()
 
 	std::random_device rd;
 	shuffle(sections.begin(), sections.end(), std::mt19937_64(rd()));
-	
+
 	for (int i = 0; i < roomNum; i++)
 	{
 		int i_section = sections[i].i;
 		int j_section = sections[i].j;
-		
+
 		int width = GetRandInRange(minRoomWidth, sectionWidth - 4);
 		int height = GetRandInRange(minRoomHeight, sectionHeight - 4);
 		MakeRoom(Component(i_section, j_section), width, height);
 	}
 	MakePath();
-	return map;
+
+	for (int i = 0; i < sectionHeight*mapHeight; i++)
+	{
+		map->push_back(std::vector<int>());
+		for (int j = 0; j < sectionWidth*mapWidth; j++)
+		{
+			(*map)[i].push_back(this->map[i][j]);
+		}
+	}
 }
 
 void MysteryDungeonMaker::MakeRoom(Component const& section, int roomWidth, int roomHeight)

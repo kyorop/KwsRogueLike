@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include <vector>
 #include "MysteryDungeonMaker.h"
 #include "PlayerBase.h"
 #include "EnemyBase.h"
@@ -23,8 +24,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int sectionWidth = 15;
 	const int sectionHeight = 15;
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
-	int** map = dungeonMaker.CreateDungeon();
-
+	std::vector <std::vector<int>> map;
+	dungeonMaker.CreateDungeon(&map);
+	
 	EnemyBase enemy(32 * (mapWidth - 2), 32 * mapHeight / 2);
 	PlayerBase player(32 * 1, 32 * mapHeight / 2);
 
