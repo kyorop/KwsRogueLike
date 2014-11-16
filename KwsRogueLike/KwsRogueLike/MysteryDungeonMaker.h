@@ -40,8 +40,9 @@ private:
 	void NewMap();
 	void DeleteMap();
 	void ResetMap();
+	void ResetGroupId();
 
-	void MakeRoom(const Component& sectionStartPoint, int roomWidth, int roomHeight);
+	void MakeRoom(const Component& section, int roomWidth, int roomHeight);
 	void MakePath();
 	void ConnectAdjacentRoom(Section *center, Section *around);
 	void RemoveRoom(const Rect& room);

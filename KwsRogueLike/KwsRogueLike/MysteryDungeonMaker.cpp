@@ -69,6 +69,17 @@ void MysteryDungeonMaker::ResetMap()
 	}
 }
 
+void MysteryDungeonMaker::ResetGroupId()
+{
+	for (int i = 0; i < mapHeight; i++)
+	{
+		for (int j = 0; j < mapWidth; j++)
+		{
+			section[i][j].ResetGroupId();
+		}
+	}
+}
+
 int** MysteryDungeonMaker::CreateDungeon()
 {
 	int sectionNum = mapWidth*mapHeight;
@@ -92,17 +103,17 @@ int** MysteryDungeonMaker::CreateDungeon()
 		int i_section = sections[i].i;
 		int j_section = sections[i].j;
 		
-		Component startPoint(sectionHeight * i_section, sectionWidth * j_section);
 		int width = GetRandInRange(minRoomWidth, sectionWidth - 4);
 		int height = GetRandInRange(minRoomHeight, sectionHeight - 4);
-		MakeRoom(startPoint, width, height);
+		MakeRoom(Component(i_section, j_section), width, height);
 	}
 	MakePath();
 	return map;
 }
 
-void MysteryDungeonMaker::MakeRoom(Component const& sectionStartPoint, int roomWidth, int roomHeight)
+void MysteryDungeonMaker::MakeRoom(Component const& section, int roomWidth, int roomHeight)
 {
+	Component sectionStartPoint(section.i*sectionHeight, section.j*sectionWidth);
 	Rect temp;//部屋の始点設置可能領域
 	temp.x1 = sectionStartPoint.j + 2;
 	temp.y1 = sectionStartPoint.i + 2;
@@ -115,7 +126,7 @@ void MysteryDungeonMaker::MakeRoom(Component const& sectionStartPoint, int roomW
 	room.x2 = room.x1 + roomWidth-1;
 	room.y2 = room.y1 + roomHeight-1;
 
-	section[sectionStartPoint.i/sectionHeight][sectionStartPoint.j/sectionWidth].SetRoom(room);
+	this->section[sectionStartPoint.i/sectionHeight][sectionStartPoint.j/sectionWidth].SetRoom(room);
 
 	for (int i = 0; i < roomHeight; ++i)
 		for (int j = 0; j < roomWidth; ++j)
@@ -170,7 +181,7 @@ void MysteryDungeonMaker::MakePath()
 				{
 					if( ! aroundSections[0]->isConnectedTo(*aroundSections[1]))
 					{
-						MakeRoom(Component(i*sectionHeight, j*sectionWidth), 1, 1);
+						MakeRoom(Component(i, j), 1, 1);
 						ConnectAdjacentRoom(&section[i][j], aroundSections[0]);
 						ConnectAdjacentRoom(&section[i][j], aroundSections[1]);
 						RemoveRoom(section[i][j].GetRoom());
@@ -188,19 +199,35 @@ void MysteryDungeonMaker::MakePath()
 	{
 		int isolatedIslandNum = groups.size();
 		DungeonMakerHelper::SortByGroupSize(&groups);
-		for (int i = 0; i < groups.size();i++)
+		for (int i = 0; i < groups[0].size(); i++)
 		{
 			route = SearchShortestRoute(*groups[0][i]);
-			if (!route.empty())
+			if ( ! route.empty())
 				break;
 		}
 		
-		Component start = route[0];
-		Component goal = route[route.size() - 1];
-		for (int i = 0; i < route.size(); i++)
+		if (!route.empty())
 		{
-			
+			Component start = route[0];
+			Component goal = route[route.size() - 1];
+			for (int i = 0; i < route.size() - 2; i++)
+			{
+				MakeRoom(route[i + 1], 1, 1);
+
+				Section* sectionMadeRoom = &section[route[i + 1].i][route[i + 1].j];
+				ConnectAdjacentRoom(&section[route[i].i][route[i].j], sectionMadeRoom);
+			}
+
+//			for (int i = 1; i < route.size() - 1; i++)
+//			{
+//				Section* roomRemoved = &section[route[i].i][route[i].j];
+//				RemoveRoom(roomRemoved->GetRoom());
+//				roomRemoved->SetHasPath(true);
+//			}
 		}
+
+		ResetGroupId();
+		groups = ClassifyGroups();
 	}
 }
 
@@ -322,7 +349,7 @@ void MysteryDungeonMaker::RemoveRoom(const Rect& room)
 	{
 		for (int j = room.x1; j <= room.x2; j++)
 		{
-			map[i][j] = PATH;
+//			map[i][j] = PATH;
 		}
 	}
 	section[room.y1 / sectionHeight][room.x1 / sectionWidth].RemoveRoom();

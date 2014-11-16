@@ -52,6 +52,7 @@ public:
 	std::vector<Section*> GetConnectedRooms()const;
 	bool isConnectedTo(const Section& section)const;
 	std::vector<Section*> SetGroupId(const int id);
+	void ResetGroupId();
 
 	bool EqualTo(const Section& section)const;
 };
