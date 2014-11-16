@@ -34,6 +34,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	{
 		ClearDrawScreen();
 
+		if (CheckHitKey(KEY_INPUT_Z))
+		{
+			dungeonMaker.CreateDungeon(&map);
+		}
+
 
 		for (int i = 0; i < mapHeight*sectionHeight; i++)
 		{
