@@ -210,20 +210,21 @@ void MysteryDungeonMaker::MakePath()
 		{
 			Component start = route[0];
 			Component goal = route[route.size() - 1];
-			for (int i = 0; i < route.size() - 2; i++)
+			for (int i = 0; i < route.size() - 1; i++)
 			{
-				MakeRoom(route[i + 1], 1, 1);
+				if (route[i+1] != goal)
+					MakeRoom(route[i + 1], 1, 1);
 
 				Section* sectionMadeRoom = &section[route[i + 1].i][route[i + 1].j];
 				ConnectAdjacentRoom(&section[route[i].i][route[i].j], sectionMadeRoom);
 			}
 
-//			for (int i = 1; i < route.size() - 1; i++)
-//			{
-//				Section* roomRemoved = &section[route[i].i][route[i].j];
-//				RemoveRoom(roomRemoved->GetRoom());
-//				roomRemoved->SetHasPath(true);
-//			}
+			for (int i = 1; i < route.size() - 1; i++)
+			{
+				Section* roomRemoved = &section[route[i].i][route[i].j];
+				RemoveRoom(roomRemoved->GetRoom());
+				roomRemoved->SetHasPath(true);
+			}
 		}
 
 		ResetGroupId();
