@@ -13,11 +13,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	int handle_wall = LoadGraph("img/wall32.bmp");
-	int handle_floor = LoadGraph("img/floor32.bmp");
+	int handle_wall = LoadGraph("img/GrayFloor.png");
+	int handle_floor = LoadGraph("img/BrownFloor.png");
 	int handle_path = LoadGraph("img/GrayFloor.png");
-	const int img_size_width = 32;
-	const int img_size_height = 32;
+	const int img_size_width = 12;
+	const int img_size_height = 12;
 
 	const int mapWidth = 5;
 	const int mapHeight = 5;
