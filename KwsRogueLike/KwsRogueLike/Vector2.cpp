@@ -15,3 +15,9 @@ Vector2::Vector2(int x, int y)
 Vector2::~Vector2()
 {
 }
+
+bool Vector2::operator%(int n) //Vector2型オブジェクトを渡し、ふたつの座標が共にnで割り切れたらtrueを返す。bool型でいいのか？
+{
+	if (this->x%n == 0 && this->y%n == 0)return true;
+	else false;
+}

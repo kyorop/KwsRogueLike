@@ -24,20 +24,24 @@ PlayerBase::~PlayerBase()
 
 void PlayerBase::Draw()
 {
-	if (CheckHitKeyAll())
+	if (!IsMoving())
 	{
-		if (CheckHitKey(KEY_INPUT_RIGHT) != 0)
-			direction = 1;
+		if (CheckHitKeyAll())
+		{
+			if (CheckHitKey(KEY_INPUT_RIGHT) != 0)
+				direction = 1;
 
-		if (CheckHitKey(KEY_INPUT_LEFT) != 0)
-			direction = 2;
+			if (CheckHitKey(KEY_INPUT_LEFT) != 0)
+				direction = 2;
 
-		if (CheckHitKey(KEY_INPUT_DOWN) != 0)
-			direction = 0;
+			if (CheckHitKey(KEY_INPUT_DOWN) != 0)
+				direction = 0;
 
-		if (CheckHitKey(KEY_INPUT_UP) != 0)
-			direction = 3;
+			if (CheckHitKey(KEY_INPUT_UP) != 0)
+				direction = 3;
+		}
 	}
+
 
 	Vector2 coordinate = GetCoordinate();
 	switch (direction){
@@ -61,6 +65,7 @@ void PlayerBase::Move()
 	char buf[256];
 	GetHitKeyStateAll(buf);
 
+	Vector2 coordinate = GetCoordinate();
 	if (!IsMoving())
 	{
 		if (buf[KEY_INPUT_R] != 0)
