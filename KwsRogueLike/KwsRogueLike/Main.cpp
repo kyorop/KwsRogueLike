@@ -43,6 +43,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		}
 
 
+		player.Move();
+
+		debugger.StartDebugMode(&map);
 
 		for (int i = 0; i < mapHeight* sectionHeight; i++)
 		{
@@ -54,10 +57,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 					DrawGraph(img_size_width * j, img_size_height * i, handle_floor, true);
 			}
 		}
-
-		debugger.StartDebugMode(&map);
-
-		player.Move();
 		
 		player.Draw();
 		enemy.Draw();
