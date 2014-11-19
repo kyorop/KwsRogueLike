@@ -1,11 +1,11 @@
+#include <vector>
+
 #pragma once
 class DebugMode
 {
-private:
-	bool debugger = false;
 public:
-	DebugMode(bool debugger);
+	DebugMode();
 	~DebugMode();
-	void StartDebugMode();
+	void StartDebugMode(std::vector<std::vector<int>>* map);
 };
 

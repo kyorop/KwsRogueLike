@@ -43,6 +43,7 @@ private:
 	void DeleteMap();
 	void ResetMap();
 	void ResetGroupId();
+	void DebugMap();
 
 	void MakeRoom(const Component& section, int roomWidth, int roomHeight);
 	void MakePath();

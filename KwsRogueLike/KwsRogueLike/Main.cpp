@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	PlayerBase player(32 * 1, 32 * (mapHeight/2));
 	enemy.SetCharacter(&player);
 
-	DebugMode debugger(false);
+	DebugMode debugger; //デバッグ用のオブジェクト
 
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
@@ -42,6 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		{
 			dungeonMaker.CreateDungeon(&map);
 		}
+
 
 
 		for (int i = 0; i < mapHeight*sectionHeight; i++)
@@ -55,8 +56,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 			}
 		}
 
-		debugger.StartDebugMode();
-
+		
+		
 		player.Draw();
 		player.Move();
 		enemy.Draw();
