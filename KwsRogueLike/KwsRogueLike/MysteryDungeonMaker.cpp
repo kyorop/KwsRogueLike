@@ -23,15 +23,15 @@ MysteryDungeonMaker::MysteryDungeonMaker(int mapWidth, int mapHeight, int sectio
 	sectionWidth(sectionWidth),
 	sectionHeight(sectionHeight),
 	minRoomWidth(4),
-	minRoomHeight(4)
+	minRoomHeight(4),
+	roomNum(0)
 {
-//	NewMap();
-//	ResetMap();
+	int sectionNum = mapWidth*mapHeight;
+	this->roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
 }
 
 MysteryDungeonMaker::~MysteryDungeonMaker()
 {
-//	DeleteMap();
 }
 
 void MysteryDungeonMaker::NewMap()
@@ -88,10 +88,6 @@ void MysteryDungeonMaker::CreateDungeon(std::vector<std::vector<int>>* map)
 	ResetMap();
 
 	std::vector<std::vector<int>> tempMap;
-
-	int sectionNum = mapWidth*mapHeight;
-	//	const int roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
-	const int roomNum = 7;
 	std::vector<Component> sections;
 	for (int i = 0; i < mapHeight; i++)
 	{
@@ -129,6 +125,16 @@ void MysteryDungeonMaker::CreateDungeon(std::vector<std::vector<int>>* map)
 	*map = tempMap;
 
 	DeleteMap();
+}
+
+void MysteryDungeonMaker::SetRoomNum(int roomNum)
+{
+	if (roomNum <= mapHeight*mapWidth)
+		this->roomNum = roomNum;
+	else
+	{
+
+	}
 }
 
 void MysteryDungeonMaker::MakeRoom(Component const& section, int roomWidth, int roomHeight)
@@ -199,7 +205,7 @@ void MysteryDungeonMaker::MakePath()
 
 				if (aroundSections.size() == 2)
 				{
-//					if( ! aroundSections[0]->isConnectedTo(*aroundSections[1]))
+					if( ! aroundSections[0]->isConnectedTo(*aroundSections[1]))
 					{
 						MakeRoom(Component(i, j), 1, 1);
 						ConnectAdjacentRoom(&section[i][j], aroundSections[0]);
@@ -217,7 +223,6 @@ void MysteryDungeonMaker::MakePath()
 	std::vector<Component>route;
 	while (groups.size() > 1)
 	{
-		int isolatedIslandNum = groups.size();
 		DungeonMakerHelper::SortByGroupSize(&groups);
 		for (int i = 0; i < groups[0].size(); i++)
 		{
@@ -228,7 +233,6 @@ void MysteryDungeonMaker::MakePath()
 		
 		if (!route.empty())
 		{
-			Component start = route[0];
 			Component goal = route[route.size() - 1];
 			for (int i = 0; i < route.size() - 1; i++)
 			{
@@ -269,9 +273,7 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 		{
 			if (sectionComp_center.j > sectionComp_around.j)
 			{
-				Component comp_temp = sectionComp_center;
 				sectionComp_center = sectionComp_around;
-				sectionComp_around = comp_temp;
 
 				Rect room_temp = room_center;
 				room_center = room_around;
@@ -316,9 +318,7 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 		{
 			if (sectionComp_center.i > sectionComp_around.i)
 			{
-				Component comp_temp = sectionComp_center;
 				sectionComp_center = sectionComp_around;
-				sectionComp_around = comp_temp;
 
 				Rect room_temp = room_center;
 				room_center = room_around;
@@ -417,7 +417,7 @@ std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& s
 	std::queue<const Section*> queue;
 	std::vector <Component> visited;
 	std::map<Component, Component> routeMap;//<key,back>
-	const Section* current = nullptr;
+	const Section* current;
 	const Section* goal = nullptr;
 	bool isGoaled = false;
 

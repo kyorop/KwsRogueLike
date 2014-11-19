@@ -19,12 +19,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int img_size_width = 12;
 	const int img_size_height = 12;
 
-	const int mapWidth = 3;
+	const int mapWidth = 5;
 	const int mapHeight = 3;
-	const int sectionWidth = 15;
-	const int sectionHeight = 15;
+	const int sectionWidth = 20;
+	const int sectionHeight = 20;
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
 	std::vector <std::vector<int>> map;
+	dungeonMaker.SetRoomNum(199);
 	dungeonMaker.CreateDungeon(&map);
 
 	EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
