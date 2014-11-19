@@ -4,6 +4,7 @@
 #include "PlayerBase.h"
 #include "EnemyBase.h"
 #include "RandExtended.h"
+#include "DebugMode.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
@@ -31,6 +32,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	PlayerBase player(32 * 1, 32 * (mapHeight/2));
 	enemy.SetCharacter(&player);
 
+	DebugMode debugger(false);
+
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
@@ -51,6 +54,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 					DrawGraph(img_size_width * j, img_size_height * i, handle_floor, true);
 			}
 		}
+
+		debugger.StartDebugMode();
 
 		player.Draw();
 		player.Move();

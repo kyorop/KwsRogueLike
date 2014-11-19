@@ -19,9 +19,11 @@ private:
 public:
 	enum MapObject
 	{
-		WALL,
-		FLOOR,
-		PATH,
+		WALL, //壊せる壁
+		FLOOR, //床
+		PATH, //通路
+		UNBRAKABLEWALL, //壊せない壁
+		STAIR //階段、１フロア１つまで
 	};
 	enum Direction
 	{
