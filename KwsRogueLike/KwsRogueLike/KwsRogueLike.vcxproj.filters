@@ -102,6 +102,9 @@
     <ClInclude Include="DebugMode.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="GeneralConstant.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Enemy.cpp">
@@ -171,6 +174,9 @@
       <Filter>MapCreate</Filter>
     </ClCompile>
     <ClCompile Include="DebugMode.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneralConstant.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

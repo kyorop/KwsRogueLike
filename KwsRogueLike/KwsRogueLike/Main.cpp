@@ -5,6 +5,8 @@
 #include "EnemyBase.h"
 #include "RandExtended.h"
 #include "DebugMode.h"
+#include "GeneralConstant.h"
+using namespace GeneralConstant;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
@@ -20,17 +22,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int img_size_width = 12;
 	const int img_size_height = 12;
 
-	const int mapWidth = 5;
-	const int mapHeight = 3;
-	const int sectionWidth = 20;
-	const int sectionHeight = 20;
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
 	std::vector <std::vector<int>> map;
 	dungeonMaker.SetRoomNum(199);
 	dungeonMaker.CreateDungeon(&map);
 
-	EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
 	PlayerBase player(32 * 1, 32 * (mapHeight/2));
+	EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
 	enemy.SetCharacter(&player);
 
 	DebugMode debugger; //デバッグ用のオブジェクト
@@ -46,9 +44,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 
 
 
-		for (int i = 0; i < mapHeight*sectionHeight; i++)
+		for (int i = 0; i < mapHeight* sectionHeight; i++)
 		{
-			for (int j = 0; j < mapWidth*sectionWidth; j++)
+			for (int j = 0; j < mapWidth* sectionWidth; j++)
 			{
 				if (map[i][j] == MysteryDungeonMaker::WALL)
 					DrawGraph(img_size_width * j, img_size_height * i, handle_wall, true);
@@ -57,7 +55,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 			}
 		}
 
-		
+		debugger.StartDebugMode(&map);
+
 		player.Move();
 		
 		player.Draw();

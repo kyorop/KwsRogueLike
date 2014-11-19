@@ -1,7 +1,8 @@
 #include "DebugMode.h"
 #include "DxLib.h"
 #include "MysteryDungeonMaker.h"
-
+#include "GeneralConstant.h"
+using namespace GeneralConstant;
 
 DebugMode::DebugMode()
 {
@@ -18,19 +19,15 @@ void DebugMode::StartDebugMode(std::vector<std::vector<int>>* map)
 	{
 		if (((CheckHitKey(KEY_INPUT_LCONTROL) != 0) && (CheckHitKey(KEY_INPUT_RCONTROL) != 0)))
 		{
-			const int mapWidth = 5;
-			const int mapHeight = 5;
-			const int sectionWidth = 15;
-			const int sectionHeight = 15;
-			std::vector<std::vector<int>> tempMap;
+//			std::vector<std::vector<int>> tempMap;←この時点ではtempMapの要素には何も入ってないから、その状態で添え字アクセスすると範囲外アクセスエラーで落ちます。
 			for (int i = 0; i < sectionHeight*mapHeight; i++)
 			{
 				for (int j = 0; j < sectionWidth*mapWidth; j++)
 				{
-					tempMap[i][j] = MysteryDungeonMaker::FLOOR;
+					(*map)[i][j] = MysteryDungeonMaker::FLOOR;//←mapはポインタなのでこういう風に使います
 				}
 			}
-			*map = tempMap;
+//			*map = tempMap;
 		}
 	}
 }
