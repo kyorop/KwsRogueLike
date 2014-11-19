@@ -19,8 +19,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int img_size_width = 12;
 	const int img_size_height = 12;
 
-	const int mapWidth = 5;
-	const int mapHeight = 5;
+	const int mapWidth = 3;
+	const int mapHeight = 3;
 	const int sectionWidth = 15;
 	const int sectionHeight = 15;
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);

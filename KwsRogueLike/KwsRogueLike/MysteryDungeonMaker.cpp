@@ -199,7 +199,7 @@ void MysteryDungeonMaker::MakePath()
 
 				if (aroundSections.size() == 2)
 				{
-					if( ! aroundSections[0]->isConnectedTo(*aroundSections[1]))
+//					if( ! aroundSections[0]->isConnectedTo(*aroundSections[1]))
 					{
 						MakeRoom(Component(i, j), 1, 1);
 						ConnectAdjacentRoom(&section[i][j], aroundSections[0]);
@@ -433,9 +433,9 @@ std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& s
 		{
 			int i = current->GetComponent().i + up_down[k];
 			int j = current->GetComponent().j + right_left[k];
-			Section* next = &section[i][j];
 			if ((0 <= i && i < mapHeight) && (0 <= j && j < mapWidth))
 			{
+				Section* next = &section[i][j];
 				if (next->HasRoom() && next->GetGroupId() != start.GetGroupId())
 				{
 					goal = next;
