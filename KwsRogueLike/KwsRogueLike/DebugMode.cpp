@@ -12,7 +12,7 @@ DebugMode::~DebugMode()
 {
 }
 
-void StartDebugMode(std::vector<std::vector<int>>* map)
+void DebugMode::StartDebugMode(std::vector<std::vector<int>>* map)
 {
 	if (CheckHitKeyAll())
 	{
