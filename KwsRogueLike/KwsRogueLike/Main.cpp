@@ -4,6 +4,7 @@
 #include "PlayerBase.h"
 #include "EnemyBase.h"
 #include "RandExtended.h"
+#include "DebugMode.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
@@ -32,6 +33,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	PlayerBase player(32 * 1, 32 * (mapHeight/2));
 	enemy.SetCharacter(&player);
 
+	DebugMode debugger; //デバッグ用のオブジェクト
+
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
@@ -40,6 +43,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		{
 			dungeonMaker.CreateDungeon(&map);
 		}
+
 
 
 		for (int i = 0; i < mapHeight*sectionHeight; i++)
@@ -53,8 +57,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 			}
 		}
 
-		player.Move();
+		
+		
 		player.Draw();
+		player.Move();
 		enemy.Draw();
 		
 

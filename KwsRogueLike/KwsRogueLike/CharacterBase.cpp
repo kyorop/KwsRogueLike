@@ -6,6 +6,7 @@ void CharacterBase::Moving()
 	const int moving = 2;
 	if (frameCount < 32/moving)
 	{
+		isMoving = true;
 		switch (direction)
 		{
 		case UP:

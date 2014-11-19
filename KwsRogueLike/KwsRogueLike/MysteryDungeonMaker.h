@@ -20,9 +20,11 @@ private:
 public:
 	enum MapObject
 	{
-		WALL,
-		FLOOR,
-		PATH,
+		WALL, //‰ó‚¹‚é•Ç
+		FLOOR, //°
+		PATH, //’Ê˜H
+		UNBRAKABLEWALL, //‰ó‚¹‚È‚¢•Ç
+		STAIR //ŠK’iA‚PƒtƒƒA‚P‚Â‚Ü‚Å
 	};
 	enum Direction
 	{
@@ -43,6 +45,7 @@ private:
 	void DeleteMap();
 	void ResetMap();
 	void ResetGroupId();
+	void DebugMap();
 
 	void MakeRoom(const Component& section, int roomWidth, int roomHeight);
 	void MakePath();
