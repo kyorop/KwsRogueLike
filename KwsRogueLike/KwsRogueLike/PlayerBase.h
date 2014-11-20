@@ -5,11 +5,12 @@ class PlayerBase
 	:public CharacterBase
 {
 private:
-	Direction direction;
+//	Direction direction;
+	Direction drawDirection;
 	int charactor[96];
 
 public:
-	PlayerBase(int hp, int offense, int diffense, int moveSpeed);
+//	PlayerBase(int hp, int offense, int diffense, int moveSpeed);
 	PlayerBase(int x, int y);
 	~PlayerBase();
 	void Draw()override;

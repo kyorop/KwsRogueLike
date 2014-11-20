@@ -7,7 +7,7 @@
 #include "DebugMode.h"
 #include "GeneralConstant.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 using namespace GeneralConstant;
 
@@ -19,9 +19,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	int handle_wall = LoadGraph("img/GrayFloor.png");
-	int handle_floor = LoadGraph("img/BrownFloor.png");
-	int handle_path = LoadGraph("img/GrayFloor.png");
+	int handle_wall = LoadGraph("img/background/wall.png");
+	int handle_floor = LoadGraph("img/background/floor.png");
+	int handle_path = LoadGraph("img/background/path.png");
 	const int img_size_width = 12;
 	const int img_size_height = 12;
 
@@ -63,6 +63,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 					DrawGraph(img_size_width * j, img_size_height * i, handle_wall, true);
 				else if (map[i][j] == MysteryDungeonMaker::FLOOR)
 					DrawGraph(img_size_width * j, img_size_height * i, handle_floor, true);
+				else if (map[i][j] == MysteryDungeonMaker::PATH)
+					DrawGraph(img_size_width * j, img_size_height * i, handle_path, true);
 			}
 		}
 		
