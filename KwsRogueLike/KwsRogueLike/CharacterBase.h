@@ -26,7 +26,7 @@ protected:
 	void SetDirection(Direction direction);
 
 public:
-	CharacterBase(int hp, int offense, int diffense, int moveSpeed);
+	//CharacterBase(int hp, int offense, int diffense, int moveSpeed);
 	CharacterBase(int hp, int offense, int diffense, int moveSpeed, int level);
 	~CharacterBase();
 };

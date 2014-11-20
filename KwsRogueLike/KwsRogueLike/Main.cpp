@@ -6,6 +6,9 @@
 #include "RandExtended.h"
 #include "DebugMode.h"
 #include "GeneralConstant.h"
+
+#define DEBUG 0
+
 using namespace GeneralConstant;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
@@ -45,7 +48,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 
 		player.Move();
 
+
+#if DEBUG		
 		debugger.StartDebugMode(&map);
+#endif
 
 		for (int i = 0; i < mapHeight* sectionHeight; i++)
 		{
