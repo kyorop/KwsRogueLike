@@ -5,7 +5,6 @@ class PlayerBase
 	:public CharacterBase
 {
 private:
-//	Direction direction;
 	Direction drawDirection;
 	int charactor[96];
 

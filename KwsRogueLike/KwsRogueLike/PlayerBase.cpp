@@ -17,7 +17,6 @@ PlayerBase::PlayerBase(int x, int y)
 {
 	SetCoordinate(x, y);
 	LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32, charactor);
-//	direction = STOP;
 	drawDirection = STOP;
 }
 
