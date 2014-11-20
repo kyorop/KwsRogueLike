@@ -7,7 +7,7 @@ PlayerBase::PlayerBase(int hp, int offense, int diffense, int moveSpeed)
 	SetCoordinate(0,0);
 	LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32, charactor);
 
-	direction = 0;
+	direction = STOP;
 }
 
 PlayerBase::PlayerBase(int x, int y)
@@ -15,7 +15,7 @@ PlayerBase::PlayerBase(int x, int y)
 {
 	SetCoordinate(x, y);
 	LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32, charactor);
-	direction = 0;
+	direction = STOP;
 }
 
 PlayerBase::~PlayerBase()
@@ -24,24 +24,23 @@ PlayerBase::~PlayerBase()
 
 void PlayerBase::Draw()
 {
-	if (!IsMoving())
-	{
-		if (CheckHitKeyAll())
-		{
-			if (CheckHitKey(KEY_INPUT_RIGHT) != 0)
-				direction = 1;
-
-			if (CheckHitKey(KEY_INPUT_LEFT) != 0)
-				direction = 2;
-
-			if (CheckHitKey(KEY_INPUT_DOWN) != 0)
-				direction = 0;
-
-			if (CheckHitKey(KEY_INPUT_UP) != 0)
-				direction = 3;
-		}
-	}
-
+//	if (!IsMoving())
+//	{
+//		if (CheckHitKeyAll())
+//		{
+//			if (CheckHitKey(KEY_INPUT_RIGHT) != 0)
+//				direction = RIGHT;
+//
+//			if (CheckHitKey(KEY_INPUT_LEFT) != 0)
+//				direction = LEFT;
+//
+//			if (CheckHitKey(KEY_INPUT_DOWN) != 0)
+//				direction = DOWN;
+//
+//			if (CheckHitKey(KEY_INPUT_UP) != 0)
+//				direction = UP;
+//		}
+//	}
 
 	Vector2 coordinate = GetCoordinate();
 	switch (direction){
@@ -66,43 +65,39 @@ void PlayerBase::Move()
 	GetHitKeyStateAll(buf);
 
 	Vector2 coordinate = GetCoordinate();
-	if (!IsMoving())
+
+	char input=0;
+	input = buf[KEY_INPUT_RIGHT] + buf[KEY_INPUT_LEFT] + buf[KEY_INPUT_DOWN] + buf[KEY_INPUT_UP];
+
+	if (buf[KEY_INPUT_R])
 	{
-		if (buf[KEY_INPUT_R] != 0)
-		{
-			SetMoving(true);
-			if ((buf[KEY_INPUT_UP] != 0) && (buf[KEY_INPUT_RIGHT] != 0))
-				SetDirection(UPRIGHT);
-
-			else if ((buf[KEY_INPUT_UP] != 0) && (buf[KEY_INPUT_LEFT] != 0))
-				SetDirection(UPLEFT);
-
-			else if ((buf[KEY_INPUT_DOWN] != 0) && (buf[KEY_INPUT_RIGHT] != 0))
-				SetDirection(DOWNRIGHT);
-
-			else if ((buf[KEY_INPUT_DOWN] != 0) && (buf[KEY_INPUT_LEFT] != 0))
-				SetDirection(DOWNLEFT);
-			else
-				SetMoving(false);
-		}
+		if ((buf[KEY_INPUT_UP] != 0) && (buf[KEY_INPUT_RIGHT] != 0))
+			direction = UPRIGHT;
+		else if ((buf[KEY_INPUT_UP] != 0) && (buf[KEY_INPUT_LEFT] != 0))
+			direction = UPLEFT;
+		else if ((buf[KEY_INPUT_DOWN] != 0) && (buf[KEY_INPUT_RIGHT] != 0))
+			direction = DOWNRIGHT;
+		else if ((buf[KEY_INPUT_DOWN] != 0) && (buf[KEY_INPUT_LEFT] != 0))
+			direction = DOWNLEFT;
 		else
-		{
-			SetMoving(true);
-			if (CheckHitKey(KEY_INPUT_RIGHT) != 0)
-				SetDirection(RIGHT);
-
-			else if (CheckHitKey(KEY_INPUT_LEFT) != 0)
-				SetDirection(LEFT);
-
-			else if (CheckHitKey(KEY_INPUT_DOWN) != 0)
-				SetDirection(DOWN);
-
-			else if (CheckHitKey(KEY_INPUT_UP) != 0)
-				SetDirection(UP);
-			else
-				SetMoving(false);
-		}
+			direction = STOP;
 	}
 	else
-		Moving();
+	{
+		if (input < 2)
+		{
+			if (buf[KEY_INPUT_RIGHT])
+				direction = RIGHT;
+			else if (buf[KEY_INPUT_LEFT])
+				direction = LEFT;
+			else if (buf[KEY_INPUT_DOWN])
+				direction = DOWN;
+			else if (buf[KEY_INPUT_UP])
+				direction = UP;
+			else
+				direction = STOP;
+		}
+	}
+
+	Moving(direction);
 }

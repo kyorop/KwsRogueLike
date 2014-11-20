@@ -1,13 +1,26 @@
 #include "CharacterBase.h"
 
 
-void CharacterBase::Moving()
+void CharacterBase::Moving(Direction direction)
 {
 	const int moving = 2;
-	if (frameCount < 32/moving)
+
+	if (frameCount < 32 / moving && !isMoving && direction != STOP)
 	{
 		isMoving = true;
-		switch (direction)
+		this->direction = direction;
+		frameCount = 0;
+	}
+	else if (frameCount >= 32 / moving && isMoving)
+	{
+		isMoving = false;
+		frameCount = 0;
+		this->direction = STOP;
+	}
+
+	if (isMoving)
+	{
+		switch (this->direction)
 		{
 		case UP:
 			AddCoordinate(0, -moving);
@@ -33,15 +46,11 @@ void CharacterBase::Moving()
 		case UPLEFT:
 			AddCoordinate(-moving, -moving);
 			break;
-		default: break;
+		case STOP: 
+			break;
 		}
 
 		frameCount++;
-	}
-	else
-	{
-		frameCount = 0;
-		isMoving = false;
 	}
 }
 
@@ -77,7 +86,8 @@ void CharacterBase::SetDirection(Direction direction)
 
 CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed) //レベル１のキャラクタはこちら
 	:direction(UP),
-	isMoving(false)
+	isMoving(false),
+	frameCount(0)
 {
 	this->hp = hp;
 	this->offense = offense;
@@ -87,7 +97,8 @@ CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed) /
 
 CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed,int level) //レベルが１より高いキャラクタはこちら
 	:direction(UP),
-	isMoving(false)
+	isMoving(false),
+	frameCount(0)
 {
 	this->hp = hp;
 	this->offense = offense;

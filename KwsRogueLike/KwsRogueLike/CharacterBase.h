@@ -7,16 +7,16 @@ class CharacterBase
 public:
 	enum Direction
 	{
-		UP, UPRIGHT,RIGHT,DOWNRIGHT, DOWN, DOWNLEFT,LEFT,UPLEFT,
+		STOP=-1,UP, UPRIGHT,RIGHT,DOWNRIGHT, DOWN, DOWNLEFT,LEFT,UPLEFT,
 	};
 private:
 	int hp, offense, diffense, level=1, moveSpeed;
 	Direction direction;
 	bool isMoving;
+	int frameCount;
 
 protected:
-	int frameCount;
-	void Moving();
+	void Moving(Direction direction);
 	void GetHp(int hp);
 	void Damage(int damage);
 	void HpChanger(int value);

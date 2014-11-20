@@ -4,12 +4,14 @@
 class PlayerBase
 	:public CharacterBase
 {
-public:
+private:
+	Direction direction;
 	int charactor[96];
+
+public:
 	PlayerBase(int hp, int offense, int diffense, int moveSpeed);
 	PlayerBase(int x, int y);
 	~PlayerBase();
-	int direction;
 	void Draw()override;
 	void Move();
 };
