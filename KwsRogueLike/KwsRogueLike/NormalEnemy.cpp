@@ -1,12 +1,13 @@
 #include "NormalEnemy.h"
 #include "MapData.h"
 
+/*
 NormalEnemy::NormalEnemy(int hp, int offense, int diffense, int moveSpeed)
 	:Enemy(hp, offense, diffense, moveSpeed)
 {
 	
 }
-
+*/
 
 NormalEnemy::~NormalEnemy()
 {

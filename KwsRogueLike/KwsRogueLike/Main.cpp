@@ -7,7 +7,7 @@
 #include "DebugMode.h"
 #include "GeneralConstant.h"
 
-#define DEBUG 0
+#define DEBUG 1
 
 using namespace GeneralConstant;
 
@@ -31,8 +31,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	dungeonMaker.CreateDungeon(&map);
 
 	PlayerBase player(32 * 1, 32 * (mapHeight/2));
-	EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
-	enemy.SetCharacter(&player);
+	//EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
+	//enemy.SetCharacter(&player);
 
 	DebugMode debugger; //デバッグ用のオブジェクト
 
@@ -51,6 +51,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 
 #if DEBUG		
 		debugger.StartDebugMode(&map);
+
+		EnemyBase *enemy1 = new EnemyBase(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
 #endif
 
 		for (int i = 0; i < mapHeight* sectionHeight; i++)
@@ -65,7 +67,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		}
 		
 		player.Draw();
-		enemy.Draw();
+
+#if DEBUG
+		enemy1->Draw(); //一定時間後に消える・・・。
+#endif
 		
 
 		ScreenFlip();

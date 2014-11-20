@@ -86,6 +86,7 @@ void CharacterBase::SetDirection(Direction direction)
 
 //レベル１か否かで分ける必要ない気がする
 
+/*
 CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed) //レベル１のキャラクタはこちら
 	:direction(UP),
 	isMoving(false),
@@ -96,6 +97,8 @@ CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed) /
 	this->diffense = diffense;
 	this->moveSpeed = moveSpeed;
 }
+
+*/
 
 CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed,int level) //レベルが１より高いキャラクタはこちら
 	:direction(UP),

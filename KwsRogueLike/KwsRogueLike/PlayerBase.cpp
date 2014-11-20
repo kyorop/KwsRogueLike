@@ -1,6 +1,7 @@
 #include "PlayerBase.h"
 #include "DxLib.h"
 
+/* •K—v‚È‚¢‚ÆŽv‚í‚ê
 PlayerBase::PlayerBase(int hp, int offense, int diffense, int moveSpeed)
 	:CharacterBase(hp, offense, diffense, moveSpeed)
 {
@@ -9,9 +10,10 @@ PlayerBase::PlayerBase(int hp, int offense, int diffense, int moveSpeed)
 
 	direction = STOP;
 }
+*/
 
 PlayerBase::PlayerBase(int x, int y)
-	:CharacterBase(0, 0, 0, 0)
+	:CharacterBase(15, 8, 8, 2, 1)
 {
 	SetCoordinate(x, y);
 	LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32, charactor);

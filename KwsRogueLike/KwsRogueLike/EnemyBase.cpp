@@ -1,16 +1,18 @@
 #include "EnemyBase.h"
 #include "DxLib.h"
 
-EnemyBase::EnemyBase(int hp, int offense, int diffense, int moveSpeed)
-	:CharacterBase(hp, offense, diffense, moveSpeed),
+/*
+EnemyBase::EnemyBase(int hp, int offense, int diffense, int moveSpeed,int level)
+	:CharacterBase(hp, offense, diffense, moveSpeed, level),
 	playerMoved(false)
 {
 	SetCoordinate(0, 0);
 	LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32, charactor);
 }
+*/
 
-EnemyBase::EnemyBase(int x, int y)
-	:CharacterBase(0, 0, 0, 0),
+EnemyBase::EnemyBase(int x, int y,int hp,int offense,int diffense,int movespeed,int level)
+	:CharacterBase(hp,offense,diffense,movespeed,level),
 	playerMoved(false)
 {
 	SetCoordinate(x, y);
