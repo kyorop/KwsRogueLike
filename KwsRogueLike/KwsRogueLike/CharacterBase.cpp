@@ -54,7 +54,7 @@ void CharacterBase::Moving(Direction direction)
 	}
 }
 
-void CharacterBase::GetHp(int hp)
+void CharacterBase::SetHp(int hp) //getじゃなくてsetじゃね？ってことで変えた
 {
 	this->hp=hp;
 }
@@ -82,6 +82,16 @@ void CharacterBase::SetMoving(bool isMoving)
 void CharacterBase::SetDirection(Direction direction)
 {
 	this->direction = direction;
+}
+
+int CharacterBase::GetHp()
+{
+	return this->hp;
+}
+
+int CharacterBase::GetLevel()
+{
+	return this->level;
 }
 
 //レベル１か否かで分ける必要ない気がする

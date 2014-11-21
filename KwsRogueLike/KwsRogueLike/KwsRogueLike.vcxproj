@@ -106,6 +106,7 @@
     <ClInclude Include="ScrollableObject.h" />
     <ClInclude Include="Section.h" />
     <ClInclude Include="SectionUtil.h" />
+    <ClInclude Include="Strings.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
@@ -132,6 +133,7 @@
     <ClCompile Include="ScrollableObject.cpp" />
     <ClCompile Include="Section.cpp" />
     <ClCompile Include="SectionUtil.cpp" />
+    <ClCompile Include="Strings.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>

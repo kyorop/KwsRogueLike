@@ -97,3 +97,8 @@ void PlayerBase::Move()
 
 	Moving(direction);
 }
+
+int PlayerBase::GetGold()
+{
+	return gold;
+}

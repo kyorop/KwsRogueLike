@@ -8,13 +8,16 @@
 #include "GeneralConstant.h"
 
 #define DEBUG 0
+#include "Strings.h"
 
 using namespace GeneralConstant;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
+	int floor = 1; //階層データどこに入れる？
+
 	ChangeWindowMode(true);
-	SetGraphMode(640*2, 480*2, 16);
+	SetGraphMode(640*2, 480, 16);
 	if (DxLib_Init() == -1)
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -33,6 +36,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	PlayerBase player(32 * 1, 32 * (mapHeight/2));
 	//EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
 	//enemy.SetCharacter(&player);
+
+	Strings PlayerData; //文字列表示オブジェクト
 
 	DebugMode debugger; //デバッグ用のオブジェクト
 
@@ -67,6 +72,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 					DrawGraph(img_size_width * j, img_size_height * i, handle_path, true);
 			}
 		}
+
+		PlayerData.DisplayPlayerData(floor, &player);
 		
 		player.Draw();
 

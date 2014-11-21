@@ -105,6 +105,9 @@
     <ClInclude Include="GeneralConstant.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Strings.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Enemy.cpp">
@@ -177,6 +180,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GeneralConstant.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Strings.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

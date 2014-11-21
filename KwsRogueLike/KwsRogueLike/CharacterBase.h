@@ -17,7 +17,7 @@ private:
 
 protected:
 	void Moving(Direction direction);
-	void GetHp(int hp);
+	void SetHp(int hp);
 	void Damage(int damage);
 	void HpChanger(int value);
 	Direction GetDirection()const;
@@ -28,6 +28,10 @@ protected:
 public:
 	//CharacterBase(int hp, int offense, int diffense, int moveSpeed);
 	CharacterBase(int hp, int offense, int diffense, int moveSpeed, int level);
+	int GetHp();
+	int GetLevel();
+	
+
 	~CharacterBase();
 };
 
