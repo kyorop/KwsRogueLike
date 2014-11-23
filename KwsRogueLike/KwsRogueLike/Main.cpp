@@ -28,10 +28,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	const int img_size_width = 12;
 	const int img_size_height = 12;
 
-	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
-	std::vector <std::vector<int>> map;
-	dungeonMaker.SetRoomNum(199);
-	dungeonMaker.CreateDungeon(&map);
 
 	EnemyBase enemy1(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
 
@@ -61,14 +57,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 
 		player.Move();
 
-
-<<<<<<< HEAD
-
-=======
 #if DEBUG		
 		debugger.StartDebugMode(&map);
 #endif
->>>>>>> 92903ec4227f9b112006efedb234cb0fc69999ea
 
 		for (int i = 0; i < mapHeight* sectionHeight; i++)
 		{
