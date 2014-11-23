@@ -7,7 +7,7 @@
 #include "DebugMode.h"
 #include "GeneralConstant.h"
 
-#define DEBUG 0
+#define DEBUG 1
 #include "Strings.h"
 
 using namespace GeneralConstant;
@@ -17,7 +17,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	int floor = 1; //階層データどこに入れる？
 
 	ChangeWindowMode(true);
-	SetGraphMode(640*2, 480, 16);
+	SetGraphMode(640*2, 480*1.5, 16);
 	if (DxLib_Init() == -1)
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -41,6 +41,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 
 	DebugMode debugger; //デバッグ用のオブジェクト
 
+#if DEBUG //敵キャラを一体作る
+	debugger.StartDebugMode(&map);
+
+	EnemyBase *enemy1 = new EnemyBase(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
+#endif
+
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
@@ -54,11 +60,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		player.Move();
 
 
-#if DEBUG		
-		debugger.StartDebugMode(&map);
 
-		EnemyBase *enemy1 = new EnemyBase(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
-#endif
 
 		for (int i = 0; i < mapHeight* sectionHeight; i++)
 		{
