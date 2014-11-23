@@ -10,7 +10,7 @@ private:
 	bool playerMoved;
 public:
 	int charactor[96];
-	EnemyBase(int hp, int offense, int diffense, int moveSpeed);
+//	EnemyBase(int hp, int offense, int diffense, int moveSpeed);
 	EnemyBase(int x, int y, int hp, int offense, int diffense, int moveSpeed,int level);
 	~EnemyBase();
 

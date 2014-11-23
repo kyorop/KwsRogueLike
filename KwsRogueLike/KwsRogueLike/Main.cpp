@@ -14,7 +14,7 @@ using namespace GeneralConstant;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow)
 {
-	int floor = 1; //階層データどこに入れる？
+	int floor = 1; //todo 階層データどこに入れる？
 
 	ChangeWindowMode(true);
 	SetGraphMode(640*2, 480*1.5, 16);
@@ -32,6 +32,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	std::vector <std::vector<int>> map;
 	dungeonMaker.SetRoomNum(199);
 	dungeonMaker.CreateDungeon(&map);
+
+	EnemyBase enemy1(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
 
 	PlayerBase player(32 * 1, 32 * (mapHeight/2));
 	//EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
@@ -60,7 +62,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		player.Move();
 
 
+<<<<<<< HEAD
 
+=======
+#if DEBUG		
+		debugger.StartDebugMode(&map);
+#endif
+>>>>>>> 92903ec4227f9b112006efedb234cb0fc69999ea
 
 		for (int i = 0; i < mapHeight* sectionHeight; i++)
 		{
@@ -80,15 +88,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		player.Draw();
 
 #if DEBUG
-		enemy1->Draw(); //一定時間後に消える・・・。
+		enemy1.Draw(); //一定時間後に消える・・・。
 #endif
-		
+
 
 		ScreenFlip();
 
 		if (ProcessMessage() < 0)
 			break;
-
 	}
 
 	DxLib_End();
