@@ -21,6 +21,10 @@ EnemyBase::EnemyBase(int x, int y,int hp,int offense,int diffense,int movespeed,
 
 EnemyBase::~EnemyBase()
 {
+	for (int i = 0; i < 96; i++)
+	{
+		DeleteGraph(charactor[i]);
+	}
 }
 
 void EnemyBase::Draw()
