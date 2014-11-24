@@ -12,7 +12,3 @@ Enemy::~Enemy()
 {
 }
 
-
-void Enemy::attack()
-{
-}

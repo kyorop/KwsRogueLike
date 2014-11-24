@@ -29,7 +29,7 @@ void PlayerBase::Draw()
 	Vector2 coordinate = GetCoordinate();
 	switch (drawDirection)
 	{
-	case STOP: 
+	case STOP:
 		DrawGraph(coordinate.x, coordinate.y, charactor[0], true);
 		break;
 	case UP:
@@ -59,39 +59,42 @@ void PlayerBase::Move()
 	Direction direction = drawDirection;
 
 	char input = buf[KEY_INPUT_RIGHT] + buf[KEY_INPUT_LEFT] + buf[KEY_INPUT_DOWN] + buf[KEY_INPUT_UP];
-	if (buf[KEY_INPUT_R])
+	if (!IsMoving())
 	{
-		if (buf[KEY_INPUT_UP] && buf[KEY_INPUT_RIGHT])
-			direction = UPRIGHT;
-		else if (buf[KEY_INPUT_UP] && buf[KEY_INPUT_LEFT])
-			direction = UPLEFT;
-		else if (buf[KEY_INPUT_DOWN] && buf[KEY_INPUT_RIGHT])
-			direction = DOWNRIGHT;
-		else if (buf[KEY_INPUT_DOWN] && buf[KEY_INPUT_LEFT])
-			direction = DOWNLEFT;
-		else
-			direction = STOP;
-
-		if (direction != STOP)
-			drawDirection = direction;
-	}
-	else
-	{
-		if (input < 2)
+		if (buf[KEY_INPUT_R])
 		{
-			if (buf[KEY_INPUT_RIGHT])
-				direction = RIGHT;
-			else if (buf[KEY_INPUT_LEFT])
-				direction = LEFT;
-			else if (buf[KEY_INPUT_DOWN])
-				direction = DOWN;
-			else if (buf[KEY_INPUT_UP])
-				direction = UP;
+			if (buf[KEY_INPUT_UP] && buf[KEY_INPUT_RIGHT])
+				direction = UPRIGHT;
+			else if (buf[KEY_INPUT_UP] && buf[KEY_INPUT_LEFT])
+				direction = UPLEFT;
+			else if (buf[KEY_INPUT_DOWN] && buf[KEY_INPUT_RIGHT])
+				direction = DOWNRIGHT;
+			else if (buf[KEY_INPUT_DOWN] && buf[KEY_INPUT_LEFT])
+				direction = DOWNLEFT;
 			else
 				direction = STOP;
 
-			if (direction != STOP)//Ž~‚Ü‚Á‚½Žž‚Ì•ûŒü‚ðŒü‚¢‚½‚Ü‚Ü‚É‚·‚é‚½‚ß‚Ìˆ’u
+			if (direction != STOP)
 				drawDirection = direction;
+		}
+		else
+		{
+			if (input < 2)
+			{
+				if (buf[KEY_INPUT_RIGHT])
+					direction = RIGHT;
+				else if (buf[KEY_INPUT_LEFT])
+					direction = LEFT;
+				else if (buf[KEY_INPUT_DOWN])
+					direction = DOWN;
+				else if (buf[KEY_INPUT_UP])
+					direction = UP;
+				else
+					direction = STOP;
+
+				if (direction != STOP)//Ž~‚Ü‚Á‚½Žž‚Ì•ûŒü‚ðŒü‚¢‚½‚Ü‚Ü‚É‚·‚é‚½‚ß‚Ìˆ’u
+					drawDirection = direction;
+			}
 		}
 	}
 

@@ -7,8 +7,9 @@
 #include "DebugMode.h"
 #include "GeneralConstant.h"
 
-#define DEBUG 1
+#define DEBUG 0
 #include "Strings.h"
+#include "Map.h"
 
 using namespace GeneralConstant;
 
@@ -22,12 +23,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	int handle_wall = LoadGraph("img/background/wall.png");
-	int handle_floor = LoadGraph("img/background/floor.png");
-	int handle_path = LoadGraph("img/background/path.png");
-	const int img_size_width = 12;
-	const int img_size_height = 12;
-
+	Map dungeon;
 
 	EnemyBase enemy1(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
 
@@ -49,39 +45,23 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	{
 		ClearDrawScreen();
 
+		dungeon.DrawDungeon();
+
+#if DEBUG
 		if (CheckHitKey(KEY_INPUT_Z))
 		{
 			dungeonMaker.CreateDungeon(&map);
 		}
-
+#endif
 
 		player.Move();
 
-#if DEBUG		
-		debugger.StartDebugMode(&map);
-#endif
 
-		for (int i = 0; i < mapHeight* sectionHeight; i++)
-		{
-			for (int j = 0; j < mapWidth* sectionWidth; j++)
-			{
-				if (map[i][j] == MysteryDungeonMaker::WALL)
-					DrawGraph(img_size_width * j, img_size_height * i, handle_wall, true);
-				else if (map[i][j] == MysteryDungeonMaker::FLOOR)
-					DrawGraph(img_size_width * j, img_size_height * i, handle_floor, true);
-				else if (map[i][j] == MysteryDungeonMaker::PATH)
-					DrawGraph(img_size_width * j, img_size_height * i, handle_path, true);
-			}
-		}
+	
 
 		PlayerData.DisplayPlayerData(floor, &player);
 		
 		player.Draw();
-
-#if DEBUG
-		enemy1.Draw(); //一定時間後に消える・・・。
-#endif
-
 
 		ScreenFlip();
 

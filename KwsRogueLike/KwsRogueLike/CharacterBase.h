@@ -12,7 +12,7 @@ public:
 private:
 	int hp, offense, diffense, level=1, moveSpeed;
 	Direction direction;
-	bool isMoving;
+	bool isMoving = false;
 	int frameCount;
 
 protected:
