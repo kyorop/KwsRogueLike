@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 
+class MapObject;
 class Map
 {
 public:
@@ -9,7 +10,8 @@ public:
 	~Map();
 private:
 	int floor;
-	std::vector<std::vector<int>> map;
+	//std::vector<std::vector<int>> map;
+	std::vector<std::vector<const MapObject&>> map;
 	int handle_wall ;
 	int handle_floor;
 	int handle_path ;

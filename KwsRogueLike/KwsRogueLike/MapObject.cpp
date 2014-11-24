@@ -1,4 +1,4 @@
-#include "MapObject.h"
+#include "mapobject.h"
 #include "CharacterBase.h"
 
 

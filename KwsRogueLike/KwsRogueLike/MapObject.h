@@ -6,7 +6,7 @@ class MapObject :
 	public ScrollObject
 {
 private:
-	MysteryDungeonMaker::MapObject mapState;
+	MysteryDungeonMaker::MapComponent mapState;
 public:
 	MapObject();
 	~MapObject();

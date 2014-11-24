@@ -4,6 +4,7 @@
 class Rect;
 class Section;
 class Component;
+class MapObeject;
 class MysteryDungeonMaker
 {
 private:
@@ -18,7 +19,7 @@ private:
 	Section** section;
 
 public:
-	enum MapObject
+	enum MapComponent
 	{
 		WALL, //âÛÇπÇÈï«
 		FLOOR, //è∞
@@ -37,7 +38,7 @@ public:
 public:
 	explicit MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
 	~MysteryDungeonMaker();
-	void CreateDungeon(std::vector<std::vector<int>>* map);
+	void CreateDungeon(std::vector<std::vector<const MapObeject&>>* map);
 	void SetRoomNum(int roomNum);
 
 private:

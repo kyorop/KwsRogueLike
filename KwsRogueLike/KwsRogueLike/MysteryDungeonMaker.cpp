@@ -13,6 +13,7 @@
 #include "Component.h"
 #include "SectionUtil.h"
 #include "DungeonMakerHelper.h"
+#include "MapObject.h"
 
 const int up_down[] = { -1, 0, 1, 0 };
 const int right_left[] = { 0, 1, 0, -1 };
@@ -82,12 +83,12 @@ void MysteryDungeonMaker::ResetGroupId()
 	}
 }
 
-void MysteryDungeonMaker::CreateDungeon(std::vector<std::vector<int>>* map)
+void MysteryDungeonMaker::CreateDungeon(std::vector<std::vector<const MapObeject&>>* map)
 {
 	NewMap();
 	ResetMap();
 
-	std::vector<std::vector<int>> tempMap;
+	std::vector<std::vector<const MapObeject&>> tempMap;
 	std::vector<Component> sections;
 	for (int i = 0; i < mapHeight; i++)
 	{
@@ -114,11 +115,9 @@ void MysteryDungeonMaker::CreateDungeon(std::vector<std::vector<int>>* map)
 
 	for (int i = 0; i < sectionHeight*mapHeight; i++)
 	{
-//		map->push_back(std::vector<int>());
-		tempMap.push_back(std::vector<int>());
+		tempMap.push_back(std::vector<const MapObeject&>());
 		for (int j = 0; j < sectionWidth*mapWidth; j++)
 		{
-//			(*map)[i].push_back(this->map[i][j]);
 			tempMap[i].push_back(this->map[i][j]);
 		}
 	}
