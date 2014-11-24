@@ -1,22 +1,17 @@
 #pragma once
-#include "ScrollableObject.h"
+#include "ScrollObject.h"
+#include "mapobject.h"
 
 class CharacterBase
-	:public ScrollableObject
+	:public MapObject
 {
 public:
-	enum Direction
-	{
-		STOP=-1,UP, UPRIGHT,RIGHT,DOWNRIGHT, DOWN, DOWNLEFT,LEFT,UPLEFT,
-	};
 private:
 	int hp, offense, diffense, level=1, moveSpeed;
-	Direction direction;
 	bool isMoving = false;
 	int frameCount;
 
 protected:
-	void Moving(Direction direction);
 	void SetHp(int hp);
 	void Damage(int damage);
 	void HpChanger(int value);

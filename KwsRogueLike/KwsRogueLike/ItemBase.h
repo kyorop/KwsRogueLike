@@ -1,7 +1,7 @@
 #pragma once
-#include "ScrollableObject.h"
+#include "ScrollObject.h"
 class ItemBase 
-	:public ScrollableObject
+	:public ScrollObject
 {
 public:
 	ItemBase();

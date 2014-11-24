@@ -9,21 +9,6 @@
   </Class>
   <Class Name="CharacterBase" Collapsed="true">
     <Position X="1.75" Y="4.5" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="CharacterBase::Direction" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>CharacterBase.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
-    <InheritanceLine Type="ScrollableObject" FixedToPoint="true">
-      <Path>
-        <Point X="3.5" Y="3.677" />
-        <Point X="3.5" Y="3.977" />
-        <Point X="2.562" Y="3.977" />
-        <Point X="2.562" Y="4.5" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAACAEAAIIAAAAEEgAAABAQEAAAEAIIDBBAAAoAA=</HashCode>
       <FileName>CharacterBase.h</FileName>
@@ -39,7 +24,7 @@
   <Class Name="Enemy" Collapsed="true">
     <Position X="0.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enemy.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -120,11 +105,11 @@
       <FileName>ReducedMap.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ScrollableObject" Collapsed="true">
+  <Class Name="ScrollObject" Collapsed="true">
     <Position X="2.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAgAAA=</HashCode>
-      <FileName>ScrollableObject.h</FileName>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAgAAAAQAA=</HashCode>
+      <FileName>ScrollObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Strings" Collapsed="true">
@@ -151,7 +136,7 @@
   <Class Name="Map" Collapsed="true">
     <Position X="14" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEgAAABIAAAAAAAAIAAAAAEACAAAAAEAIAAAAAAA=</HashCode>
+      <HashCode>AAAAEgAEALIAAAAAAAAIAAAAAEACAAAAAEAIAAAAEAA=</HashCode>
       <FileName>Map.h</FileName>
     </TypeIdentifier>
   </Class>

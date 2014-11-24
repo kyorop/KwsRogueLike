@@ -57,3 +57,16 @@ void Map::DebugMode()
 		}
 	}
 }
+
+void Map::Move()
+{
+	if (IsMovable())
+	{
+		
+	}
+}
+
+bool Map::IsMovable()
+{
+	return true;
+}

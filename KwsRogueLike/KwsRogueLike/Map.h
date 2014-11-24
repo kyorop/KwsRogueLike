@@ -17,4 +17,6 @@ public:
 	int GetFloor();
 	void DrawDungeon();
 	void DebugMode();
+	void Move();
+	bool IsMovable();
 };
