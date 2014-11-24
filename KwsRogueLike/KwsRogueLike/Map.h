@@ -5,6 +5,7 @@ class Map
 {
 public:
 	Map();
+	void CreateMap();
 	~Map();
 private:
 	int floor;

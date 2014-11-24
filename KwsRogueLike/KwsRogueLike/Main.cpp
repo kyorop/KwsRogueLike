@@ -24,22 +24,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	Map dungeon;
+	dungeon.CreateMap();
 
-	EnemyBase enemy1(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
+#if DEBUG //敵キャラを一体作る
+	dungeon.DebugMode();
+	EnemyBase *enemy1 = new EnemyBase(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
+#endif
 
-	PlayerBase player(32 * 1, 32 * (mapHeight/2));
+	PlayerBase player(playerX,playerY);
 	//EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
 	//enemy.SetCharacter(&player);
 
 	Strings PlayerData; //文字列表示オブジェクト
 
-	DebugMode debugger; //デバッグ用のオブジェクト
 
-#if DEBUG //敵キャラを一体作る
-	debugger.StartDebugMode(&map);
 
-	EnemyBase *enemy1 = new EnemyBase(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
-#endif
 
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
@@ -50,12 +49,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 #if DEBUG
 		if (CheckHitKey(KEY_INPUT_Z))
 		{
-			dungeonMaker.CreateDungeon(&map);
+			dungeon.CreateMap();
 		}
 #endif
 
 		player.Move();
 
+#if DEBUG
+		enemy1->Draw();
+#endif
 
 	
 

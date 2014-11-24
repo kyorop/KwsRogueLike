@@ -3,6 +3,10 @@
 
 namespace GeneralConstant
 {
+	extern const int gameSizeX;
+	extern const int gameSizeY;
+	extern const int playerX;
+	extern const int playerY;
 	extern const int mapWidth;
 	extern const int mapHeight;
 	extern const int sectionWidth;

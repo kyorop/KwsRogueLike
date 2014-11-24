@@ -8,6 +8,10 @@ using namespace GeneralConstant;
 Map::Map()
 {
 	floor = 1;
+}
+
+void Map::CreateMap()
+{
 	MysteryDungeonMaker dungeonMaker(GeneralConstant::mapWidth, GeneralConstant::mapHeight, GeneralConstant::sectionWidth, GeneralConstant::sectionHeight);
 	dungeonMaker.SetRoomNum(199);
 	dungeonMaker.CreateDungeon(&map);
