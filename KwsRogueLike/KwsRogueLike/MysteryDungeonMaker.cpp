@@ -37,10 +37,10 @@ MysteryDungeonMaker::~MysteryDungeonMaker()
 
 void MysteryDungeonMaker::NewMap()
 {
-	map = new int*[sectionHeight*mapHeight];
+	map = new MapComponent*[sectionHeight*mapHeight];
 	for (size_t i = 0; i < sectionHeight*mapHeight; i++)
 	{
-		map[i] = new int[sectionWidth*mapWidth];
+		map[i] = new MapComponent[sectionWidth*mapWidth];
 	}
 
 	section = new Section*[mapHeight];
@@ -67,7 +67,7 @@ void MysteryDungeonMaker::ResetMap()
 	{
 		for (size_t j = 0; j < sectionWidth*mapWidth; j++)
 		{
-			map[i][j] = 0;
+			map[i][j] = FLOOR;
 		}
 	}
 }
@@ -83,12 +83,13 @@ void MysteryDungeonMaker::ResetGroupId()
 	}
 }
 
-void MysteryDungeonMaker::CreateDungeon(std::vector<std::vector<const MapObeject&>>* map)
+std::vector<std::vector<MysteryDungeonMaker::MapComponent>> MysteryDungeonMaker::CreateDungeon()
 {
 	NewMap();
 	ResetMap();
 
-	std::vector<std::vector<const MapObeject&>> tempMap;
+	std::vector<std::vector<MapComponent>> tempMap;
+
 	std::vector<Component> sections;
 	for (int i = 0; i < mapHeight; i++)
 	{
@@ -115,15 +116,16 @@ void MysteryDungeonMaker::CreateDungeon(std::vector<std::vector<const MapObeject
 
 	for (int i = 0; i < sectionHeight*mapHeight; i++)
 	{
-		tempMap.push_back(std::vector<const MapObeject&>());
+		tempMap.push_back(std::vector<MapComponent>());
 		for (int j = 0; j < sectionWidth*mapWidth; j++)
 		{
-			tempMap[i].push_back(this->map[i][j]);
+			tempMap[i].push_back(map[i][j]);
 		}
 	}
-	*map = tempMap;
 
 	DeleteMap();
+
+	return tempMap;
 }
 
 void MysteryDungeonMaker::SetRoomNum(int roomNum)

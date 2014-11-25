@@ -84,16 +84,16 @@
   <ItemGroup>
     <ClInclude Include="DebugMode.h" />
     <ClInclude Include="DungeonMakerHelper.h" />
+    <ClInclude Include="Floor.h" />
     <ClInclude Include="GeneralConstant.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConvertRect.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBase.h" />
-    <ClInclude Include="GameConstant.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IEquipable.h" />
-    <ClInclude Include="ItemBase.h" />
+    <ClInclude Include="IScrollable.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapData.h" />
     <ClInclude Include="MapInfo.h" />
@@ -101,16 +101,16 @@
     <ClInclude Include="MysteryDungeonMaker.h" />
     <ClInclude Include="NormalEnemy.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="Path.h" />
     <ClInclude Include="PlayerBase.h" />
     <ClInclude Include="RandExtended.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="ReducedMap.h" />
-    <ClInclude Include="ScrollObject.h" />
     <ClInclude Include="Section.h" />
     <ClInclude Include="SectionUtil.h" />
     <ClInclude Include="Strings.h" />
     <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharacterBase.cpp" />
@@ -120,8 +120,8 @@
     <ClCompile Include="DungeonMakerHelper.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
-    <ClCompile Include="ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapData.cpp" />
@@ -130,16 +130,16 @@
     <ClCompile Include="MysteryDungeonMaker.cpp" />
     <ClCompile Include="NormalEnemy.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="Path.cpp" />
     <ClCompile Include="PlayerBase.cpp" />
     <ClCompile Include="RandExtended.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="ReducedMap.cpp" />
-    <ClCompile Include="ScrollObject.cpp" />
     <ClCompile Include="Section.cpp" />
     <ClCompile Include="SectionUtil.cpp" />
     <ClCompile Include="Strings.cpp" />
     <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

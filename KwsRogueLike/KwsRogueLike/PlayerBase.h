@@ -10,7 +10,6 @@ private:
 	int gold = 0; //‚Á‚Ä‚¢‚é‹à
 
 public:
-//	PlayerBase(int hp, int offense, int diffense, int moveSpeed);
 	PlayerBase(int x, int y);
 	~PlayerBase();
 	void Draw()override;

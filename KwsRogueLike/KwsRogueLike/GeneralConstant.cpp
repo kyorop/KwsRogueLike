@@ -10,6 +10,8 @@ namespace GeneralConstant
 	const int mapHeight = 3;
 	const int sectionWidth = 10;
 	const int sectionHeight = 10;
+	const int entireWidth = sectionWidth*mapWidth;
+	const int entireHeight = sectionHeight*mapHeight;
 	const int img_size_width = 32;
 	const int img_size_height = 32;
 }

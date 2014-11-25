@@ -4,20 +4,9 @@
 class Rect;
 class Section;
 class Component;
-class MapObeject;
+class MapObject;
 class MysteryDungeonMaker
 {
-private:
-	const int mapWidth;//区画の数
-	const int mapHeight;
-	const int sectionWidth;//一つの区画の中のマスの数
-	const int sectionHeight;
-	const int minRoomWidth;
-	const int minRoomHeight;
-	int roomNum;
-	int** map;
-	Section** section;
-
 public:
 	enum MapComponent
 	{
@@ -34,11 +23,21 @@ public:
 		DOWN,
 		LEFT,
 	};
+private:
+	const int mapWidth;//区画の数
+	const int mapHeight;
+	const int sectionWidth;//一つの区画の中のマスの数
+	const int sectionHeight;
+	const int minRoomWidth;
+	const int minRoomHeight;
+	int roomNum;
+	MapComponent** map;
+	Section** section;
 
 public:
 	explicit MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
 	~MysteryDungeonMaker();
-	void CreateDungeon(std::vector<std::vector<const MapObeject&>>* map);
+	std::vector<std::vector<MapComponent>> CreateDungeon();
 	void SetRoomNum(int roomNum);
 
 private:

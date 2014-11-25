@@ -1,10 +1,8 @@
 #pragma once
 #include <memory>
-#include "IDrawable.h"
 
 class Vector2;
 class ObjectBase
-	:public IDrawable
 {
 private:
 	std::shared_ptr<Vector2> coordinate;
@@ -12,7 +10,7 @@ private:
 
 public:
 	ObjectBase();
-	~ObjectBase();
+	virtual ~ObjectBase();
 
 protected:
 	void SetCoordinate(int x, int y);
