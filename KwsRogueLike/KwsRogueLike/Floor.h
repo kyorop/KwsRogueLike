@@ -10,7 +10,7 @@ public:
 private:
 	static int imageHandle;
 public:
-	Floor();
+	explicit Floor(const Vector2& v);
 	~Floor();
 
 

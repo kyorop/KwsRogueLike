@@ -67,7 +67,7 @@ void MysteryDungeonMaker::ResetMap()
 	{
 		for (size_t j = 0; j < sectionWidth*mapWidth; j++)
 		{
-			map[i][j] = FLOOR;
+			map[i][j] = WALL;
 		}
 	}
 }
@@ -132,10 +132,6 @@ void MysteryDungeonMaker::SetRoomNum(int roomNum)
 {
 	if (roomNum <= mapHeight*mapWidth)
 		this->roomNum = roomNum;
-	else
-	{
-
-	}
 }
 
 void MysteryDungeonMaker::MakeRoom(Component const& section, int roomWidth, int roomHeight)
@@ -371,7 +367,7 @@ void MysteryDungeonMaker::RemoveRoom(const Rect& room)
 	{
 		for (int j = room.x1; j <= room.x2; j++)
 		{
-//			map[i][j] = PATH;
+			map[i][j] = PATH;
 		}
 	}
 	section[room.y1 / sectionHeight][room.x1 / sectionWidth].RemoveRoom();

@@ -7,7 +7,7 @@ class Path
 public:
 	static int imageHandle;
 public:
-	Path();
+	explicit Path(const Vector2& v);
 	~Path();
 
 	void Draw() override;

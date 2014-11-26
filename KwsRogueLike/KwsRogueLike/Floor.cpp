@@ -9,9 +9,10 @@ void Floor::Draw()
 	DrawGraph(GetCoordinate().x, GetCoordinate().y, imageHandle, true);
 }
 
-Floor::Floor()
+::Floor::Floor(const Vector2& v)
 {
-	imageHandle = LoadGraph("img/background/floor.png");;
+	SetCoordinate(v);
+	imageHandle = LoadGraph("img/background/floor.png");
 }
 
 Floor::~Floor()

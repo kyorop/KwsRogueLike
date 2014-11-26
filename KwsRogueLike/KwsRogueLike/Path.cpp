@@ -4,10 +4,9 @@
 
 int Path::imageHandle;
 
-
-
-Path::Path()
+Path::Path(const Vector2& v)
 {
+	SetCoordinate(v);
 	imageHandle = LoadGraph("img/background/path.png");
 }
 

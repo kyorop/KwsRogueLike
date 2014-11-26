@@ -9,6 +9,6 @@ public:
 private:
 	static int imageHandle;
 public:
-	Wall();
+	explicit Wall(const Vector2&  v);
 	~Wall();
 };

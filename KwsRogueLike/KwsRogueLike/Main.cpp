@@ -32,19 +32,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 #endif
 
 	PlayerBase player(playerX,playerY);
-	//EnemyBase enemy(32 * (mapWidth - 2), 32 * (mapHeight / 2));
-	//enemy.SetCharacter(&player);
-
 	Strings PlayerData; //文字列表示オブジェクト
-
-
 
 
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
 
-		dungeon.DrawDungeon();
+		dungeon.Move();
+		player.Move();
 
 #if DEBUG
 		if (CheckHitKey(KEY_INPUT_Z))
@@ -53,17 +49,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		}
 #endif
 
-		player.Move();
-
 #if DEBUG
 		enemy1->Draw();
 #endif
 
-	
-
+		dungeon.Draw();
+		player.Draw();
 		PlayerData.DisplayPlayerData(floor, &player);
 		
-		player.Draw();
 
 		ScreenFlip();
 

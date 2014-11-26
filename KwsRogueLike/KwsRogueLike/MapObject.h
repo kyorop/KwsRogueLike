@@ -4,11 +4,12 @@
 #include "iscrollable.h"
 #include "idrawable.h"
 
+class Vector2;
 class MapObject
-	:public ObjectBase, IScrollable, IDrawable
+	:public ObjectBase, public IScrollable, public IDrawable
 {
 public:
-	MapObject();
+	explicit MapObject();
 	virtual ~MapObject();
 
 	enum Direction
@@ -36,6 +37,6 @@ private:
 public:
 	void SetMapComponent(MysteryDungeonMaker::MapComponent mapComponent);
 	MysteryDungeonMaker::MapComponent GetMapComponent()const;
+	char r_input;
 	void Scroll() override;
 };
-

@@ -15,4 +15,3 @@ namespace GeneralConstant
 	const int img_size_width = 32;
 	const int img_size_height = 32;
 }
-
