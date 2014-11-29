@@ -9,6 +9,9 @@ class MapObject
 	:public ObjectBase, public IScrollable, public IDrawable
 {
 public:
+	void Scroll(const Vector2& v) override;
+
+public:
 	explicit MapObject();
 	virtual ~MapObject();
 
@@ -27,9 +30,9 @@ public:
 
 private:
 	MysteryDungeonMaker::MapComponent mapState;
-	Direction direction;
-	int frameCount;
-	bool isMoving;
+	static Direction direction;
+	static int frameCount;
+	static bool isMoving;
 
 private:
 	void Moving();
@@ -38,5 +41,4 @@ public:
 	void SetMapComponent(MysteryDungeonMaker::MapComponent mapComponent);
 	MysteryDungeonMaker::MapComponent GetMapComponent()const;
 	char r_input;
-	void Scroll() override;
 };

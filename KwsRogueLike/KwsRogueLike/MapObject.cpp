@@ -3,12 +3,18 @@
 #include "dxlib.h"
 #include "Vector2.h"
 
+MapObject::Direction MapObject::direction = MapObject::STOP;
+int MapObject::frameCount;
+bool MapObject::isMoving;
+
+
+void MapObject::Scroll(const Vector2& v)
+{
+	AddCoordinate(v.x, v.y);
+}
 
 MapObject::MapObject()
-	:direction(STOP),
-	frameCount(0),
-	isMoving(false),
-	r_input(false)
+	:r_input(false)
 {
 }
 
@@ -18,7 +24,7 @@ MapObject::~MapObject()
 
 void MapObject::Moving()
 {
-	const int moving = 2;
+	const int moving = 4;
 
 	if (frameCount < (32 / moving) && !isMoving && direction != STOP)
 	{
@@ -75,52 +81,4 @@ void MapObject::SetMapComponent(MysteryDungeonMaker::MapComponent mapComponent)
 MysteryDungeonMaker::MapComponent MapObject::GetMapComponent()const
 {
 	return mapState;
-}
-
-void MapObject::Scroll()
-{
-	if (!isMoving)
-	{
-		char buf[256];
-		GetHitKeyStateAll(buf);
-		char input = buf[KEY_INPUT_RIGHT] + buf[KEY_INPUT_LEFT] + buf[KEY_INPUT_DOWN] + buf[KEY_INPUT_UP];
-		if (buf[KEY_INPUT_R])
-		{
-			r_input = true;
-
-			if (buf[KEY_INPUT_UP] && buf[KEY_INPUT_RIGHT])
-				direction = DOWNLEFT;
-			else if (buf[KEY_INPUT_UP] && buf[KEY_INPUT_LEFT])
-				direction = DOWNRIGHT;
-			else if (buf[KEY_INPUT_DOWN] && buf[KEY_INPUT_RIGHT])
-				direction = UPLEFT;
-			else if (buf[KEY_INPUT_DOWN] && buf[KEY_INPUT_LEFT])
-				direction = UPRIGHT;
-			else
-				direction = STOP;
-		}
-		else
-		{
-			if (input < 2)
-			{
-				if (buf[KEY_INPUT_RIGHT])
-					direction = LEFT;
-				else if (buf[KEY_INPUT_LEFT])
-					direction = RIGHT;
-				else if (buf[KEY_INPUT_DOWN])
-					direction = UP;
-				else if (buf[KEY_INPUT_UP])
-					direction = DOWN;
-				else
-					direction = STOP;
-			}
-			else if (r_input)//ˆê‰ñR‚ð‰Ÿ‚µ‚Ä‚µ‚Ü‚¦‚ÎA˜b‚µ‚Ä‚à‚È‚È‚ßˆÚ“®‚ª‚Å‚«‚Ä‚µ‚Ü‚¤‚Ì‚ð–h‚¢‚Ä‚¢‚é
-			{
-				direction = STOP;
-				r_input = false;
-			}
-		}
-	}
-
-	Moving();
 }
