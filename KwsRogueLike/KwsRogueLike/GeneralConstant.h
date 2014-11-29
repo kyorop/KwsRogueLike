@@ -3,8 +3,8 @@
 
 namespace GeneralConstant
 {
-	extern const int gameSizeX;
-	extern const int gameSizeY;
+	extern const int WindowSizeX;
+	extern const int WindowSizeY;
 	extern const int playerX;
 	extern const int playerY;
 	extern const int mapWidth;

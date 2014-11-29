@@ -18,7 +18,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	int floor = 1; //todo 階層データどこに入れる？
 
 	ChangeWindowMode(true);
-	SetGraphMode(640*2, 480*1.5, 16);
+	SetGraphMode(WindowSizeX, WindowSizeY, 16);
 	if (DxLib_Init() == -1)
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);

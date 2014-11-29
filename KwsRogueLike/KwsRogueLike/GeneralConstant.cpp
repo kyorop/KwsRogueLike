@@ -2,10 +2,10 @@
 
 namespace GeneralConstant
 {
-	const int gameSizeX = 640 * 2;
-	const int gameSizeY = 480 * 1.5;
-	const int playerX = (gameSizeX / 2) - 32;
-	const int playerY = (gameSizeY / 2) - 16;
+	const int WindowSizeX = 800;//ここの値は、32で割った値が奇数になるものである必要がある
+	const int WindowSizeY = 600;//ここの値も上と同じであるべき
+	const int playerX = (WindowSizeX/img_size_width)%2 ? (WindowSizeX / 2) - img_size_width/2 : WindowSizeX/2;
+	const int playerY = (WindowSizeY / 2) - 16;
 	const int mapWidth = 4; 
 	const int mapHeight = 3;
 	const int sectionWidth = 20;
