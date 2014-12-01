@@ -1,8 +1,8 @@
 #pragma once
-#include "mapobject.h"
+#include "objectbase.h"
 
 class CharacterBase
-	:public MapObject
+	:public ObjectBase
 {
 private:
 	int hp, offense, diffense, level=1, moveSpeed;

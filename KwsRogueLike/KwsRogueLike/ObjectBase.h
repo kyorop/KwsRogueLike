@@ -18,5 +18,7 @@ public:
 	Vector2 GetCoordinate()const;
 	void AddCoordinate(int x, int y);
 	void AddCoordinate(const Vector2& v);
+
+	virtual void Draw(){}//ˆêŽž“I‚ÉObjectBase‚ÉŽÀ‘•
 };
 

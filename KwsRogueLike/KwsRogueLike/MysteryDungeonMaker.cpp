@@ -13,7 +13,6 @@
 #include "Component.h"
 #include "SectionUtil.h"
 #include "DungeonMakerHelper.h"
-#include "MapObject.h"
 
 const int up_down[] = { -1, 0, 1, 0 };
 const int right_left[] = { 0, 1, 0, -1 };

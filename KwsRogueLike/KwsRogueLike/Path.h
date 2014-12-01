@@ -1,8 +1,8 @@
 ﻿#pragma once
-#include "mapobject.h"
+#include "objectbase.h"
 
 class Path
-	:public MapObject
+	:public ObjectBase
 {
 public:
 	static int imageHandle;

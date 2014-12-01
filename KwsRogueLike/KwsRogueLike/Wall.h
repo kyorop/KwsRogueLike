@@ -1,8 +1,8 @@
 ﻿#pragma once
-#include "mapobject.h"
+#include "objectbase.h"
 
 class Wall
-	:public MapObject
+	:public ObjectBase
 {
 public:
 	void Draw();

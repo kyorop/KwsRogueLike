@@ -96,7 +96,6 @@
     <ClInclude Include="IScrollable.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
-    <ClInclude Include="MapObject.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="Path.h" />
@@ -124,7 +123,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapInfo.cpp" />
-    <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="MysteryDungeonMaker.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="Path.cpp" />

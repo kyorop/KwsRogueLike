@@ -4,11 +4,11 @@
 #include <array>
 #include "idrawable.h"
 #include "generalconstant.h"
-#include "MapObject.h"
 
+class ObjectBase;
+class ScrollingMovement;
 class MysteryDungeonMaker;
 enum MapComponent;
-class MapObject;
 class Map
 	:public IDrawable
 {
@@ -17,19 +17,13 @@ public:
 	~Map();
 private:
 	int floor;
-	std::vector<std::vector<std::shared_ptr<MapObject>>> map;
-
+	std::vector<std::vector<std::shared_ptr<ObjectBase>>> map;
+	std::shared_ptr<ScrollingMovement> scroller;
 private:
-	void UpdateDirection(MapObject::Direction* direction);
-	int frameCount;
-	void GetMoving(Vector2* movement ,const MapObject::Direction direction);
 public:
 	void CreateMap();
 	int GetFloor();
 	void DebugMode();
-	bool isMoving;
-	bool r_input;
-	MapObject::Direction direction;
 	void Move();
 	bool IsMovable();
 	void Draw() override;

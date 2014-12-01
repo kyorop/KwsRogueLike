@@ -23,3 +23,9 @@ bool Vector2::operator%(int n) //Vector2型オブジェクトを渡し、ふたつの座標が共に
 	if (this->x%n == 0 && this->y%n == 0)return true;
 	else return false;
 }
+
+void Vector2::operator+=(const Vector2& rhs)
+{
+	x += rhs.x;
+	y += rhs.y;
+}
