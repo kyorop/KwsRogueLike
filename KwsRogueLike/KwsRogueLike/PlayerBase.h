@@ -12,7 +12,7 @@ private:
 public:
 	PlayerBase(int x, int y);
 	~PlayerBase();
-	void Draw()override;
+	void Draw();
 	void Move();
 	int GetGold();
 };

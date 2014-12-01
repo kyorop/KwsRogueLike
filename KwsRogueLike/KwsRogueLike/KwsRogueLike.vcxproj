@@ -104,6 +104,7 @@
     <ClInclude Include="RandExtended.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="ReducedMap.h" />
+    <ClInclude Include="ScrollingMovement.h" />
     <ClInclude Include="Section.h" />
     <ClInclude Include="SectionUtil.h" />
     <ClInclude Include="Strings.h" />
@@ -131,6 +132,7 @@
     <ClCompile Include="RandExtended.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="ReducedMap.cpp" />
+    <ClCompile Include="ScrollingMovement.cpp" />
     <ClCompile Include="Section.cpp" />
     <ClCompile Include="SectionUtil.cpp" />
     <ClCompile Include="Strings.cpp" />

@@ -34,3 +34,9 @@ void ObjectBase::AddCoordinate(int x, int y)
 	coordinate->x += x;
 	coordinate->y += y;
 }
+
+void ObjectBase::AddCoordinate(const Vector2& v)
+{
+	coordinate->x += v.x;
+	coordinate->y += v.y;
+}

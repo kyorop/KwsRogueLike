@@ -5,7 +5,7 @@ class Floor
 	:public MapObject
 {
 public:
-	void Draw() override;
+	void Draw();
 
 private:
 	static int imageHandle;

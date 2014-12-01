@@ -10,5 +10,5 @@ public:
 	explicit Path(const Vector2& v);
 	~Path();
 
-	void Draw() override;
+	void Draw();
 };

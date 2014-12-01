@@ -14,6 +14,6 @@ public:
 	EnemyBase(int x, int y, int hp, int offense, int diffense, int moveSpeed,int level);
 	~EnemyBase();
 
-	void Draw()override;
+	void Draw();
 	void SetCharacter(PlayerBase* player);
 };
