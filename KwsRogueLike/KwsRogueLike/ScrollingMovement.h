@@ -34,4 +34,5 @@ private:
 
 public:
 	void Scroll(Vector2* coordinate);
+	bool IsMoving()const;
 };

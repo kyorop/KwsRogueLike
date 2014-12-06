@@ -52,12 +52,6 @@
     <ClInclude Include="PlayerBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ConvertRect.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="SectionUtil.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -106,6 +100,12 @@
     <ClInclude Include="ScrollingMovement.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>MapCreate</Filter>
+    </ClInclude>
+    <ClInclude Include="ConvertRect.h">
+      <Filter>MapCreate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Enemy.cpp">
@@ -130,12 +130,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CharacterBase.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ConvertRect.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SectionUtil.cpp">
@@ -182,6 +176,12 @@
     </ClCompile>
     <ClCompile Include="ScrollingMovement.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>MapCreate</Filter>
+    </ClCompile>
+    <ClCompile Include="ConvertRect.cpp">
+      <Filter>MapCreate</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

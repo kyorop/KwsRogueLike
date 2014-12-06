@@ -129,3 +129,8 @@ void ScrollingMovement::Scroll(Vector2* coordinate)
 	UpdateDirection(&direction);
 	*coordinate += GetMoving(direction);
 }
+
+bool ScrollingMovement::IsMoving() const
+{
+	return isMoving;
+}
