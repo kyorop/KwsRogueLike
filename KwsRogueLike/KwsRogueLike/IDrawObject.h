@@ -13,6 +13,7 @@ public:
 	virtual ImageType GetImageType() = 0;
 	virtual int GetX() = 0;
 	virtual int GetY() = 0;
+	virtual int GetAnimationHandle() = 0;
 
 	virtual ~IDrawObject(){};
 };

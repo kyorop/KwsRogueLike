@@ -19,7 +19,6 @@ private:
 	int floor;
 	std::vector<std::vector<std::shared_ptr<ObjectBase>>> map;
 	std::shared_ptr<ScrollingMovement> scroller;
-private:
 public:
 	void CreateMap();
 	int GetFloor();

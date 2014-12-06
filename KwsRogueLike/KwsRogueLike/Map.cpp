@@ -20,7 +20,6 @@ Map::Map()
 }
 
 
-
 void Map::CreateMap()
 {
 	MysteryDungeonMaker dungeonMaker(mapWidth, mapHeight, sectionWidth, sectionHeight);
@@ -71,7 +70,6 @@ void Map::Move()
 	{
 		for (int j = 0; j < entireWidth; j++)
 		{
-
 			map[i][j]->AddCoordinate(currentCoordinate);
 		}
 	}

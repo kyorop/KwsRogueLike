@@ -91,7 +91,6 @@
     <ClInclude Include="ConvertRect.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBase.h" />
-    <ClInclude Include="IAnimationObject.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IDrawObject.h" />
     <ClInclude Include="IEquipable.h" />
