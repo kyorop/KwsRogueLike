@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <string>
 
+struct DivGraphData;
+
 class IDrawObject
 {
 public:
@@ -12,10 +14,22 @@ public:
 
 	virtual ~IDrawObject(){};
 
-	virtual int GetLayer() = 0;
-	virtual std::string GetImageAddress() = 0;
-	virtual int GetX() = 0;
-	virtual int GetY() = 0;
-	virtual int GetAnimationHandle() = 0;
+	virtual int GetLayer()const = 0;
+	virtual std::string GetImageAddress()const = 0;
+	virtual int GetX()const = 0;
+	virtual int GetY()const = 0;
 
+	virtual bool IsUseDivGraph()const = 0;
+	virtual DivGraphData GetDivGraphData()const = 0;
+
+};
+
+struct DivGraphData
+{
+	int allNum;
+	int xNum;
+	int yNum;
+	int xSize;
+	int ySize;
+	int animationHandle;
 };

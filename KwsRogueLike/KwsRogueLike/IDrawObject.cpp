@@ -1,6 +1,8 @@
 ﻿#include "IDrawObject.h"
+#include <DxLib.h>
 
-int IDrawObject::GetAnimationHandle()
+DivGraphData IDrawObject::GetDivGraphData()const
 {
-	return 0;
+	DivGraphData data = {0};
+	return data;
 }

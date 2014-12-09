@@ -94,6 +94,7 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IDrawObject.h" />
     <ClInclude Include="IEquipable.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="IScrollable.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
@@ -122,6 +123,7 @@
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
     <ClCompile Include="IDrawObject.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapInfo.cpp" />

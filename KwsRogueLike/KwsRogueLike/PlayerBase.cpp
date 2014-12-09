@@ -3,6 +3,18 @@
 #include "vector2.h"
 
 
+DivGraphData PlayerBase::GetDivGraphData() const
+{
+	DivGraphData divData;
+	divData.allNum = 96;
+	divData.xNum = 12;
+	divData.yNum = 8;
+	divData.xSize = 32;
+	divData.ySize = 32;
+	divData.animationHandle = 5;
+	return divData;
+}
+
 PlayerBase::PlayerBase(int x, int y)
 	:CharacterBase(15, 8, 8, 2, 1)
 {
