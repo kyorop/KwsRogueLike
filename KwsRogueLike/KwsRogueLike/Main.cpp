@@ -10,6 +10,7 @@
 #define DEBUG 0
 #include "Strings.h"
 #include "Map.h"
+#include "MapInfo.h"
 
 using namespace GeneralConstant;
 
@@ -23,23 +24,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	Map dungeon;
-	dungeon.CreateMap();
+	auto maker = std::make_shared<MysteryDungeonMaker>(mapWidth, mapHeight, sectionWidth, sectionHeight);
+	auto mapPlan = maker->CreateDungeon();
+	auto mapInfo = std::make_shared<MapInfo>(mapPlan);
+	Map map(mapInfo);
+	PlayerBase player(playerX, playerY);
+	Strings PlayerData; //文字列表示オブジェクト
 
 #if DEBUG //敵キャラを一体作る
 	dungeon.DebugMode();
 	EnemyBase *enemy1 = new EnemyBase(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
 #endif
 
-	PlayerBase player(playerX,playerY);
-	Strings PlayerData; //文字列表示オブジェクト
-
+	map.CreateMap(mapPlan);
 
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
 
-		dungeon.Move();
+		map.Move();
 		player.Move();
 
 #if DEBUG
@@ -53,7 +56,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		enemy1->Draw();
 #endif
 
-		dungeon.Draw();
+		map.Draw();
 		player.Draw();
 		PlayerData.DisplayPlayerData(floor, &player);
 		

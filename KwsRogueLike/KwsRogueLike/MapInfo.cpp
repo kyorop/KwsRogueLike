@@ -1,21 +1,13 @@
 #include "MapInfo.h"
+#include "vector2.h"
 
 
-
-MapInfo::MapInfo(std::vector<std::vector<MysteryDungeonMaker::MapComponent>> mapData)
+MapInfo::MapInfo(const std::vector<std::vector<MysteryDungeonMaker::MapComponent>>& mapData)
 {
-	for (std::vector<MysteryDungeonMaker::MapComponent> line : mapData)
-	{
-		infos.push_back(std::vector<Information>());
-		for (MysteryDungeonMaker::MapComponent block : line)
-		{
-		}
-	}
-
 	for (int i = 0; i < mapData.size(); i++)
 	{
 		infos.push_back(std::vector<Information>());
-		for (int j = 0; j < mapData[i].size();j++)
+		for (int j = 0; j < mapData[i].size(); j++)
 		{
 			infos[i].push_back(Information());
 			switch (mapData[i][j])
@@ -23,14 +15,14 @@ MapInfo::MapInfo(std::vector<std::vector<MysteryDungeonMaker::MapComponent>> map
 			case MysteryDungeonMaker::WALL:
 				infos[i][j].isWall = true;
 				break;
-			case MysteryDungeonMaker::FLOOR: 
+			case MysteryDungeonMaker::FLOOR:
 				infos[i][j].isFloor = true;
 				break;
 			case MysteryDungeonMaker::PATH:
 				break;
-			case MysteryDungeonMaker::UNBRAKABLEWALL: 
+			case MysteryDungeonMaker::UNBRAKABLEWALL:
 				break;
-			case MysteryDungeonMaker::STAIR: 
+			case MysteryDungeonMaker::STAIR:
 				break;
 			default: break;
 			}
@@ -38,12 +30,12 @@ MapInfo::MapInfo(std::vector<std::vector<MysteryDungeonMaker::MapComponent>> map
 	}
 }
 
-
 MapInfo::~MapInfo()
 {
 }
 
-Information MapInfo::GetInformation(const Vector2& coordinate)
+Information MapInfo::GetInformation(const Vector2& firstTileCood, const Vector2& coordinate)
 {
-
+	Vector2 realCoord = coordinate - firstTileCood;
+	return infos[realCoord.y / 32][realCoord.x / 32];
 }

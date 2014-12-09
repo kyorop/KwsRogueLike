@@ -29,3 +29,19 @@ void Vector2::operator+=(const Vector2& rhs)
 	x += rhs.x;
 	y += rhs.y;
 }
+
+const Vector2 Vector2::operator+(const Vector2& rhs)const
+{
+	return Vector2(x + rhs.x, y + rhs.y);
+}
+
+const Vector2 Vector2::operator-(const Vector2& rhs)const
+{
+	return Vector2(x - rhs.x, y - rhs.y);
+}
+
+void Vector2::Set(int x, int y)
+{
+	this->x = x;
+	this->y = y;
+}
