@@ -6,8 +6,33 @@
 
 void Image::SetDrawnObject(std::shared_ptr<IDrawObject> drawn)
 {
-	//本来はここでソート処理をして、そのインデックスを入れる
-	drawnList.push_back(std::make_shared<HandleIndexer>(drawn, drawnList.size()));
+	const int layer = drawn->GetLayer();
+	int index;
+	if (drawn->IsUsingDivGraph())
+		index = divHandleList.size();
+	else
+		index = handleList.size();
+
+	if (!drawnList.empty())
+	{
+		const int originalSize = drawnList.size();
+		for (auto itr = drawnList.begin(); itr != drawnList.end(); ++itr)
+		{
+			if ((*itr)->drawnObject->GetLayer() > layer)
+			{
+				drawnList.insert(itr, std::make_shared<HandleIndexer>(drawn, index));
+				break;
+			}
+		}
+
+		if (originalSize == drawnList.size())
+			drawnList.push_back(std::make_shared<HandleIndexer>(drawn, index));
+	}
+	else
+	{
+		drawnList.push_back(std::make_shared<HandleIndexer>(drawn, index));
+	}
+	
 	Initialize(drawn);
 }
 

@@ -25,23 +25,6 @@ private:
 };
 
 
-class ImageHandle
-{
-public:
-	enum HandleType
-	{
-		NORMAL_HANDLE,
-		DIV_HANDL,
-	};
-
-	ImageHandle(){}
-
-private:
-	HandleType handleType;
-	int handle;
-	int *divHandle;
-};
-
 class HandleIndexer
 {
 public:

@@ -22,7 +22,6 @@ PlayerBase::PlayerBase(const Vector2& coord)
 	divData.x = coord.x;
 	divData.y = coord.y;
 	divData.address = "img/Enemies/enemy.png";
-	divData.layer = 0;
 	divData.transFlag = true;
 	
 	divData.allNum = 96;

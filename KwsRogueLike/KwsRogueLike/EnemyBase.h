@@ -1,19 +1,39 @@
 #pragma once
 #include "CharacterBase.h"
+#include "IDrawObject.h"
 
 class PlayerBase;
 class EnemyBase
-	:public CharacterBase
+	:public CharacterBase, public IDrawObject
 {
-private:
-	PlayerBase* player;
-	bool playerMoved;
 public:
-	int charactor[96];
-//	EnemyBase(int hp, int offense, int diffense, int moveSpeed);
+	bool GetLayer() const override
+	{
+		return 1;
+	}
+
+	bool IsUsingDivGraph() const override
+	{
+		return true;
+	}
+
+	GraphData GetGraphData() const override
+	{
+		return IDrawObject::GetGraphData();
+	}
+
+	DivGraphData GetDivGraphData() const override
+	{
+		return divData;
+	}
+
 	EnemyBase(int x, int y, int hp, int offense, int diffense, int moveSpeed,int level);
 	~EnemyBase();
 
-	void Draw();
 	void SetCharacter(PlayerBase* player);
+
+private:
+	DivGraphData divData;
+	PlayerBase* player;
+	bool playerMoved;
 };

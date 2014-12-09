@@ -9,6 +9,7 @@ class IDrawObject
 public:
 	virtual ~IDrawObject(){};
 
+	virtual bool GetLayer()const = 0;
 	virtual bool IsUsingDivGraph() const = 0;
 	virtual GraphData GetGraphData()const = 0;
 	virtual DivGraphData GetDivGraphData()const = 0;
@@ -16,7 +17,6 @@ public:
 
 struct DivGraphData
 {
-	int layer;
 	std::string address;
 	int x;
 	int y;
@@ -30,11 +30,10 @@ struct DivGraphData
 	int animationHandle;
 
 	DivGraphData()
-		:layer(0),
-		address(""),
+		:address(""),
 		x(0),
 		y(0),
-		transFlag(0),
+		transFlag(false),
 		allNum(0),
 		xNum(0),
 		yNum(0),
@@ -42,22 +41,42 @@ struct DivGraphData
 		ySize(0),
 		animationHandle(0)
 	{}
+
+
+	DivGraphData(const std::string& address, int all_num, int x_num, int y_num, int x_size, int y_size)
+		: address(address),
+		  allNum(all_num),
+		  xNum(x_num),
+		  yNum(y_num),
+		  xSize(x_size),
+		  ySize(y_size),
+		  x(0),
+		  y(0),
+		  transFlag(false),
+		  animationHandle(0)
+	{}
 };
 
 struct GraphData
 {
-	int layer;
 	std::string address;
 	int x;
 	int y;
 	bool transFlag;
 
 	GraphData()
-		:layer(0),
-		address(nullptr),
+		:address(""),
 		x(0),
 		y(0),
-		transFlag(0)
+		transFlag(false)
+	{
+	}
+
+	explicit GraphData(const std::string& address)
+		: address(address),
+		x(0),
+		y(0),
+		transFlag(false)
 	{
 	}
 };

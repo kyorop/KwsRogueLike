@@ -8,6 +8,11 @@ class PlayerBase
 	:public CharacterBase, public IDrawObject
 {
 public:
+	bool GetLayer() const override
+	{
+		return 0;
+	}
+
 	GraphData GetGraphData() const override;
 	DivGraphData GetDivGraphData()const override;
 	bool IsUsingDivGraph() const override
@@ -15,7 +20,7 @@ public:
 		return true;
 	}
 
-	PlayerBase(const Vector2& coord);
+	explicit PlayerBase(const Vector2& coord);
 	virtual ~PlayerBase();
 	void Move();
 	int GetGold();
