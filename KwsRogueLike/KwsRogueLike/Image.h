@@ -2,7 +2,7 @@
 #include <vector>
 #include <memory>
 
-
+struct GraphData;
 struct DivGraphData;
 class HandleIndexer;
 class IDrawObject;
@@ -62,7 +62,7 @@ private:
 	int handleIndex;
 };
 
-int LoadGraphBy(const IDrawObject& data);
-void LoadDivGraphBy(const IDrawObject& data, const DivGraphData& divGraphData, int *handle);
-void DrawDivGraphBy(const IDrawObject& data, int* handles);
-void DrawGraphBy(const IDrawObject& data, int handle);
+int LoadGraphBy(const GraphData& data);
+void LoadDivGraphBy(const DivGraphData& data, int* handle);
+void DrawDivGraphBy(const DivGraphData& data, int* handles);
+void DrawGraphBy(const GraphData& data, int handle);

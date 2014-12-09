@@ -14,13 +14,13 @@ void Image::Draw()
 {
 	for (auto drawn : drawnList)
 	{
-		if (drawn->drawnObject->IsUseDivGraph())
+		if (drawn->drawnObject->IsUsingDivGraph())
 		{
-			DrawDivGraphBy(*drawn->drawnObject, divHandleList[drawn->GetIndex()]);
+			DrawDivGraphBy(drawn->drawnObject->GetDivGraphData(), divHandleList[drawn->GetIndex()]);
 		}
 		else
 		{
-			DrawGraphBy(*drawn->drawnObject, handleList[drawn->GetIndex()]);
+			DrawGraphBy(drawn->drawnObject->GetGraphData(), handleList[drawn->GetIndex()]);
 		}
 	}
 }
@@ -31,43 +31,43 @@ void Image::Finalize()
 
 void Image::Initialize(std::shared_ptr<IDrawObject> drawn)
 {
-	if (drawn->IsUseDivGraph())
+	if (drawn->IsUsingDivGraph())
 	{
 		DivGraphData divData = drawn->GetDivGraphData();
 		int *handle = new int[divData.allNum];
-		LoadDivGraphBy(*drawn, divData, handle);
+		LoadDivGraphBy(drawn->GetDivGraphData(), handle);
 		divHandleList.push_back(handle);
 	}
 	else
 	{
-		handleList.push_back(LoadGraphBy(*drawn));
+		handleList.push_back(LoadGraphBy(drawn->GetGraphData()));
 	}
 }
 
 
 
-int LoadGraphBy(const IDrawObject& data)
+int LoadGraphBy(const GraphData& data)
 {
-	return LoadGraph(data.GetImageAddress().data(), true);
+	return LoadGraph(data.address.data(), true);
 }
 
-void LoadDivGraphBy(const IDrawObject& data, const DivGraphData& divGraphData, int* handle)
+void LoadDivGraphBy(const DivGraphData& data, int* handle)
 {
-	LoadDivGraph(data.GetImageAddress().data(), 
-		divGraphData.allNum, 
-		divGraphData.xNum, 
-		divGraphData.yNum, 
-		divGraphData.xSize,
-		divGraphData.ySize,
+	LoadDivGraph(data.address.data(), 
+		data.allNum, 
+		data.xNum, 
+		data.yNum, 
+		data.xSize,
+		data.ySize,
 		handle, true);
 }
 
-void DrawDivGraphBy(const IDrawObject& data, int* handles)
+void DrawDivGraphBy(const DivGraphData& data, int* handles)
 {
-	DrawGraph(data.GetX(), data.GetY(), handles[data.GetDivGraphData().animationHandle], true);
+	DrawGraph(data.x, data.y, handles[data.animationHandle], data.transFlag);
 }
 
-void DrawGraphBy(const IDrawObject& data, int handle)
+void DrawGraphBy(const GraphData& data, int handle)
 {
-	DrawGraph(data.GetX(), data.GetY(), handle, true);
+	DrawGraph(data.x, data.y, handle, data.transFlag);
 }
