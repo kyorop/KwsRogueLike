@@ -61,8 +61,3 @@ public:
 private:
 	int handleIndex;
 };
-
-int LoadGraphBy(const GraphData& data);
-void LoadDivGraphBy(const DivGraphData& data, int* handle);
-void DrawDivGraphBy(const DivGraphData& data, int* handles);
-void DrawGraphBy(const GraphData& data, int handle);

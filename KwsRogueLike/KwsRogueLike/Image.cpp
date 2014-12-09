@@ -1,6 +1,7 @@
-﻿#include "Image.h"
+﻿#include <DxLib.h>
+#include "Image.h"
 #include "IDrawObject.h"
-#include <DxLib.h>
+#include "DxLibGraphic.h"
 
 
 void Image::SetDrawnObject(std::shared_ptr<IDrawObject> drawn)
@@ -16,11 +17,11 @@ void Image::Draw()
 	{
 		if (drawn->drawnObject->IsUsingDivGraph())
 		{
-			DrawDivGraphBy(drawn->drawnObject->GetDivGraphData(), divHandleList[drawn->GetIndex()]);
+			DxLibWrap::Graphic::DrawDivGraphBy(drawn->drawnObject->GetDivGraphData(), divHandleList[drawn->GetIndex()]);
 		}
 		else
 		{
-			DrawGraphBy(drawn->drawnObject->GetGraphData(), handleList[drawn->GetIndex()]);
+			DxLibWrap::Graphic::DrawGraphBy(drawn->drawnObject->GetGraphData(), handleList[drawn->GetIndex()]);
 		}
 	}
 }
@@ -35,39 +36,11 @@ void Image::Initialize(std::shared_ptr<IDrawObject> drawn)
 	{
 		DivGraphData divData = drawn->GetDivGraphData();
 		int *handle = new int[divData.allNum];
-		LoadDivGraphBy(drawn->GetDivGraphData(), handle);
+		DxLibWrap::Graphic::LoadDivGraphBy(drawn->GetDivGraphData(), handle);
 		divHandleList.push_back(handle);
 	}
 	else
 	{
-		handleList.push_back(LoadGraphBy(drawn->GetGraphData()));
+		handleList.push_back(DxLibWrap::Graphic::LoadGraphBy(drawn->GetGraphData()));
 	}
-}
-
-
-
-int LoadGraphBy(const GraphData& data)
-{
-	return LoadGraph(data.address.data(), true);
-}
-
-void LoadDivGraphBy(const DivGraphData& data, int* handle)
-{
-	LoadDivGraph(data.address.data(), 
-		data.allNum, 
-		data.xNum, 
-		data.yNum, 
-		data.xSize,
-		data.ySize,
-		handle, true);
-}
-
-void DrawDivGraphBy(const DivGraphData& data, int* handles)
-{
-	DrawGraph(data.x, data.y, handles[data.animationHandle], data.transFlag);
-}
-
-void DrawGraphBy(const GraphData& data, int handle)
-{
-	DrawGraph(data.x, data.y, handle, data.transFlag);
 }
