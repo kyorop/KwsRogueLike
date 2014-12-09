@@ -11,6 +11,7 @@
 #include "Strings.h"
 #include "Map.h"
 #include "MapInfo.h"
+#include "Image.h"
 
 using namespace GeneralConstant;
 
@@ -28,8 +29,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	auto mapPlan = maker->CreateDungeon();
 	auto mapInfo = std::make_shared<MapInfo>(mapPlan);
 	Map map(mapInfo);
-	PlayerBase player(playerX, playerY);
+	auto player = std::make_shared<PlayerBase>(Vector2(playerX, playerY));
 	Strings PlayerData; //文字列表示オブジェクト
+
+	Image drawer;
+	drawer.SetDrawnObject(player);
 
 #if DEBUG //敵キャラを一体作る
 	dungeon.DebugMode();
@@ -43,7 +47,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		ClearDrawScreen();
 
 		map.Move();
-		player.Move();
 
 #if DEBUG
 		if (CheckHitKey(KEY_INPUT_Z))
@@ -57,9 +60,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 #endif
 
 		map.Draw();
-		player.Draw();
-		PlayerData.DisplayPlayerData(floor, &player);
-		
+		PlayerData.DisplayPlayerData(floor, player.get());
+		drawer.Draw();
 
 		ScreenFlip();
 
