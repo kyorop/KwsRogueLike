@@ -13,6 +13,8 @@ public:
 		return 0;
 	}
 
+	void Update();
+
 	GraphData GetGraphData() const override;
 	DivGraphData GetDivGraphData()const override;
 	bool IsUsingDivGraph() const override

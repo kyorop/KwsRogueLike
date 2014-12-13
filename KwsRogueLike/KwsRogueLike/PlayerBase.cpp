@@ -45,3 +45,35 @@ int PlayerBase::GetGold()
 {
 	return gold;
 }
+
+void PlayerBase::Update()
+{
+	int Key[256];
+	char tmpKey[256];
+	GetHitKeyStateAll(tmpKey);
+	for (int i = 0; i < 256; i++){
+		if (tmpKey[i] != 0){
+			Key[i]++;
+		}
+		else {
+			Key[i] = 0;
+		}
+	}
+
+	if (Key[KEY_INPUT_LEFT] != 0)
+	{
+		divData.animationHandle = 17;	
+	}
+	if (Key[KEY_INPUT_RIGHT] != 0)
+	{
+		divData.animationHandle = 29;
+	}
+	if (Key[KEY_INPUT_UP] != 0)
+	{
+		divData.animationHandle = 41;
+	}
+	if (Key[KEY_INPUT_DOWN] != 0)
+	{
+		divData.animationHandle = 5;
+	}
+}

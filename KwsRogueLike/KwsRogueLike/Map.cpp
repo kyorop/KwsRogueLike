@@ -88,15 +88,15 @@ void Map::Move()
 	scroller->Scroll(&scrollAmount);
 
 //	if (!scroller->IsMoving())
-	{
-		if (mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX - scrollAmount.x, playerY)).isWall
-			|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX + 32 + scrollAmount.x, playerY)).isWall
-			|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX, playerY - scrollAmount.y)).isWall
-			|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX, playerY + 32 + scrollAmount.y)).isWall)
-		{
-			scrollAmount.Set(0, 0);
-		}
-	}
+	//{
+	//	if (mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX - scrollAmount.x, playerY)).isWall
+	//		|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX + 32 + scrollAmount.x, playerY)).isWall
+	//		|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX, playerY - scrollAmount.y)).isWall
+	//		|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX, playerY + 32 + scrollAmount.y)).isWall)
+	//	{
+	//		scrollAmount.Set(0, 0);
+	//	}
+	//}
 
 
 	Scroll(scrollAmount);
