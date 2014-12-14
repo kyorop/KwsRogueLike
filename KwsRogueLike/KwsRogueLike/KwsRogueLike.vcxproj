@@ -93,7 +93,6 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="IDrawable.h" />
-    <ClInclude Include="IDrawObject.h" />
     <ClInclude Include="IEquipable.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="IScrollable.h" />

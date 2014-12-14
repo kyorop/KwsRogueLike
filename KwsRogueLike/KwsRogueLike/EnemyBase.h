@@ -1,31 +1,19 @@
 #pragma once
 #include "CharacterBase.h"
-#include "IDrawObject.h"
+#include "IDrawable.h"
 
 class PlayerBase;
 class EnemyBase
-	:public CharacterBase, public IDrawObject
+	:public CharacterBase, public IDrawable
 {
 public:
-	bool GetLayer() const override
-	{
-		return 1;
-	}
-
-	bool IsUsingDivGraph() const override
-	{
-		return true;
-	}
-
-	GraphData GetGraphData() const override
-	{
-		return IDrawObject::GetGraphData();
-	}
-
-	DivGraphData GetDivGraphData() const override
-	{
-		return divData;
-	}
+	DivGraphData GetDivData() override;
+	bool IsUsingDivGraph() override;
+	int GetAnimationHandle() override;
+	int GetLayer() override;
+	char* GetImageAddress() override;
+	bool Removed() override;
+	void Draw(int handle) override;
 
 	EnemyBase(int x, int y, int hp, int offense, int diffense, int moveSpeed,int level);
 	~EnemyBase();
@@ -33,7 +21,6 @@ public:
 	void SetCharacter(PlayerBase* player);
 
 private:
-	DivGraphData divData;
 	PlayerBase* player;
 	bool playerMoved;
 };

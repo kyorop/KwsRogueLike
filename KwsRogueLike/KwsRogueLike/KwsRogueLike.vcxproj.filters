@@ -106,9 +106,6 @@
     <ClInclude Include="ConvertRect.h">
       <Filter>MapCreate</Filter>
     </ClInclude>
-    <ClInclude Include="IDrawObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>

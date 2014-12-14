@@ -1,10 +1,10 @@
 ﻿#include <DxLib.h>
 #include "Image.h"
-#include "IDrawObject.h"
+#include "IDrawable.h"
 #include "DxLibGraphic.h"
 
 
-void Image::SetDrawnObject(std::shared_ptr<IDrawObject> drawn)
+void Image::SetDrawnObject(std::shared_ptr<IDrawable> drawn)
 {
 	const int layer = drawn->GetLayer();
 	int index;
@@ -32,7 +32,7 @@ void Image::SetDrawnObject(std::shared_ptr<IDrawObject> drawn)
 	{
 		drawnList.push_back(std::make_shared<HandleIndexer>(drawn, index));
 	}
-	
+
 	Initialize(drawn);
 }
 
@@ -42,11 +42,11 @@ void Image::Draw()
 	{
 		if (drawn->drawnObject->IsUsingDivGraph())
 		{
-			DxLibWrap::Graphic::DrawDivGraphBy(drawn->drawnObject->GetDivGraphData(), divHandleList[drawn->GetIndex()]);
+			drawn->drawnObject->Draw(divHandleList[drawn->GetIndex()][drawn->drawnObject->GetAnimationHandle]);
 		}
 		else
 		{
-			DxLibWrap::Graphic::DrawGraphBy(drawn->drawnObject->GetGraphData(), handleList[drawn->GetIndex()]);
+			drawn->drawnObject->Draw(handleList[drawn->GetIndex()]);
 		}
 	}
 }
@@ -55,17 +55,18 @@ void Image::Finalize()
 {
 }
 
-void Image::Initialize(std::shared_ptr<IDrawObject> drawn)
+void Image::Initialize(std::shared_ptr<IDrawable> drawn)
 {
 	if (drawn->IsUsingDivGraph())
 	{
-		DivGraphData divData = drawn->GetDivGraphData();
-		int *handle = new int[divData.allNum];
-		DxLibWrap::Graphic::LoadDivGraphBy(drawn->GetDivGraphData(), handle);
-		divHandleList.push_back(handle);
+		DivGraphData data = drawn->GetDivData();
+		int *handle = new int[data.allNum];
+		LoadDivGraph(drawn->GetImageAddress(), data.allNum, data.xNum, data.yNum, data.xSize, data.ySize, handle);
+		divHandleList.push_back(std::vector<int>(&handle[0], &handle[data.allNum]));
+		delete[] handle;
 	}
 	else
 	{
-		handleList.push_back(DxLibWrap::Graphic::LoadGraphBy(drawn->GetGraphData()));
+		handleList.push_back(LoadGraph(drawn->GetImageAddress()));
 	}
 }
