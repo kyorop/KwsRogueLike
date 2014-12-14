@@ -82,21 +82,30 @@
     <None Include="ClassDiagram4.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battle.h" />
     <ClInclude Include="DebugMode.h" />
     <ClInclude Include="DungeonMakerHelper.h" />
     <ClInclude Include="DxLibGraphic.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GeneralConstant.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConvertRect.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="IBattle.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IDrawObject.h" />
     <ClInclude Include="IEquipable.h" />
+    <ClInclude Include="IGameProcess.h" />
+    <ClInclude Include="IImageAcceptor.h" />
+    <ClInclude Include="IImageVisitor.h" />
+    <ClInclude Include="IItemTaken.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="IScrollable.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemManager.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
@@ -106,26 +115,32 @@
     <ClInclude Include="RandExtended.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="ReducedMap.h" />
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="ScrollingMovement.h" />
     <ClInclude Include="Section.h" />
     <ClInclude Include="SectionUtil.h" />
     <ClInclude Include="Strings.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Battle.cpp" />
     <ClCompile Include="CharacterBase.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConvertRect.cpp" />
     <ClCompile Include="DebugMode.cpp" />
     <ClCompile Include="DungeonMakerHelper.cpp" />
     <ClCompile Include="DxLibGraphic.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
     <ClCompile Include="IDrawObject.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapInfo.cpp" />
@@ -136,12 +151,14 @@
     <ClCompile Include="RandExtended.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="ReducedMap.cpp" />
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScrollingMovement.cpp" />
     <ClCompile Include="Section.cpp" />
     <ClCompile Include="SectionUtil.cpp" />
     <ClCompile Include="Strings.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

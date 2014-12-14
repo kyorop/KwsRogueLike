@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "objectbase.h"
 
+class Screen;
+
 class Path
 	:public ObjectBase
 {
@@ -11,4 +13,5 @@ public:
 	~Path();
 
 	void Draw();
+	void Draw(const Screen& screen);
 };

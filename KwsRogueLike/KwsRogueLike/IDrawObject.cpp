@@ -3,13 +3,12 @@
 
 GraphData IDrawObject::GetGraphData() const
 {
-	GraphData data;
+	GraphData data("",0,0,0);
 	return data;
 }
 
 
 DivGraphData IDrawObject::GetDivGraphData()const
 {
-	DivGraphData data;
-	return data;
+	return DivGraphData(0,0,0,0,0,0);
 }

@@ -28,6 +28,7 @@ public:
 private:
 	ScrollingMovement::Direction drawDirection;
 	int gold = 0; //‚Á‚Ä‚¢‚é‹à
+	GraphData graphData;
 	DivGraphData divData;
 };
 

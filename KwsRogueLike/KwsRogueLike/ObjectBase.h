@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 
+class Screen;
 class Vector2;
 class ObjectBase
 {
@@ -20,5 +21,6 @@ public:
 	void AddCoordinate(const Vector2& v);
 
 	virtual void Draw(){}//ˆêŽž“I‚ÉObjectBase‚ÉŽÀ‘•
+	virtual void Draw(const Screen& screen);
 };
 

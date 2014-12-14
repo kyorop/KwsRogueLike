@@ -12,6 +12,7 @@
 #include "Map.h"
 #include "MapInfo.h"
 #include "Image.h"
+#include "Screen.h"
 
 using namespace GeneralConstant;
 
@@ -28,11 +29,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	auto maker = std::make_shared<MysteryDungeonMaker>(mapWidth, mapHeight, sectionWidth, sectionHeight);
 	auto mapPlan = maker->CreateDungeon();
 	auto mapInfo = std::make_shared<MapInfo>(mapPlan);
-	Map map(mapInfo);
 	auto player = std::make_shared<PlayerBase>(Vector2(playerX, playerY));
 	Strings PlayerData; //文字列表示オブジェクト
 
-	Image drawer;
+	ImageManager drawer;
 	drawer.SetDrawnObject(player);
 
 #if DEBUG //敵キャラを一体作る
@@ -40,13 +40,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	EnemyBase *enemy1 = new EnemyBase(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
 #endif
 
-	map.CreateMap(mapPlan);
 
+	Screen screen;
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
-
-		map.Move();
+		screen.Update();
+//		map.Move();
 
 #if DEBUG
 		if (CheckHitKey(KEY_INPUT_Z))
@@ -59,7 +59,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		enemy1->Draw();
 #endif
 
-		map.Draw();
 		PlayerData.DisplayPlayerData(floor, player.get());
 		drawer.Draw();
 

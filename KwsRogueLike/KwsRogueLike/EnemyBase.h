@@ -7,6 +7,7 @@ class EnemyBase
 	:public CharacterBase, public IDrawObject
 {
 public:
+
 	bool GetLayer() const override
 	{
 		return 1;
@@ -19,7 +20,7 @@ public:
 
 	GraphData GetGraphData() const override
 	{
-		return IDrawObject::GetGraphData();
+		return graphData;
 	}
 
 	DivGraphData GetDivGraphData() const override
@@ -33,6 +34,7 @@ public:
 	void SetCharacter(PlayerBase* player);
 
 private:
+	GraphData graphData;
 	DivGraphData divData;
 	PlayerBase* player;
 	bool playerMoved;

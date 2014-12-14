@@ -1,6 +1,7 @@
 #include "MapInfo.h"
 #include "vector2.h"
-
+#include "EnemyBase.h"
+#include "PlayerBase.h"
 
 MapInfo::MapInfo(const std::vector<std::vector<MysteryDungeonMaker::MapComponent>>& mapData)
 {
@@ -34,8 +35,17 @@ MapInfo::~MapInfo()
 {
 }
 
-Information MapInfo::GetInformation(const Vector2& firstTileCood, const Vector2& coordinate)
+Information MapInfo::GetInformation(const Vector2& coordinate)
 {
-	Vector2 realCoord = coordinate - firstTileCood;
-	return infos[realCoord.y / 32][realCoord.x / 32];
+	return infos[coordinate.y / 32][coordinate.x / 32];
+}
+
+Vector2 MapInfo::GetPlayerCoord()
+{
+	return player->GetCoordinate();
+}
+
+void MapInfo::SetCharacter(std::shared_ptr<PlayerBase> player)
+{
+	this->player = player;
 }

@@ -8,8 +8,7 @@ namespace DxLibWrap
 	namespace Graphic
 	{
 		int LoadGraphBy(const GraphData& data);
-		void LoadDivGraphBy(const DivGraphData& data, int* handle);
-		void DrawDivGraphBy(const DivGraphData& data, int* handles);
+		void LoadDivGraphBy(const GraphData& data, const DivGraphData& divData, int* handle);
 		void DrawGraphBy(const GraphData& data, int handle);
 	}
 }

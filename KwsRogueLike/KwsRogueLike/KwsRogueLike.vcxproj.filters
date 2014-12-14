@@ -16,6 +16,9 @@
     <Filter Include="MapCreate">
       <UniqueIdentifier>{cb7253eb-2409-43f2-b5e3-0721be908af6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainFrameWork">
+      <UniqueIdentifier>{db4c6b68-0650-4f4c-8068-ae145a394272}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -26,9 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharacterBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBase.h">
@@ -76,9 +76,6 @@
     <ClInclude Include="Strings.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="IScrollable.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -109,17 +106,53 @@
     <ClInclude Include="IDrawObject.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
+    <ClInclude Include="DxLibGraphic.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DxLibGraphic.h">
+    <ClInclude Include="IBattle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="IItemTaken.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="IImageAcceptor.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameProcess.h">
+      <Filter>MainFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>MainFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>MainFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>MainFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>MainFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>MainFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>MainFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle.h">
+      <Filter>MainFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="IImageVisitor.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -165,9 +198,6 @@
     <ClCompile Include="Strings.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Wall.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -195,11 +225,35 @@
     <ClCompile Include="IDrawObject.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="DxLibGraphic.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>MainFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>MainFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>MainFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>MainFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>MainFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle.cpp">
+      <Filter>MainFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>MainFrameWork</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

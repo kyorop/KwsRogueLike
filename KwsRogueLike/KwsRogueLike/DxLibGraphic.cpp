@@ -11,20 +11,9 @@ namespace DxLibWrap
 			return LoadGraph(data.address.data(), true);
 		}
 
-		void LoadDivGraphBy(const DivGraphData& data, int* handle)
+		void LoadDivGraphBy(const GraphData& data, const DivGraphData& divData, int* handle)
 		{
-			LoadDivGraph(data.address.data(),
-				data.allNum,
-				data.xNum,
-				data.yNum,
-				data.xSize,
-				data.ySize,
-				handle, true);
-		}
-
-		void DrawDivGraphBy(const DivGraphData& data, int* handles)
-		{
-			DrawGraph(data.x, data.y, handles[data.animationHandle], data.transFlag);
+			LoadDivGraph(data.address.data(), divData.allNum, divData.xNum, divData.yNum, divData.xSize, divData.ySize, handle);
 		}
 
 		void DrawGraphBy(const GraphData& data, int handle)

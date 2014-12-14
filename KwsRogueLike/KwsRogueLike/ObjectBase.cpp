@@ -40,3 +40,7 @@ void ObjectBase::AddCoordinate(const Vector2& v)
 	coordinate->x += v.x;
 	coordinate->y += v.y;
 }
+
+void ObjectBase::Draw(const Screen& screen)
+{
+}

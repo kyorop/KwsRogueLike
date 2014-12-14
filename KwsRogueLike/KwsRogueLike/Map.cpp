@@ -16,19 +16,24 @@ using namespace GeneralConstant;
 using std::vector;
 using std::shared_ptr;
 
-Map::Map(shared_ptr<MapInfo> mapInfo)
-	:mapInfo(mapInfo)
+void MapManager::Update(std::shared_ptr<GameManager> game) const
+{
+}
+
+MapManager::MapManager(shared_ptr<MapInfo> mapInfo)
+	:mapInfo(mapInfo),
+	stop(false)
 {
 	floor = 1;
 	scroller = std::make_shared<ScrollingMovement>();
 }
 
-Map::~Map()
+MapManager::~MapManager()
 {
 }
 
 
-void Map::Scroll(const Vector2& scrollAmount)
+void MapManager::Scroll(const Vector2& scrollAmount)
 {
 	for (int i = 0; i < entireHeight; i++)
 	{
@@ -39,7 +44,7 @@ void Map::Scroll(const Vector2& scrollAmount)
 	}
 }
 
-void Map::CreateMap(const vector<vector<MysteryDungeonMaker::MapComponent>>& mapPlan)
+void MapManager::CreateMap(const vector<vector<MysteryDungeonMaker::MapComponent>>& mapPlan)
 {
 	vector<Component> floorStore;
 
@@ -66,48 +71,61 @@ void Map::CreateMap(const vector<vector<MysteryDungeonMaker::MapComponent>>& map
 			}
 		}
 	}
-
 	std::random_device rd;
 	shuffle(begin(floorStore), end(floorStore), std::mt19937_64(rd()));
 	Vector2 floorCoord = Vector2(-floorStore[0].j * 32+playerX, -floorStore[0].i * 32+playerY);
 	Scroll(floorCoord);
 }
 
-int Map::GetFloor()
+int MapManager::GetFloor()
 {
 	return floor;
 }
 
-void Map::DebugMode()
+void MapManager::DebugMode()
 {
 }
 
-void Map::Move()
+void MapManager::Move()
 {
-	Vector2 scrollAmount(0,0);
-	scroller->Scroll(&scrollAmount);
-
-//	if (!scroller->IsMoving())
+	Vector2 scrollAmount(0, 0);
+	if (!scroller->IsMoving())
 	{
-		if (mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX - scrollAmount.x, playerY)).isWall
-			|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX + 32 + scrollAmount.x, playerY)).isWall
-			|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX, playerY - scrollAmount.y)).isWall
-			|| mapInfo->GetInformation(map[0][0]->GetCoordinate(), Vector2(playerX, playerY + 32 + scrollAmount.y)).isWall)
-		{
-			scrollAmount.Set(0, 0);
-		}
+		stop = true;
+	}
+	
+	if (stop
+		&& mapInfo->GetInformation(Vector2(playerX - scrollAmount.x, playerY)).isWall
+		|| mapInfo->GetInformation(Vector2(playerX + 32 + scrollAmount.x, playerY)).isWall
+		|| mapInfo->GetInformation(Vector2(playerX, playerY - scrollAmount.y)).isWall
+		|| mapInfo->GetInformation(Vector2(playerX, playerY + 32 + scrollAmount.y)).isWall)
+	{
+		scrollAmount.Set(0, 0);
+		stop = false;
 	}
 
-
+	if (!stop)
+		scroller->Scroll(&scrollAmount);
 	Scroll(scrollAmount);
 }
 
-bool Map::IsMovable()
+bool MapManager::IsMovable()
 {
 	return true;
 }
 
-void Map::Draw()
+void MapManager::Draw(const Screen& screen)
+{
+	for (int i = 0; i < entireHeight; i++)
+	{
+		for (int j = 0; j < entireWidth; j++)
+		{
+			map[i][j]->Draw(screen);
+		}
+	}
+}
+
+void MapManager::Draw()
 {
 	for (int i=0; i < entireHeight; i++)
 	{

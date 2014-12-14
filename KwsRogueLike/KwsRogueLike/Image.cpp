@@ -4,7 +4,11 @@
 #include "DxLibGraphic.h"
 
 
-void Image::SetDrawnObject(std::shared_ptr<IDrawObject> drawn)
+void ImageManager::Update(std::shared_ptr<GameManager> game) const
+{
+}
+
+void ImageManager::SetDrawnObject(std::shared_ptr<IDrawObject> drawn)
 {
 	const int layer = drawn->GetLayer();
 	int index;
@@ -36,13 +40,14 @@ void Image::SetDrawnObject(std::shared_ptr<IDrawObject> drawn)
 	Initialize(drawn);
 }
 
-void Image::Draw()
+void ImageManager::Draw()
 {
 	for (auto drawn : drawnList)
 	{
 		if (drawn->drawnObject->IsUsingDivGraph())
 		{
-			DxLibWrap::Graphic::DrawDivGraphBy(drawn->drawnObject->GetDivGraphData(), divHandleList[drawn->GetIndex()]);
+			int handleIndex = drawn->drawnObject->GetDivGraphData().animationHandle;
+			DxLibWrap::Graphic::DrawGraphBy(drawn->drawnObject->GetGraphData(), divHandleList[drawn->GetIndex()][handleIndex]);
 		}
 		else
 		{
@@ -51,18 +56,20 @@ void Image::Draw()
 	}
 }
 
-void Image::Finalize()
+void ImageManager::Finalize()
 {
 }
 
-void Image::Initialize(std::shared_ptr<IDrawObject> drawn)
+void ImageManager::Initialize(std::shared_ptr<IDrawObject> drawn)
 {
 	if (drawn->IsUsingDivGraph())
 	{
 		DivGraphData divData = drawn->GetDivGraphData();
 		int *handle = new int[divData.allNum];
-		DxLibWrap::Graphic::LoadDivGraphBy(drawn->GetDivGraphData(), handle);
-		divHandleList.push_back(handle);
+		DxLibWrap::Graphic::LoadDivGraphBy(drawn->GetGraphData() ,drawn->GetDivGraphData(), handle);
+		std::vector<int> handleArray(&handle[0], &handle[divData.allNum]);
+		divHandleList.push_back(handleArray);
+		delete[] handle;
 	}
 	else
 	{

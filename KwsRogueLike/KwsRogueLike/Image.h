@@ -1,17 +1,20 @@
 ﻿#pragma once
 #include <vector>
 #include <memory>
+#include "IGameProcess.h"
 
 struct GraphData;
 struct DivGraphData;
 class HandleIndexer;
 class IDrawObject;
 
-class Image
+class ImageManager
+	:public IGameProcess
 {
 public:
+	void Update(std::shared_ptr<GameManager> game) const override;
 
-	Image(){}
+	ImageManager(){}
 
 	void SetDrawnObject(std::shared_ptr<IDrawObject> drawn);
 	void Draw();
@@ -19,7 +22,7 @@ public:
 
 private:
 	std::vector<int> handleList;
-	std::vector<int*> divHandleList;
+	std::vector<std::vector<int>> divHandleList;
 	std::vector<std::shared_ptr<HandleIndexer>> drawnList;
 	void Initialize(std::shared_ptr<IDrawObject> drawn);
 };

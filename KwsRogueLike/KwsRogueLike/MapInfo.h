@@ -2,6 +2,8 @@
 #include <vector>
 #include "mysterydungeonmaker.h"
 #include <memory>
+class PlayerBase;
+class ObjectBase;
 class Vector2;
 
 struct Information;
@@ -12,12 +14,13 @@ public:
 	explicit MapInfo(const std::vector<std::vector<MysteryDungeonMaker::MapComponent>>& mapData);
 	~MapInfo();
 
-private:
-	std::shared_ptr<const Vector2> firstTileCoord;
+	Information GetInformation(const Vector2& coordinate);
 
-public:
+	Vector2 GetPlayerCoord();
+	void SetCharacter(std::shared_ptr<PlayerBase> player);
+private:
 	std::vector<std::vector<Information>> infos;
-	Information GetInformation(const Vector2& firstTileCood,  const Vector2& coordinate);
+	std::shared_ptr<PlayerBase> player;
 };
 
 struct Information
