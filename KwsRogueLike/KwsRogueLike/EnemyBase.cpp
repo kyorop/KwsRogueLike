@@ -3,10 +3,42 @@
 #include "vector2.h"
 #include "MapInfo.h"
 
+DivGraphData EnemyBase::GetDivData()
+{
+	return DivGraphData();
+}
+
+bool EnemyBase::IsUsingDivGraph()
+{
+	return true;
+}
+
+int EnemyBase::GetAnimationHandle()
+{
+	return 0;
+}
+
+int EnemyBase::GetLayer()
+{
+	return 0;
+}
+
+char* EnemyBase::GetImageAddress()
+{
+	return "img/Enemies/enemy.png";
+}
+
+bool EnemyBase::Removed()
+{
+	return true;
+}
+
+void EnemyBase::Draw(int handle)
+{
+}
+
 EnemyBase::EnemyBase(int x, int y, int hp, int offense, int diffense, int movespeed, int level)
 	:CharacterBase(hp,offense,diffense,movespeed,level),
-	graphData("img/Enemies/enemy.png",x,y,true),
-	divData(96, 12, 8, 32, 32,0),
 	playerMoved(false)
 {
 	SetCoordinate(x, y);

@@ -8,7 +8,7 @@ void ImageManager::Update(std::shared_ptr<GameManager> game) const
 {
 }
 
-void ImageManager::SetDrawnObject(std::shared_ptr<IDrawObject> drawn)
+void ImageManager::SetDrawnObject(std::shared_ptr<IDrawable> drawn)
 {
 	const int layer = drawn->GetLayer();
 	int index;
@@ -46,7 +46,8 @@ void ImageManager::Draw()
 	{
 		if (drawn->drawnObject->IsUsingDivGraph())
 		{
-			drawn->drawnObject->Draw(divHandleList[drawn->GetIndex()][drawn->drawnObject->GetAnimationHandle]);		}
+			drawn->drawnObject->Draw(divHandleList[drawn->GetIndex()][drawn->drawnObject->GetAnimationHandle()]);		
+		}
 		else
 		{
 			drawn->drawnObject->Draw(handleList[drawn->GetIndex()]);
@@ -58,7 +59,7 @@ void ImageManager::Finalize()
 {
 }
 
-void Image::Initialize(std::shared_ptr<IDrawable> drawn)
+void ImageManager::Initialize(std::shared_ptr<IDrawable> drawn)
 {
 	if (drawn->IsUsingDivGraph())
 	{

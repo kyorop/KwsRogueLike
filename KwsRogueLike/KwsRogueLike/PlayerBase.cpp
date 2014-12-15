@@ -3,13 +3,10 @@
 #include "vector2.h"
 
 PlayerBase::PlayerBase(const Vector2& coord)
-	:CharacterBase(15, 8, 8, 2, 1),
-	graphData("img/Enemies/enemy.png", coord.x, coord.y, true),
-	divData(96, 12, 8, 32, 32, 5)
+	:CharacterBase(15, 8, 8, 2, 1)
 {
 	SetCoordinate(coord.x, coord.y);
 	drawDirection = ScrollingMovement::STOP;
-	// "img/Enemies/enemy.png";
 }
 
 PlayerBase::~PlayerBase()
@@ -24,6 +21,40 @@ void PlayerBase::Move()
 int PlayerBase::GetGold()
 {
 	return gold;
+}
+
+DivGraphData PlayerBase::GetDivData()
+{
+	return DivGraphData();
+}
+
+bool PlayerBase::IsUsingDivGraph()
+{
+	return true;
+}
+
+int PlayerBase::GetAnimationHandle()
+{
+	return 0;
+}
+
+int PlayerBase::GetLayer()
+{
+	return 0;
+}
+
+char* PlayerBase::GetImageAddress()
+{
+	return "img/Enemies/enemy.png";
+}
+
+bool PlayerBase::Removed()
+{
+	return true;
+}
+
+void PlayerBase::Draw(int handle)
+{
 }
 
 void PlayerBase::Update()
