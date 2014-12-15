@@ -46,8 +46,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 	{
 		ClearDrawScreen();
 		screen.Update();
-//		map.Move();
-
 #if DEBUG
 		if (CheckHitKey(KEY_INPUT_Z))
 		{

@@ -1,24 +1,23 @@
 #pragma once
 #include "CharacterBase.h"
 #include "scrollingmovement.h"
-#include "idrawobject.h"
 #include "Vector2.h"
+#include "IDrawable.h"
 
 class PlayerBase
-	:public CharacterBase, public IDrawObject
+	:public CharacterBase, public IDrawable
 {
 public:
-	bool GetLayer() const override
-	{
-		return 0;
-	}
+	DivGraphData GetDivData() override;
+	bool IsUsingDivGraph() override;
+	int GetAnimationHandle() override;
+	int GetLayer() override;
+	char* GetImageAddress() override;
+	bool Removed() override;
+	void Draw(int handle) override;
+public:
 
-	GraphData GetGraphData() const override;
-	DivGraphData GetDivGraphData()const override;
-	bool IsUsingDivGraph() const override
-	{
-		return true;
-	}
+	void Update();
 
 	explicit PlayerBase(const Vector2& coord);
 	virtual ~PlayerBase();
@@ -28,7 +27,5 @@ public:
 private:
 	ScrollingMovement::Direction drawDirection;
 	int gold = 0; //éùÇ¡ÇƒÇ¢ÇÈã‡
-	GraphData graphData;
-	DivGraphData divData;
 };
 

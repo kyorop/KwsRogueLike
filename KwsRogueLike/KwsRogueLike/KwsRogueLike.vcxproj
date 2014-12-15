@@ -96,7 +96,6 @@
     <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="IBattle.h" />
     <ClInclude Include="IDrawable.h" />
-    <ClInclude Include="IDrawObject.h" />
     <ClInclude Include="IEquipable.h" />
     <ClInclude Include="IGameProcess.h" />
     <ClInclude Include="IImageAcceptor.h" />

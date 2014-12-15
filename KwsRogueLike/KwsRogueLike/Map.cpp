@@ -94,16 +94,6 @@ void MapManager::Move()
 		stop = true;
 	}
 	
-	if (stop
-		&& mapInfo->GetInformation(Vector2(playerX - scrollAmount.x, playerY)).isWall
-		|| mapInfo->GetInformation(Vector2(playerX + 32 + scrollAmount.x, playerY)).isWall
-		|| mapInfo->GetInformation(Vector2(playerX, playerY - scrollAmount.y)).isWall
-		|| mapInfo->GetInformation(Vector2(playerX, playerY + 32 + scrollAmount.y)).isWall)
-	{
-		scrollAmount.Set(0, 0);
-		stop = false;
-	}
-
 	if (!stop)
 		scroller->Scroll(&scrollAmount);
 	Scroll(scrollAmount);
