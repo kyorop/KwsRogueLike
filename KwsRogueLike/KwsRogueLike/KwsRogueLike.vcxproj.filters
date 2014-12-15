@@ -13,8 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="MapCreate">
+    <Filter Include="MapCreater">
       <UniqueIdentifier>{cb7253eb-2409-43f2-b5e3-0721be908af6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFrameWork">
+      <UniqueIdentifier>{3f86e9d1-13f2-4a84-afe8-acddacff2506}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,13 +62,13 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="MysteryDungeonMaker.h">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClInclude>
     <ClInclude Include="Section.h">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClInclude>
     <ClInclude Include="DungeonMakerHelper.h">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClInclude>
     <ClInclude Include="DebugMode.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -89,10 +92,10 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Rect.h">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClInclude>
     <ClInclude Include="Vector2.h">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -101,10 +104,10 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClInclude>
     <ClInclude Include="ConvertRect.h">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -145,13 +148,13 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="MysteryDungeonMaker.cpp">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClCompile>
     <ClCompile Include="Section.cpp">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClCompile>
     <ClCompile Include="DungeonMakerHelper.cpp">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClCompile>
     <ClCompile Include="DebugMode.cpp">
       <Filter>ソース ファイル</Filter>
@@ -172,10 +175,10 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Rect.cpp">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClCompile>
     <ClCompile Include="Vector2.cpp">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClCompile>
     <ClCompile Include="Path.cpp">
       <Filter>ソース ファイル</Filter>
@@ -184,10 +187,10 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClCompile>
     <ClCompile Include="ConvertRect.cpp">
-      <Filter>MapCreate</Filter>
+      <Filter>MapCreater</Filter>
     </ClCompile>
     <ClCompile Include="IDrawObject.cpp">
       <Filter>ソース ファイル</Filter>
