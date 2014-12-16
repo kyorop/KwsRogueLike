@@ -2,6 +2,7 @@
 #include "Screen.h"
 #include "Image.h"
 #include "PlayerBase.h"
+#include "Vector2.h"
 
 GameManager::GameManager()
 	:image(std::make_shared<ImageManager>()),

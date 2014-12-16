@@ -4,7 +4,6 @@
 #include "Image.h"
 
 PlayerBase::PlayerBase(const Vector2& coord)
-	:CharacterBase(15, 8, 8, 2, 1)
 {
 	SetCoordinate(coord.x, coord.y);
 	drawDirection = ScrollingMovement::STOP;
@@ -14,14 +13,28 @@ PlayerBase::~PlayerBase()
 {
 }
 
-
-void PlayerBase::Move()
-{
-}
-
 int PlayerBase::GetGold()
 {
 	return gold;
+}
+
+int PlayerBase::GetLevel()
+{
+	return 5;
+}
+
+int PlayerBase::GetHp()
+{
+	return 50;
+}
+
+int PlayerBase::GetAttack()
+{
+	return 10;
+}
+
+void PlayerBase::TakeDamage(int damage)
+{
 }
 
 int PlayerBase::GetLayer()

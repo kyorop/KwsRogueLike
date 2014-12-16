@@ -4,6 +4,20 @@
 #include "MapInfo.h"
 #include "Image.h"
 
+int EnemyBase::GetHp()
+{
+	return 50;
+}
+
+int EnemyBase::GetAttack()
+{
+	return 10;
+}
+
+void EnemyBase::TakeDamage(int damage)
+{
+}
+
 int EnemyBase::GetLayer()
 {
 	return 0;
@@ -21,17 +35,10 @@ void EnemyBase::Draw(ImageManager* manager)
 }
 
 EnemyBase::EnemyBase(int x, int y, int hp, int offense, int diffense, int movespeed, int level)
-	:CharacterBase(hp,offense,diffense,movespeed,level),
-	playerMoved(false)
 {
 	SetCoordinate(x, y);
 }
 
 EnemyBase::~EnemyBase()
 {
-}
-
-void EnemyBase::SetCharacter(PlayerBase* player)
-{
-	this->player = player;
 }

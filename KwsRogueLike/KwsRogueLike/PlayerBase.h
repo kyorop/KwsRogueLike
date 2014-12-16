@@ -1,25 +1,27 @@
 ﻿#pragma once
-#include "CharacterBase.h"
-#include "scrollingmovement.h"
-#include "Vector2.h"
-#include "IDrawable.h"
 #include <vector>
+#include "scrollingmovement.h"
+#include "IDrawable.h"
+#include "ObjectBase.h"
+#include "IBattle.h"
 
 class PlayerBase
-	:public CharacterBase, public IDrawable
+	:public ObjectBase,public IDrawable,public IBattle
 {
 public:
+	int GetHp() override;
+	int GetAttack() override;
+	void TakeDamage(int damage) override;
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
 	void Draw(ImageManager* manager) override;
 	
-
-	void Update();
-
 	explicit PlayerBase(const Vector2& coord);
 	virtual ~PlayerBase();
-	void Move();
+	
+	void Update();
 	int GetGold();
+	int GetLevel();
 
 private:
 	ScrollingMovement::Direction drawDirection;
