@@ -51,7 +51,7 @@ void ImageManager::Finalize()
 
 int ImageManager::LoadGraph(const std::string& imgFileAddress)
 {
-	int handle = LoadGraph(imgFileAddress.data());
+	int handle = DxLib::LoadGraph(imgFileAddress.data());
 	handleList.push_back(handle);
 	return handle;
 }

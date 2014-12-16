@@ -5,10 +5,10 @@
 
 MapInfo::MapInfo(const std::vector<std::vector<MysteryDungeonMaker::MapComponent>>& mapData)
 {
-	for (int i = 0; i < mapData.size(); i++)
+	for (size_t i = 0; i < mapData.size(); i++)
 	{
 		infos.push_back(std::vector<Information>());
-		for (int j = 0; j < mapData[i].size(); j++)
+		for (size_t j = 0; j < mapData[i].size(); j++)
 		{
 			infos[i].push_back(Information());
 			switch (mapData[i][j])

@@ -1,26 +1,22 @@
 #pragma once
 #include "CharacterBase.h"
 #include "IDrawable.h"
+#include <vector>
 
 class PlayerBase;
 class EnemyBase
 	:public CharacterBase, public IDrawable
 {
 public:
-	DivGraphData GetDivData() override;
-	bool IsUsingDivGraph() override;
-	int GetAnimationHandle() override;
 	int GetLayer() override;
-	char* GetImageAddress() override;
-	bool Removed() override;
-	void Draw(int handle) override;
-
+	void Load(ImageManager* manager) override;
+	void Draw() override;
+private:
 	EnemyBase(int x, int y, int hp, int offense, int diffense, int moveSpeed,int level);
 	~EnemyBase();
 
 	void SetCharacter(PlayerBase* player);
-
-private:
+	std::vector<int> handles;
 	PlayerBase* player;
 	bool playerMoved;
 };

@@ -3,19 +3,15 @@
 #include "scrollingmovement.h"
 #include "Vector2.h"
 #include "IDrawable.h"
+#include <vector>
 
 class PlayerBase
 	:public CharacterBase, public IDrawable
 {
 public:
-	DivGraphData GetDivData() override;
-	bool IsUsingDivGraph() override;
-	int GetAnimationHandle() override;
 	int GetLayer() override;
-	char* GetImageAddress() override;
-	bool Removed() override;
-	void Draw(int handle) override;
-public:
+	void Load(ImageManager* manager) override;
+	void Draw() override;
 
 	void Update();
 
@@ -26,6 +22,7 @@ public:
 
 private:
 	ScrollingMovement::Direction drawDirection;
+	std::vector<int> handles;
 	int gold = 0; //‚Á‚Ä‚¢‚é‹à
 };
 

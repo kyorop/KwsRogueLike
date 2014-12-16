@@ -1,6 +1,7 @@
 #include "PlayerBase.h"
 #include "DxLib.h"
 #include "vector2.h"
+#include "Image.h"
 
 PlayerBase::PlayerBase(const Vector2& coord)
 	:CharacterBase(15, 8, 8, 2, 1)
@@ -23,38 +24,20 @@ int PlayerBase::GetGold()
 	return gold;
 }
 
-DivGraphData PlayerBase::GetDivData()
-{
-	return DivGraphData();
-}
-
-bool PlayerBase::IsUsingDivGraph()
-{
-	return true;
-}
-
-int PlayerBase::GetAnimationHandle()
-{
-	return 0;
-}
-
 int PlayerBase::GetLayer()
 {
 	return 0;
 }
 
-char* PlayerBase::GetImageAddress()
+void PlayerBase::Load(ImageManager* manager)
 {
-	return "img/Enemies/enemy.png";
+	handles = manager->LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32);
 }
 
-bool PlayerBase::Removed()
+void PlayerBase::Draw()
 {
-	return true;
-}
-
-void PlayerBase::Draw(int handle)
-{
+	Vector2 coord = GetCoordinate();
+	DrawGraph(coord.x, coord.y, handles[0], true);
 }
 
 void PlayerBase::Update()

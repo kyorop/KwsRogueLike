@@ -2,39 +2,22 @@
 #include "DxLib.h"
 #include "vector2.h"
 #include "MapInfo.h"
-
-DivGraphData EnemyBase::GetDivData()
-{
-	return DivGraphData();
-}
-
-bool EnemyBase::IsUsingDivGraph()
-{
-	return true;
-}
-
-int EnemyBase::GetAnimationHandle()
-{
-	return 0;
-}
+#include "Image.h"
 
 int EnemyBase::GetLayer()
 {
 	return 0;
 }
 
-char* EnemyBase::GetImageAddress()
+void EnemyBase::Load(ImageManager* manager)
 {
-	return "img/Enemies/enemy.png";
+	handles = manager->LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32);
 }
 
-bool EnemyBase::Removed()
+void EnemyBase::Draw()
 {
-	return true;
-}
-
-void EnemyBase::Draw(int handle)
-{
+	Vector2 coord = GetCoordinate();
+	DrawGraph(coord.x, coord.y, handles[0], true);
 }
 
 EnemyBase::EnemyBase(int x, int y, int hp, int offense, int diffense, int movespeed, int level)
