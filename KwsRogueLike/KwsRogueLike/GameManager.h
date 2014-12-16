@@ -2,20 +2,21 @@
 #include <memory>
 
 
-class CharacterBase;
-
+class ImageManager;
+class Screen;
+class PlayerBase;
 class GameManager
 {
 public:
+	GameManager();
 	void Initialize();
 	void Main();
 	void Finalize();
-
-	std::shared_ptr<CharacterBase> GetPlayer()
-	{
-		return player;
-	}
+	Screen GetScreen();
+	std::shared_ptr<PlayerBase> GetPlayer();
 
 private:
-	std::shared_ptr<CharacterBase> player;
+	std::shared_ptr<ImageManager> image;
+	std::shared_ptr<Screen> screen;
+	std::shared_ptr<PlayerBase> player;
 };

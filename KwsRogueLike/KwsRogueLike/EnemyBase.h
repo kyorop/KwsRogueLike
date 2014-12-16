@@ -10,7 +10,7 @@ class EnemyBase
 public:
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
-	void Draw() override;
+	void Draw(ImageManager* manager) override;
 private:
 	EnemyBase(int x, int y, int hp, int offense, int diffense, int moveSpeed,int level);
 	~EnemyBase();

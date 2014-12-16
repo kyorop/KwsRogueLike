@@ -1,17 +1,18 @@
 ﻿#pragma once
 #include "objectbase.h"
+#include "IDrawable.h"
 
 class Screen;
 
 class Path
-	:public ObjectBase
+	:public ObjectBase, public IDrawable
 {
 public:
-	static int imageHandle;
-public:
+	int GetLayer() override;
+	void Load(ImageManager* manager) override;
+	void Draw(ImageManager* manager) override;
 	explicit Path(const Vector2& v);
 	~Path();
-
-	void Draw();
-	void Draw(const Screen& screen);
+private:
+	static int imgHandle;
 };

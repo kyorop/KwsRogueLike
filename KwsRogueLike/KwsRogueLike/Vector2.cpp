@@ -24,10 +24,18 @@ bool Vector2::operator%(int n) //Vector2型オブジェクトを渡し、ふたつの座標が共に
 	else return false;
 }
 
-void Vector2::operator+=(const Vector2& rhs)
+Vector2 Vector2::operator+=(const Vector2& rhs)
 {
 	x += rhs.x;
 	y += rhs.y;
+	return *this;
+}
+
+Vector2 Vector2::operator-=(const Vector2& rhs)
+{
+	x -= rhs.x;
+	y -= rhs.y;
+	return *this;
 }
 
 const Vector2 Vector2::operator+(const Vector2& rhs)const

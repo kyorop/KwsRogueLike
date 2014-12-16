@@ -2,25 +2,31 @@
 #include "Path.h"
 #include "vector2.h"
 #include "Screen.h"
+#include "Image.h"
 
-int Path::imageHandle;
+int Path::imgHandle;
+
+int Path::GetLayer()
+{
+	return 0;
+}
+
+void Path::Load(ImageManager* manager)
+{
+	imgHandle = manager->LoadGraph("img/background/path.png");
+}
+
+void Path::Draw(ImageManager* manager)
+{
+	Vector2 disp = GetDrawCoord();
+	DrawGraph(disp.x, disp.y, imgHandle, true);
+}
 
 Path::Path(const Vector2& v)
 {
 	SetCoordinate(v);
-	imageHandle = LoadGraph("img/background/path.png");
 }
 
 Path::~Path()
 {
-}
-
-void Path::Draw()
-{
-	DrawGraph(GetCoordinate().x, GetCoordinate().y, imageHandle, true);
-}
-
-void Path::Draw(const Screen& screen)
-{
-	DrawGraph(GetCoordinate().x - screen.x, GetCoordinate().y - screen.y, imageHandle, true);
 }

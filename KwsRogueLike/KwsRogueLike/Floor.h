@@ -1,19 +1,15 @@
 ﻿#pragma once
 #include "objectbase.h"
-
-class Screen;
+#include "IDrawable.h"
 
 class Floor
-	:public ObjectBase
+	:public ObjectBase, public IDrawable
 {
 public:
-	void Draw();
-	void Draw(const Screen& screen);
-private:
-	static int imageHandle;
+	int GetLayer() override;
+	void Load(ImageManager* manager) override;
+	void Draw(ImageManager* manager) override;
 public:
 	explicit Floor(const Vector2& v);
 	~Floor();
-
-
 };

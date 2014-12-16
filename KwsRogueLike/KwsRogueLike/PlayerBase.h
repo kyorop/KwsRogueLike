@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CharacterBase.h"
 #include "scrollingmovement.h"
 #include "Vector2.h"
@@ -11,7 +11,8 @@ class PlayerBase
 public:
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
-	void Draw() override;
+	void Draw(ImageManager* manager) override;
+	
 
 	void Update();
 
@@ -23,6 +24,6 @@ public:
 private:
 	ScrollingMovement::Direction drawDirection;
 	std::vector<int> handles;
-	int gold = 0; //‚Á‚Ä‚¢‚é‹à
+	int gold = 0;
 };
 

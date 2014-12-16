@@ -1,14 +1,21 @@
 ﻿#include <DxLib.h>
 #include "Image.h"
 #include "IDrawable.h"
-#include "DxLibGraphic.h"
-
+#include "GameManager.h"
+#include "Screen.h"
+#include "Vector2.h"
 
 void ImageManager::Update(std::shared_ptr<GameManager> game) const
 {
+	*screenCoord = game->GetScreen().GetCoord();
 }
 
-void ImageManager::SetDrawnObject(std::shared_ptr<IDrawable> drawn)
+ImageManager::ImageManager()
+	:screenCoord(std::make_shared<Vector2>(0,0))
+{
+}
+
+void ImageManager::SetDrawnObject(IDrawable* drawn)
 {
 	const int thisLayer = drawn->GetLayer();
 	bool pushed = false;
@@ -37,7 +44,7 @@ void ImageManager::Draw()
 {
 	for (auto drawn : drawnList)
 	{
-		drawn->Draw();
+		drawn->Draw(this);
 	}
 }
 
@@ -64,4 +71,9 @@ std::vector<int> ImageManager::LoadDivGraph(const std::string& imgFileAddress, i
 	delete[] handle;
 	copy(handleList.begin(), handleList.end(), vHandle.begin());
 	return vHandle;
+}
+
+Vector2 ImageManager::SolveDrawCoord(const Vector2& gameCoord)
+{
+	return Vector2(gameCoord.x - screenCoord->x, gameCoord.y - screenCoord->y);
 }

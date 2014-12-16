@@ -2,23 +2,28 @@
 #include "Floor.h"
 #include "vector2.h"
 #include "Screen.h"
+#include "Image.h"
 
-int Floor::imageHandle;
+static int handle;
 
-void Floor::Draw()
+int Floor::GetLayer()
 {
-	DrawGraph(GetCoordinate().x, GetCoordinate().y, imageHandle, true);
+	return 0;
 }
 
-void Floor::Draw(const Screen& screen)
+void Floor::Load(ImageManager* manager)
 {
-	DrawGraph(GetCoordinate().x - screen.x, GetCoordinate().y - screen.y, imageHandle, true);;
+	handle = manager->LoadGraph("img/background/floor.png");
+}
+
+void Floor::Draw(ImageManager* manager)
+{
+	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handle, true);
 }
 
 ::Floor::Floor(const Vector2& v)
 {
 	SetCoordinate(v);
-	imageHandle = LoadGraph("img/background/floor.png");
 }
 
 Floor::~Floor()

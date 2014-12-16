@@ -13,6 +13,7 @@
 #include "MapInfo.h"
 #include "Image.h"
 #include "Screen.h"
+#include "GameManager.h"
 
 using namespace GeneralConstant;
 
@@ -26,26 +27,23 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	auto maker = std::make_shared<MysteryDungeonMaker>(mapWidth, mapHeight, sectionWidth, sectionHeight);
-	auto mapPlan = maker->CreateDungeon();
-	auto mapInfo = std::make_shared<MapInfo>(mapPlan);
-	auto player = std::make_shared<PlayerBase>(Vector2(playerX, playerY));
-	Strings PlayerData; //文字列表示オブジェクト
+//	auto maker = std::make_shared<MysteryDungeonMaker>(mapWidth, mapHeight, sectionWidth, sectionHeight);
+//	auto mapPlan = maker->CreateDungeon();
+//	auto mapInfo = std::make_shared<MapInfo>(mapPlan);
+//	auto player = std::make_shared<PlayerBase>(Vector2(playerX, playerY));
+//	Strings PlayerData; //文字列表示オブジェクト
 
-	ImageManager drawer;
-	drawer.SetDrawnObject(player);
+	GameManager game;
 
 #if DEBUG //敵キャラを一体作る
 	dungeon.DebugMode();
 	EnemyBase *enemy1 = new EnemyBase(32 * 10, 32 * 1, 15, 8, 8, 2, 1);
 #endif
 
-
-	Screen screen;
+	game.Initialize();
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClearDrawScreen();
-		screen.Update();
 #if DEBUG
 		if (CheckHitKey(KEY_INPUT_Z))
 		{
@@ -53,18 +51,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 		}
 #endif
 
+		game.Main();
+
 #if DEBUG
 		enemy1->Draw();
 #endif
-
-		PlayerData.DisplayPlayerData(floor, player.get());
-		drawer.Draw();
-
 		ScreenFlip();
 
 		if (ProcessMessage() < 0)
 			break;
 	}
+	game.Finalize();
 
 	DxLib_End();
 	

@@ -1,16 +1,16 @@
 ﻿#pragma once
 #include "objectbase.h"
+#include "IDrawable.h"
 
 class Screen;
 class Wall
-	:public ObjectBase
+	:public ObjectBase, public IDrawable
 {
 public:
-	void Draw();
-	void Draw(const Screen& screen);
-private:
-	static int imageHandle;
-public:
+	int GetLayer() override;
+	void Load(ImageManager* manager) override;
+	void Draw(ImageManager* manager) override;
+
 	explicit Wall(const Vector2&  v);
 	~Wall();
 };

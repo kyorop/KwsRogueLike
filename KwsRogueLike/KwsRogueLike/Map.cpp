@@ -104,24 +104,13 @@ bool MapManager::IsMovable()
 	return true;
 }
 
-void MapManager::Draw(const Screen& screen)
-{
-	for (int i = 0; i < entireHeight; i++)
-	{
-		for (int j = 0; j < entireWidth; j++)
-		{
-			map[i][j]->Draw(screen);
-		}
-	}
-}
-
 void MapManager::Draw()
 {
 	for (int i=0; i < entireHeight; i++)
 	{
 		for (int j=0; j < entireWidth; j++)
 		{
-			map[i][j]->Draw();
+//			map[i][j]->Draw();
 		}
 	}
 }

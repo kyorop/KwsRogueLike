@@ -1,11 +1,11 @@
-#include "CharacterBase.h"
+ï»¿#include "CharacterBase.h"
 
-void CharacterBase::SetHp(int hp) //get‚¶‚á‚È‚­‚Äset‚¶‚á‚ËH‚Á‚Ä‚±‚Æ‚Å•Ï‚¦‚½
+void CharacterBase::SetHp(int hp)
 {
 	this->hp=hp;
 }
 
-void CharacterBase::HpChanger(int hpChanger) //HP‚ğ‰ñ•œ‚·‚é‚Æ‚«‚Í³‚Ì—ÊAHP‚ğŒ¸‚ç‚·‚Æ‚«‚Í•‰‚Ì—Ê‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
+void CharacterBase::HpChanger(int hpChanger)
 {
 	this->hp += hpChanger;
 }
@@ -30,7 +30,7 @@ int CharacterBase::GetLevel()
 	return this->level;
 }
 
-CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed,int level) //ƒŒƒxƒ‹‚ª‚P‚æ‚è‚‚¢ƒLƒƒƒ‰ƒNƒ^‚Í‚±‚¿‚ç
+CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed,int level)
 	:isMoving(false),
 	frameCount(0)
 {
@@ -45,5 +45,3 @@ CharacterBase::CharacterBase(int hp, int offense, int diffense, int moveSpeed,in
 CharacterBase::~CharacterBase()
 {
 }
-
-

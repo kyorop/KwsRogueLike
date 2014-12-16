@@ -8,7 +8,6 @@ public:
 	int x2;
 	int y2;
 
-public:
 	Rect(int x1, int y1, int x2, int y2);
 	Rect();
 	~Rect();

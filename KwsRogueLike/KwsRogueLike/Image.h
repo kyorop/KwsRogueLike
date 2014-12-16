@@ -4,6 +4,7 @@
 #include <string>
 #include "IGameProcess.h"
 
+class Vector2;
 class IDrawable;
 struct GraphData;
 struct DivGraphData;
@@ -15,18 +16,19 @@ class ImageManager
 public:
 	void Update(std::shared_ptr<GameManager> game) const override;
 
-	ImageManager(){}
-
-	void SetDrawnObject(std::shared_ptr<IDrawable> drawn);
+	ImageManager();
+	void SetDrawnObject(IDrawable* drawn);
 	void Initialize();
 	void Draw();
 	void Finalize();
 	
 	int LoadGraph(const std::string& imgFileAddress);
 	std::vector<int> LoadDivGraph(const std::string& imgFileAddress, int allNum, int xNum, int yNum, int xSize, int ySize);
+	Vector2 SolveDrawCoord(const Vector2& gameCoord);
 private:
 	std::vector<int> handleList;
-	std::vector<std::shared_ptr<IDrawable>> drawnList;
+	std::vector<IDrawable*> drawnList;
+	std::shared_ptr<Vector2> screenCoord;
 };
 
 

@@ -2,23 +2,28 @@
 #include "Wall.h"
 #include "vector2.h"
 #include "Screen.h"
+#include "Image.h"
 
-int Wall::imageHandle;
+static int handle;
 
-void Wall::Draw()
+int Wall::GetLayer()
 {
-	DrawGraph(GetCoordinate().x, GetCoordinate().y, imageHandle, true);
+	return 0;
 }
 
-void Wall::Draw(const Screen& screen)
+void Wall::Load(ImageManager* manager)
 {
-	DrawGraph(GetCoordinate().x - screen.x, GetCoordinate().y - screen.y, imageHandle, true);
+	handle = manager->LoadGraph("img/background/wall.png");
+}
+
+void Wall::Draw(ImageManager* manager)
+{
+	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handle, true);
 }
 
 Wall::Wall(const Vector2& v)
 {
 	SetCoordinate(v);
-	imageHandle = LoadGraph("img/background/wall.png");
 }
 
 Wall::~Wall()

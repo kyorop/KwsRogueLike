@@ -1,6 +1,6 @@
 #include "ObjectBase.h"
 #include "Vector2.h"
-
+#include "Screen.h"
 
 ObjectBase::ObjectBase()
 {
@@ -41,6 +41,7 @@ void ObjectBase::AddCoordinate(const Vector2& v)
 	coordinate->y += v.y;
 }
 
-void ObjectBase::Draw(const Screen& screen)
+Vector2 ObjectBase::GetDrawCoord()
 {
+	return *coordinate -= Screen::GetCoord();
 }

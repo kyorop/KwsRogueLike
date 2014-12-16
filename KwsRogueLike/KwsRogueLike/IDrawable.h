@@ -10,7 +10,7 @@ public:
 
 	virtual int GetLayer() = 0;
 	virtual void Load(ImageManager* manager) = 0;
-	virtual void Draw() = 0;
+	virtual void Draw(ImageManager* manager) = 0;
 };
 
 struct DivGraphData

@@ -14,10 +14,10 @@ void EnemyBase::Load(ImageManager* manager)
 	handles = manager->LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32);
 }
 
-void EnemyBase::Draw()
+void EnemyBase::Draw(ImageManager* manager)
 {
-	Vector2 coord = GetCoordinate();
-	DrawGraph(coord.x, coord.y, handles[0], true);
+	Vector2 scoord = manager->SolveDrawCoord(GetCoordinate());
+	DrawGraph(scoord.x, scoord.y, handles[0], true);
 }
 
 EnemyBase::EnemyBase(int x, int y, int hp, int offense, int diffense, int movespeed, int level)

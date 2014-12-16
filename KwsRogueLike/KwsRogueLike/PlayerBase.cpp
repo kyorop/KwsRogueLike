@@ -34,9 +34,9 @@ void PlayerBase::Load(ImageManager* manager)
 	handles = manager->LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32);
 }
 
-void PlayerBase::Draw()
+void PlayerBase::Draw(ImageManager* manager)
 {
-	Vector2 coord = GetCoordinate();
+	Vector2 coord = GetDrawCoord();
 	DrawGraph(coord.x, coord.y, handles[0], true);
 }
 
