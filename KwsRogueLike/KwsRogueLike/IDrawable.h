@@ -1,5 +1,6 @@
 #pragma once
 
+class ImageManager;
 struct DivGraphData;
 
 class IDrawable
@@ -7,13 +8,9 @@ class IDrawable
 public:
 	virtual ~IDrawable(){};
 
-	virtual bool IsUsingDivGraph() = 0;
-	virtual DivGraphData GetDivData() = 0;
-	virtual int GetAnimationHandle() = 0;
 	virtual int GetLayer() = 0;
-	virtual char* GetImageAddress() = 0;
-	virtual bool Removed() = 0;
-	virtual void Draw(int handle) = 0;
+	virtual void Load(ImageManager* manager) = 0;
+	virtual void Draw() = 0;
 };
 
 struct DivGraphData

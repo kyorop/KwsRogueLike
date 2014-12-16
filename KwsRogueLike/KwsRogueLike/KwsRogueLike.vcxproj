@@ -75,13 +75,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
-    <None Include="ClassDiagram3.cd" />
-    <None Include="ClassDiagram4.cd" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Battle.h" />
     <ClInclude Include="DebugMode.h" />
     <ClInclude Include="DungeonMakerHelper.h" />
@@ -136,7 +129,6 @@
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
-    <ClCompile Include="IDrawObject.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />

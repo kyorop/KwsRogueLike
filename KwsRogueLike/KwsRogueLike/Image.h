@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <vector>
 #include <memory>
+#include <string>
 #include "IGameProcess.h"
 
 class IDrawable;
@@ -17,14 +18,15 @@ public:
 	ImageManager(){}
 
 	void SetDrawnObject(std::shared_ptr<IDrawable> drawn);
+	void Initialize();
 	void Draw();
 	void Finalize();
-
+	
+	int LoadGraph(const std::string& imgFileAddress);
+	std::vector<int> LoadDivGraph(const std::string& imgFileAddress, int allNum, int xNum, int yNum, int xSize, int ySize);
 private:
 	std::vector<int> handleList;
-	std::vector<std::vector<int>> divHandleList;
-	std::vector<std::shared_ptr<HandleIndexer>> drawnList;
-	void Initialize(std::shared_ptr<IDrawable> drawn);
+	std::vector<std::shared_ptr<IDrawable>> drawnList;
 };
 
 
