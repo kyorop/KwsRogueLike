@@ -2,6 +2,7 @@
 #include <memory>
 
 
+class Floor;
 class ImageManager;
 class Screen;
 class PlayerBase;

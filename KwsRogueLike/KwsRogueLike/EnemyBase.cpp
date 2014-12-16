@@ -30,7 +30,7 @@ void EnemyBase::Load(ImageManager* manager)
 
 void EnemyBase::Draw(ImageManager* manager)
 {
-	Vector2 scoord = manager->SolveDrawCoord(GetCoordinate());
+	Vector2 scoord = GetDrawCoord();
 	DrawGraph(scoord.x, scoord.y, handles[0], true);
 }
 

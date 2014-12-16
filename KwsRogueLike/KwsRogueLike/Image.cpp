@@ -69,11 +69,6 @@ std::vector<int> ImageManager::LoadDivGraph(const std::string& imgFileAddress, i
 	DxLib::LoadDivGraph(imgFileAddress.data(), allNum, xNum, yNum, xSize, ySize, handle);
 	std::vector<int> vHandle(&handle[0], &handle[allNum]);
 	delete[] handle;
-	copy(handleList.begin(), handleList.end(), vHandle.begin());
+	handleList.insert(end(handleList), begin(vHandle), end(vHandle));
 	return vHandle;
-}
-
-Vector2 ImageManager::SolveDrawCoord(const Vector2& gameCoord)
-{
-	return Vector2(gameCoord.x - screenCoord->x, gameCoord.y - screenCoord->y);
 }
