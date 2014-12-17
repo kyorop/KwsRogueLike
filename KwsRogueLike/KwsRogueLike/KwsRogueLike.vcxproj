@@ -82,13 +82,11 @@
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GeneralConstant.h" />
-    <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConvertRect.h" />
     <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="IBattle.h" />
     <ClInclude Include="IDrawable.h" />
-    <ClInclude Include="IEquipable.h" />
     <ClInclude Include="IGameProcess.h" />
     <ClInclude Include="IImageAcceptor.h" />
     <ClInclude Include="IImageVisitor.h" />
@@ -117,7 +115,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Battle.cpp" />
-    <ClCompile Include="CharacterBase.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConvertRect.cpp" />
     <ClCompile Include="DebugMode.cpp" />

@@ -8,5 +8,5 @@ class IGameProcess
 public:
 	virtual ~IGameProcess(){}
 
-	virtual void Update(std::shared_ptr<GameManager> game)const = 0;
+	virtual void Update(GameManager* game) const = 0;
 };

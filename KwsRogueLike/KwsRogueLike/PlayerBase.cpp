@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "vector2.h"
 #include "Image.h"
+#include "GeneralConstant.h"
 
 PlayerBase::PlayerBase(const Vector2& coord)
 {
@@ -39,7 +40,7 @@ void PlayerBase::TakeDamage(int damage)
 
 int PlayerBase::GetLayer()
 {
-	return 0;
+	return 1;
 }
 
 void PlayerBase::Load(ImageManager* manager)
@@ -49,8 +50,8 @@ void PlayerBase::Load(ImageManager* manager)
 
 void PlayerBase::Draw(ImageManager* manager)
 {
-	Vector2 coord = GetDrawCoord();
-	DrawGraph(coord.x, coord.y, handles[0], true);
+//	Vector2 coord = GetDrawCoord();
+	DrawGraph(GeneralConstant::playerX, GeneralConstant::playerY,handles[0], true);
 }
 
 void PlayerBase::Update()

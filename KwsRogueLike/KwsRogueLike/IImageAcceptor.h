@@ -9,5 +9,5 @@ public:
 	{
 	}
 
-	virtual void Accept(std::shared_ptr<ImageManager> image)const = 0;
+	virtual void Accept(const std::shared_ptr<ImageManager>& image) const = 0;
 };

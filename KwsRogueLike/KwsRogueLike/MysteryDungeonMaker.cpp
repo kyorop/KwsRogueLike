@@ -258,8 +258,6 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 	Component sectionComp_around = around->GetComponent();
 	Rect room_center = center->GetRoom();
 	Rect room_around = around->GetRoom();
-	Component start;
-	Component goal;
 
 	int door_center;
 	int door_around;

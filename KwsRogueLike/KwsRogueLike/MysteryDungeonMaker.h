@@ -35,7 +35,7 @@ private:
 	Section** section;
 
 public:
-	explicit MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
+	MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
 	~MysteryDungeonMaker();
 	std::vector<std::vector<MapComponent>> CreateDungeon();
 	void SetRoomNum(int roomNum);

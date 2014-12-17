@@ -5,6 +5,6 @@ class ItemManager
 	:public IGameProcess
 {
 public:
-	void Update(std::shared_ptr<GameManager> game) const override;
+	void Update(GameManager* game) const override;
 private:
 };

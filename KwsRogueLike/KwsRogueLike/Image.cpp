@@ -5,7 +5,7 @@
 #include "Screen.h"
 #include "Vector2.h"
 
-void ImageManager::Update(std::shared_ptr<GameManager> game) const
+void ImageManager::Update(GameManager* game) const
 {
 	*screenCoord = game->GetScreen().GetCoord();
 }
@@ -15,7 +15,7 @@ ImageManager::ImageManager()
 {
 }
 
-void ImageManager::SetDrawnObject(IDrawable* drawn)
+void ImageManager::SetDrawnObject(const std::shared_ptr<IDrawable>& drawn)
 {
 	const int thisLayer = drawn->GetLayer();
 	bool pushed = false;

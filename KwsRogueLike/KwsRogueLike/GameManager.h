@@ -2,6 +2,7 @@
 #include <memory>
 
 
+class MapManager;
 class Floor;
 class ImageManager;
 class Screen;
@@ -20,4 +21,5 @@ private:
 	std::shared_ptr<ImageManager> image;
 	std::shared_ptr<Screen> screen;
 	std::shared_ptr<PlayerBase> player;
+	std::shared_ptr<MapManager> mapManager;
 };

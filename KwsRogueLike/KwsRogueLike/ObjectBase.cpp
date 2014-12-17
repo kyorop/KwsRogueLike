@@ -43,5 +43,5 @@ void ObjectBase::AddCoordinate(const Vector2& v)
 
 Vector2 ObjectBase::GetDrawCoord()
 {
-	return *coordinate -= Screen::GetCoord();
+	return *coordinate - Screen::GetCoord();
 }

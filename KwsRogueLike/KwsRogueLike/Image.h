@@ -14,10 +14,10 @@ class ImageManager
 	:public IGameProcess
 {
 public:
-	void Update(std::shared_ptr<GameManager> game) const override;
+	void Update(GameManager* game) const override;
 
 	ImageManager();
-	void SetDrawnObject(IDrawable* drawn);
+	void SetDrawnObject(const std::shared_ptr<IDrawable>& drawn);
 	void Initialize();
 	void Draw();
 	void Finalize();
@@ -26,7 +26,7 @@ public:
 	std::vector<int> LoadDivGraph(const std::string& imgFileAddress, int allNum, int xNum, int yNum, int xSize, int ySize);
 private:
 	std::vector<int> handleList;
-	std::vector<IDrawable*> drawnList;
+	std::vector<std::shared_ptr<IDrawable>> drawnList;
 	std::shared_ptr<Vector2> screenCoord;
 };
 
