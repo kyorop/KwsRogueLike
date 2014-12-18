@@ -5,6 +5,11 @@
 #include "Vector2.h"
 #include "floor.h"
 #include "Map.h"
+#include "DxLib.h"
+
+static int startTime;
+static int endTime;
+static int take;
 
 GameManager::GameManager()
 	:image(std::make_shared<ImageManager>()),
@@ -19,16 +24,21 @@ void GameManager::Initialize()
 	MysteryDungeonMaker maker(GeneralConstant::mapWidth, GeneralConstant::mapHeight, GeneralConstant::sectionWidth, GeneralConstant::sectionHeight);
 	auto mapPlan = maker.CreateDungeon();
 	mapManager->CreateMap(mapPlan);
-	mapManager->Accept(image);
 	image->SetDrawnObject(player);
+	mapManager->Accept(image);
 
+	
+	startTime = GetNowCount();
 	image->Initialize();
+	endTime = GetNowCount();
 }
 
 void GameManager::Main()
 {
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "start : %d", startTime);
+	DrawFormatString(0, 20, GetColor(255, 255, 255), "end : %d", endTime);
+	DrawFormatString(0, 40, GetColor(255, 255, 255), "take: %d", endTime - startTime);
 	screen->Update(this);
-
 	image->Draw();
 }
 

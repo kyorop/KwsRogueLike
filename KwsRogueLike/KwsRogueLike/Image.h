@@ -3,6 +3,8 @@
 #include <memory>
 #include <string>
 #include "IGameProcess.h"
+#include <map>
+#include <list>
 
 class Vector2;
 class IDrawable;
@@ -28,6 +30,9 @@ private:
 	std::vector<int> handleList;
 	std::vector<std::shared_ptr<IDrawable>> drawnList;
 	std::shared_ptr<Vector2> screenCoord;
+	std::map<std::string, int> loadedImg;
+
+	void SortDrawnList(std::vector<std::shared_ptr<IDrawable>>& list);
 };
 
 
