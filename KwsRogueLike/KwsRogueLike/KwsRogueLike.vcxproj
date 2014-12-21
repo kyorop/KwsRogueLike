@@ -85,6 +85,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConvertRect.h" />
     <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="HeapSort.h" />
     <ClInclude Include="IBattle.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IGameProcess.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
+    <ClCompile Include="HeapSort.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />

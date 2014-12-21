@@ -1,6 +1,6 @@
 ﻿#include "EnemyManager.h"
 #include "GameManager.h"
 
-void EnemyManager::Update(GameManager* game) const
+void EnemyManager::Update(GameManager* game)
 {
 }

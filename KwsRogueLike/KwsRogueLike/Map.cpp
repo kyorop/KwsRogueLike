@@ -28,7 +28,7 @@ void MapManager::Accept(const shared_ptr<ImageManager>& image) const
 	}	
 }
 
-void MapManager::Update(GameManager* game) const
+void MapManager::Update(GameManager* game)
 {
 }
 

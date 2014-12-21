@@ -15,7 +15,7 @@ class MapManager
 {
 public:
 	void Accept(const std::shared_ptr<ImageManager>& image) const override;
-	void Update(GameManager* game) const override;
+	void Update(GameManager* game) override;
 	
 	explicit MapManager(std::shared_ptr<MapInfo> mapInfo);
 	~MapManager();

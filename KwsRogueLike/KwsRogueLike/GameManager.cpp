@@ -35,11 +35,11 @@ void GameManager::Initialize()
 
 void GameManager::Main()
 {
+	screen->Update(this);
+	image->Draw();
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "start : %d", startTime);
 	DrawFormatString(0, 20, GetColor(255, 255, 255), "end : %d", endTime);
 	DrawFormatString(0, 40, GetColor(255, 255, 255), "take: %d", endTime - startTime);
-	screen->Update(this);
-	image->Draw();
 }
 
 void GameManager::Finalize()

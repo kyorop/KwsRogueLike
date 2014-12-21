@@ -5,5 +5,5 @@ class EnemyManager
 	:public IGameProcess
 {
 public:
-	void Update(GameManager* game) const override;
+	void Update(GameManager* game) override;
 };

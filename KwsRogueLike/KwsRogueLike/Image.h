@@ -16,7 +16,7 @@ class ImageManager
 	:public IGameProcess
 {
 public:
-	void Update(GameManager* game) const override;
+	void Update(GameManager* game) override;
 
 	ImageManager();
 	void SetDrawnObject(const std::shared_ptr<IDrawable>& drawn);
@@ -31,8 +31,6 @@ private:
 	std::vector<std::shared_ptr<IDrawable>> drawnList;
 	std::shared_ptr<Vector2> screenCoord;
 	std::map<std::string, int> loadedImg;
-
-	void SortDrawnList(std::vector<std::shared_ptr<IDrawable>>& list);
 };
 
 
