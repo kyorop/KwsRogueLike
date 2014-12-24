@@ -7,6 +7,7 @@ class ObjectBase
 {
 public:
 	ObjectBase();
+	explicit ObjectBase(const Vector2& coord);
 	virtual ~ObjectBase();
 
 private:
@@ -20,5 +21,7 @@ public:
 	void AddCoordinate(int x, int y);
 	void AddCoordinate(const Vector2& v);
 	Vector2 GetDrawCoord();
+	size_t Get_i();
+	size_t Get_j();
 };
 

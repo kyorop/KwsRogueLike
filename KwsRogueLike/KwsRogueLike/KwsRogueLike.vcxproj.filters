@@ -15,7 +15,6 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="MysteryDungeonMaker.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
@@ -33,6 +32,8 @@
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="HeapSort.cpp" />
+    <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="Stair.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
@@ -55,7 +56,6 @@
     <ClInclude Include="IScrollable.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemManager.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
     <ClInclude Include="ObjectBase.h" />
@@ -73,5 +73,8 @@
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="HeapSort.h" />
+    <ClInclude Include="MapManager.h" />
+    <ClInclude Include="vector_2d.h" />
+    <ClInclude Include="Stair.h" />
   </ItemGroup>
 </Project>

@@ -1,29 +1,29 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include <array>
 #include "idrawable.h"
-#include "generalconstant.h"
-#include "MysteryDungeonMaker.h"
 #include "IGameProcess.h"
 #include "IImageAcceptor.h"
 
+struct MapInformation;
 class MapInfo;
 class ObjectBase;
+enum class ObjectTypeOnMap;
+class IDrawable;
+
 class MapManager
 	:public IGameProcess, public IImageAcceptor
 {
 public:
 	void Accept(const std::shared_ptr<ImageManager>& image) const override;
 	void Update(GameManager* game) override;
-	
-	explicit MapManager(std::shared_ptr<MapInfo> mapInfo);
+
 	~MapManager();
 
-	void CreateMap(const std::vector<std::vector<MysteryDungeonMaker::MapComponent>>& mapPlan);
+	void CreateMap(const std::vector<std::vector<MapInformation>>& mapPlan);
 	void DebugMode();
 	void Move();
+	void Initialize(std::vector<std::vector<MapInformation>>& mapInfo);
 private:
-	std::vector<std::vector<std::shared_ptr<IDrawable>>>map;
-	std::shared_ptr<MapInfo> mapInfo;
+	std::vector<std::shared_ptr<IDrawable>> map;
 };

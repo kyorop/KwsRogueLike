@@ -1,4 +1,5 @@
-﻿#include "Screen.h"
+﻿#include "GameManager.h"
+#include "Screen.h"
 #include <DxLib.h>
 #include "vector2.h"
 
@@ -23,6 +24,21 @@ void Screen::Update(GameManager* game)
 			isMoving = true;
 			direction = RIGHT;
 		}
+		else if (buf[KEY_INPUT_LEFT])
+		{
+			isMoving = true;
+			direction = LEFT;
+		}
+		else if (buf[KEY_INPUT_DOWN])
+		{
+			isMoving = true;
+			direction = DOWN;
+		}
+		else if (buf[KEY_INPUT_UP])
+		{
+			isMoving = true;
+			direction = UP;
+		}
 	}
 	else
 	{
@@ -30,12 +46,18 @@ void Screen::Update(GameManager* game)
 		switch (direction)
 		{
 		case STOP: break;
-		case UP: break;
+		case UP: 
+			coord->y -= speed;
+			break;
 		case RIGHT: 
 			coord->x += speed;
 			break;
-		case DOWN: break;
-		case LEFT: break;
+		case DOWN: 
+			coord->y += speed;
+			break;
+		case LEFT: 
+			coord->x -= speed;
+			break;
 		default: break;
 		}
 
@@ -46,26 +68,4 @@ void Screen::Update(GameManager* game)
 			moveAmount = 32;
 		}
 	}
-//	if ()
-//		*coord += Vector2(speed, 0);
-//	else if ()
-//		*coord += Vector2(-speed, 0);
-//	else if ()
-//		*coord += Vector2(0, speed);
-//	else if ()
-//		*coord += Vector2(0, -speed);
-}
-
-void Screen::Update()
-{
-	char buf[256];
-	GetHitKeyStateAll(buf);
-	if (buf[KEY_INPUT_RIGHT])
-		*coord += Vector2(speed, 0);
-	else if (buf[KEY_INPUT_LEFT])
-		*coord += Vector2(-speed, 0);
-	else if (buf[KEY_INPUT_DOWN])
-		*coord += Vector2(0, speed);
-	else if (buf[KEY_INPUT_UP])
-		*coord += Vector2(0, -speed);
 }

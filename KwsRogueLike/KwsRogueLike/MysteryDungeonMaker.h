@@ -1,21 +1,17 @@
 #pragma once
 #include <vector>
+#include "vector_2d.h"
 
 class Rect;
 class Section;
 class Component;
 class MapObject;
+enum class ObjectTypeOnMap;
+struct MapInformation;
+
 class MysteryDungeonMaker
 {
 public:
-	enum MapComponent
-	{
-		WALL, //âÛÇπÇÈï«
-		FLOOR, //è∞
-		PATH, //í òH
-		UNBRAKABLEWALL, //âÛÇπÇ»Ç¢ï«
-		STAIR //äKíiÅAÇPÉtÉçÉAÇPÇ¬Ç‹Ç≈
-	};
 	enum Direction
 	{
 		UP,
@@ -31,18 +27,16 @@ private:
 	const int minRoomWidth;
 	const int minRoomHeight;
 	int roomNum;
-	MapComponent** map;
-	Section** section;
+	KwsRogueLike::vector_2d < ObjectTypeOnMap > map;
+	KwsRogueLike::vector_2d<Section> sections;
 
 public:
 	MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
 	~MysteryDungeonMaker();
-	std::vector<std::vector<MapComponent>> CreateDungeon();
+	KwsRogueLike::vector_2d<MapInformation> CreateDungeon();
 	void SetRoomNum(int roomNum);
 
 private:
-	void NewMap();
-	void DeleteMap();
 	void ResetMap();
 	void ResetGroupId();
 
@@ -52,4 +46,8 @@ private:
 	void RemoveRoom(const Rect& room);
 	std::vector<std::vector<Section*>> ClassifyGroups();
 	std::vector<Component> SearchShortestRoute(const Section& start);
+	void SetMap(KwsRogueLike::vector_2d < MapInformation >& info);
+	void SetItem(KwsRogueLike::vector_2d < MapInformation >& info);
+	void SetEnemy(KwsRogueLike::vector_2d < MapInformation >& info);
+	void SetTrap(KwsRogueLike::vector_2d < MapInformation >& info);
 };

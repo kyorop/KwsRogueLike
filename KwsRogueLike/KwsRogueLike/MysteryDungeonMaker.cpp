@@ -3,7 +3,6 @@
 #include <utility>
 #include <queue>
 #include <map>
-#include <random>
 #include "MysteryDungeonMaker.h"
 #include "RandExtended.h"
 #include "Vector2.h"
@@ -13,6 +12,9 @@
 #include "Component.h"
 #include "SectionUtil.h"
 #include "DungeonMakerHelper.h"
+#include "MapInfo.h"
+#include <random>
+#include <ctime>
 
 const int up_down[] = { -1, 0, 1, 0 };
 const int right_left[] = { 0, 1, 0, -1 };
@@ -24,7 +26,9 @@ MysteryDungeonMaker::MysteryDungeonMaker(int mapWidth, int mapHeight, int sectio
 	sectionHeight(sectionHeight),
 	minRoomWidth(4),
 	minRoomHeight(4),
-	roomNum(0)
+	roomNum(0),
+	map(mapHeight*sectionHeight, std::vector<ObjectTypeOnMap>(mapWidth*sectionWidth)),
+	sections(sectionHeight, std::vector<Section>(sectionWidth))
 {
 	int sectionNum = mapWidth*mapHeight;
 	this->roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
@@ -34,39 +38,13 @@ MysteryDungeonMaker::~MysteryDungeonMaker()
 {
 }
 
-void MysteryDungeonMaker::NewMap()
-{
-	map = new MapComponent*[sectionHeight*mapHeight];
-	for (size_t i = 0; i < sectionHeight*mapHeight; i++)
-	{
-		map[i] = new MapComponent[sectionWidth*mapWidth];
-	}
-
-	section = new Section*[mapHeight];
-	for (int i = 0; i < mapWidth; i++)
-	{
-		section[i] = new Section[mapWidth];
-	}
-}
-
-void MysteryDungeonMaker::DeleteMap()
-{
-	for (size_t i = 0; i < sectionHeight*mapHeight; i++)
-	{
-		delete[] map[i];
-	}
-	delete[] map;
-
-	map = nullptr;
-}
-
 void MysteryDungeonMaker::ResetMap()
 {
 	for (size_t i = 0; i < sectionHeight*mapHeight; i++)
 	{
 		for (size_t j = 0; j < sectionWidth*mapWidth; j++)
 		{
-			map[i][j] = WALL;
+			map[i][j] = ObjectTypeOnMap::WALL;
 		}
 	}
 }
@@ -77,17 +55,14 @@ void MysteryDungeonMaker::ResetGroupId()
 	{
 		for (int j = 0; j < mapWidth; j++)
 		{
-			section[i][j].ResetGroupId();
+			sections[i][j].ResetGroupId();
 		}
 	}
 }
 
-std::vector<std::vector<MysteryDungeonMaker::MapComponent>> MysteryDungeonMaker::CreateDungeon()
+KwsRogueLike::vector_2d<MapInformation> MysteryDungeonMaker::CreateDungeon()
 {
-	NewMap();
 	ResetMap();
-
-	std::vector<std::vector<MapComponent>> tempMap;
 
 	std::vector<Component> sections;
 	for (int i = 0; i < mapHeight; i++)
@@ -95,7 +70,7 @@ std::vector<std::vector<MysteryDungeonMaker::MapComponent>> MysteryDungeonMaker:
 		for (int j = 0; j < mapWidth; j++)
 		{
 			sections.push_back(Component(i, j));
-			section[i][j].SetComponent(i, j);
+			this->sections[i][j].SetComponent(i, j);
 		}
 	}
 
@@ -113,18 +88,9 @@ std::vector<std::vector<MysteryDungeonMaker::MapComponent>> MysteryDungeonMaker:
 	}
 	MakePath();
 
-	for (int i = 0; i < sectionHeight*mapHeight; i++)
-	{
-		tempMap.push_back(std::vector<MapComponent>());
-		for (int j = 0; j < sectionWidth*mapWidth; j++)
-		{
-			tempMap[i].push_back(map[i][j]);
-		}
-	}
-
-	DeleteMap();
-
-	return tempMap;
+	KwsRogueLike::vector_2d<MapInformation> infos(mapHeight*sectionHeight, std::vector<MapInformation>(mapWidth*sectionWidth));
+	SetMap(infos);
+	return infos;
 }
 
 void MysteryDungeonMaker::SetRoomNum(int roomNum)
@@ -148,11 +114,11 @@ void MysteryDungeonMaker::MakeRoom(Component const& section, int roomWidth, int 
 	room.x2 = room.x1 + roomWidth-1;
 	room.y2 = room.y1 + roomHeight-1;
 
-	this->section[sectionStartPoint.i/sectionHeight][sectionStartPoint.j/sectionWidth].SetRoom(room);
+	this->sections[sectionStartPoint.i/sectionHeight][sectionStartPoint.j/sectionWidth].SetRoom(room);
 
 	for (int i = 0; i < roomHeight; ++i)
 		for (int j = 0; j < roomWidth; ++j)
-			map[room.y1 + i][room.x1 + j] = FLOOR;
+			map[room.y1 + i][room.x1 + j] = ObjectTypeOnMap::FLOOR;
 }
 
 void MysteryDungeonMaker::MakePath()
@@ -162,7 +128,7 @@ void MysteryDungeonMaker::MakePath()
 	{
 		for (int j = 0; j < mapWidth; j++)
 		{
-			if (section[i][j].HasRoom())
+			if (sections[i][j].HasRoom())
 			{
 				for (int k = 0; k < 4; ++k)
 				{
@@ -170,9 +136,9 @@ void MysteryDungeonMaker::MakePath()
 					int j_rota=j+right_left[k];
 					if ((0 <= i_rota && i_rota < mapHeight) && (0 <= j_rota && j_rota < mapWidth))
 					{
-						if (section[i_rota][j_rota].HasRoom())
+						if (sections[i_rota][j_rota].HasRoom())
 						{
-							ConnectAdjacentRoom(&section[i][j], &section[i_rota][j_rota]);
+							ConnectAdjacentRoom(&sections[i][j], &sections[i_rota][j_rota]);
 						}
 					}
 				}
@@ -185,7 +151,7 @@ void MysteryDungeonMaker::MakePath()
 	{
 		for (int j = 0; j < mapWidth; j++)
 		{
-			if ( ! section[i][j].HasRoom())
+			if ( ! sections[i][j].HasRoom())
 			{
 				std::vector<Section*> aroundSections;
 				for (int k = 0; k < 4; ++k)
@@ -194,8 +160,8 @@ void MysteryDungeonMaker::MakePath()
 					int j_rota = j + right_left[k];
 					if ((0 <= i_rota && i_rota < mapHeight) && (0 <= j_rota && j_rota < mapWidth))
 					{
-						if (section[i_rota][j_rota].HasRoom())
-							aroundSections.push_back(&section[i_rota][j_rota]);
+						if (sections[i_rota][j_rota].HasRoom())
+							aroundSections.push_back(&sections[i_rota][j_rota]);
 					}
 				}
 
@@ -204,10 +170,10 @@ void MysteryDungeonMaker::MakePath()
 					if( ! aroundSections[0]->isConnectedTo(*aroundSections[1]))
 					{
 						MakeRoom(Component(i, j), 1, 1);
-						ConnectAdjacentRoom(&section[i][j], aroundSections[0]);
-						ConnectAdjacentRoom(&section[i][j], aroundSections[1]);
-						RemoveRoom(section[i][j].GetRoom());
-						section[i][j].SetHasPath(true);
+						ConnectAdjacentRoom(&sections[i][j], aroundSections[0]);
+						ConnectAdjacentRoom(&sections[i][j], aroundSections[1]);
+						RemoveRoom(sections[i][j].GetRoom());
+						sections[i][j].SetHasPath(true);
 					}
 				}
 			}
@@ -235,13 +201,13 @@ void MysteryDungeonMaker::MakePath()
 				if (route[i+1] != goal)
 					MakeRoom(route[i + 1], 1, 1);
 
-				Section* sectionMadeRoom = &section[route[i + 1].i][route[i + 1].j];
-				ConnectAdjacentRoom(&section[route[i].i][route[i].j], sectionMadeRoom);
+				Section* sectionMadeRoom = &sections[route[i + 1].i][route[i + 1].j];
+				ConnectAdjacentRoom(&sections[route[i].i][route[i].j], sectionMadeRoom);
 			}
 
 			for (int i = 1; i < route.size() - 1; i++)
 			{
-				Section* roomRemoved = &section[route[i].i][route[i].j];
+				Section* roomRemoved = &sections[route[i].i][route[i].j];
 				RemoveRoom(roomRemoved->GetRoom());
 				roomRemoved->SetHasPath(true);
 			}
@@ -295,17 +261,17 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 
 			for (int j = room_center.x2 + 1; j <= j_border; j++)
 			{
-				map[door_center][j] = PATH;
+				map[door_center][j] = ObjectTypeOnMap::PATH;
 			}
 
 			for (int j = room_around.x1 - 1; j > j_border; j--)
 			{
-				map[door_around][j] = PATH;
+				map[door_around][j] = ObjectTypeOnMap::PATH;
 			}
 
-			for (int i = fmin(door_center, door_around); i <= fmax(door_center, door_around); i++)
+			for (int i = std::min(door_center, door_around); i <= std::max(door_center, door_around); i++)
 			{
-				map[i][j_border] = PATH;
+				map[i][j_border] = ObjectTypeOnMap::PATH;
 			}
 		}
 		else//•”‰®‚ªc•À‚Ñ‚ÌŽž
@@ -341,16 +307,16 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section *center, Section *around)
 			
 			for (int i = room_center.y2 + 1; i <= i_border;i++)
 			{
-				map[i][door_center] = PATH;
+				map[i][door_center] = ObjectTypeOnMap::PATH;
 			}
 			for (int i = room_around.y1 - 1; i > i_border; i--)
 			{
-				map[i][door_around] = PATH;
+				map[i][door_around] = ObjectTypeOnMap::PATH;
 			}
 
-			for (int j = fmin(door_center, door_around); j <= fmax(door_center, door_around); j++)
+			for (int j = std::min(door_center, door_around); j <= std::max(door_center, door_around); j++)
 			{
-				map[i_border][j] = PATH;
+				map[i_border][j] = ObjectTypeOnMap::PATH;
 			}
 		}
 
@@ -364,10 +330,10 @@ void MysteryDungeonMaker::RemoveRoom(const Rect& room)
 	{
 		for (int j = room.x1; j <= room.x2; j++)
 		{
-			map[i][j] = PATH;
+			map[i][j] = ObjectTypeOnMap::PATH;
 		}
 	}
-	section[room.y1 / sectionHeight][room.x1 / sectionWidth].RemoveRoom();
+	sections[room.y1 / sectionHeight][room.x1 / sectionWidth].RemoveRoom();
 }
 
 std::vector<std::vector<Section*>> MysteryDungeonMaker::ClassifyGroups()
@@ -379,7 +345,7 @@ std::vector<std::vector<Section*>> MysteryDungeonMaker::ClassifyGroups()
 	{
 		for (int j = 0; j < mapWidth; j++)
 		{
-			Section* current = &section[i][j];
+			Section* current = &sections[i][j];
 			if (current->HasRoom())
 			{
 				if (groups.empty())
@@ -406,6 +372,65 @@ std::vector<std::vector<Section*>> MysteryDungeonMaker::ClassifyGroups()
 	return groups;
 }
 
+void MysteryDungeonMaker::SetMap(KwsRogueLike::vector_2d<MapInformation>& info)
+{
+	for (int i = 0; i < map.size(); ++i)
+	{
+		for (int j = 0; j < map[i].size(); ++j)
+		{
+			switch (map[i][j])
+			{
+			case ObjectTypeOnMap::WALL: 
+				info[i][j].isWall = true;
+				break;
+			case ObjectTypeOnMap::FLOOR: 
+				info[i][j].isFloor = true;
+				break;
+			case ObjectTypeOnMap::PATH: 
+				info[i][j].isPath = true;
+				break;
+			default: break;
+			}
+		}
+	}
+
+	//ŠK’i‚ÌˆÊ’uŒˆ‚ß
+	std::vector<Component> roomSection;
+	for (auto line : sections)
+	{
+		for (auto section : line)
+		{
+			if (section.HasRoom())
+				roomSection.push_back(section.GetComponent());
+		}
+	}
+
+	std::mt19937 engine(static_cast<unsigned int>(time(nullptr)));
+	std::uniform_int_distribution<int> section_picker(0, roomSection.size()-1);
+	int i_havingStair = section_picker(engine);
+	Section* section_havingStair = &sections[roomSection[i_havingStair].i][roomSection[i_havingStair].j];
+
+	std::uniform_int_distribution<int> i_picker(section_havingStair->GetRoom().y1, section_havingStair->GetRoom().y2);
+	std::uniform_int_distribution<int> j_picker(section_havingStair->GetRoom().x1, section_havingStair->GetRoom().x2);
+	int i_stair = i_picker(engine);
+	int j_stair = j_picker(engine);
+
+	info[i_stair][j_stair].isStair = true;
+}
+
+void MysteryDungeonMaker::SetItem(KwsRogueLike::vector_2d<MapInformation>& info)
+{
+
+}
+
+void MysteryDungeonMaker::SetEnemy(KwsRogueLike::vector_2d<MapInformation>& info)
+{
+}
+
+void MysteryDungeonMaker::SetTrap(KwsRogueLike::vector_2d<MapInformation>& info)
+{
+}
+
 std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& start)
 {
 	std::queue<const Section*> queue;
@@ -429,7 +454,7 @@ std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& s
 			int j = current->GetComponent().j + right_left[k];
 			if ((0 <= i && i < mapHeight) && (0 <= j && j < mapWidth))
 			{
-				Section* next = &section[i][j];
+				Section* next = &sections[i][j];
 				if (next->HasRoom() && next->GetGroupId() != start.GetGroupId())
 				{
 					goal = next;
@@ -439,8 +464,8 @@ std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& s
 				}
 
 				if (find(visited.begin(), visited.end(), next->GetComponent()) == visited.end() 
-					&& !section[i][j].HasPath()
-					&& !section[i][j].HasRoom())
+					&& !sections[i][j].HasPath()
+					&& !sections[i][j].HasRoom())
 				{
 					queue.push(next);
 					routeMap.insert(std::make_pair(next->GetComponent(), current->GetComponent()));

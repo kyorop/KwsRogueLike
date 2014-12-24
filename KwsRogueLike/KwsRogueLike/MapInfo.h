@@ -1,29 +1,19 @@
 #pragma once
-#include <vector>
-#include "mysterydungeonmaker.h"
-#include <memory>
-class PlayerBase;
-class ObjectBase;
-class Vector2;
 
-struct Information;
-class MysteryDungeonMaker;
-class MapInfo
+enum class ObjectTypeOnMap
 {
-public:
-	explicit MapInfo(const std::vector<std::vector<MysteryDungeonMaker::MapComponent>>& mapData);
-	~MapInfo();
-
-	Information GetInformation(const Vector2& coordinate);
-
-	Vector2 GetPlayerCoord();
-	void SetCharacter(std::shared_ptr<PlayerBase> player);
-private:
-	std::vector<std::vector<Information>> infos;
-	std::shared_ptr<PlayerBase> player;
+	ENEMY,
+	PLAYER,
+	TRAP,
+	ITEM,
+	WALL, //âÛÇπÇÈï«
+	FLOOR, //è∞
+	PATH, //í òH
+	UNBRAKABLEWALL, //âÛÇπÇ»Ç¢ï«
+	STAIR //äKíiÅAÇPÉtÉçÉAÇPÇ¬Ç‹Ç≈
 };
 
-struct Information
+struct MapInformation
 {
 	bool isEnemy;
 	bool isPlayer;
@@ -32,14 +22,16 @@ struct Information
 	bool isStair;
 	bool isWall;
 	bool isFloor;
+	bool isPath;
 
-	Information()
+	MapInformation()
 		:isEnemy(false),
 		isPlayer(false),
 		isTrap(false),
 		isItem(false),
 		isStair(false),
 		isWall(false),
-		isFloor(false)
+		isFloor(false),
+		isPath(false)
 	{}
 };

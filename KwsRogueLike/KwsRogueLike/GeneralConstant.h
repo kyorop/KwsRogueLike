@@ -11,8 +11,8 @@ namespace GeneralConstant
 	extern const int mapHeight;
 	extern const int sectionWidth;
 	extern const int sectionHeight;
-	extern const int entireWidth;
-	extern const int entireHeight;
+	extern const int tileNumWidth;
+	extern const int tileNumHeight;
 	extern const int img_size_width;
 	extern const int img_size_height;
 }

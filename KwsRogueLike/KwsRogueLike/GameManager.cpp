@@ -4,8 +4,12 @@
 #include "PlayerBase.h"
 #include "Vector2.h"
 #include "floor.h"
-#include "Map.h"
+#include "MapManager.h"
 #include "DxLib.h"
+#include "MapInfo.h"
+#include "MapInfo.h"
+#include "generalconstant.h"
+#include "MysteryDungeonMaker.h"
 
 static int startTime;
 static int endTime;
@@ -14,8 +18,9 @@ static int take;
 GameManager::GameManager()
 	:image(std::make_shared<ImageManager>()),
 	screen(std::make_shared<Screen>()),
-	player(std::make_shared<PlayerBase>(Vector2(0,0))),
-	mapManager(std::make_shared<MapManager>(nullptr))
+	player(std::make_shared<PlayerBase>(Vector2(0, 0))),
+	mapManager(std::make_shared<MapManager>()),
+	mapInfos(GeneralConstant::tileNumHeight, std::vector<MapInformation>(GeneralConstant::tileNumWidth))
 {
 }
 
@@ -26,8 +31,6 @@ void GameManager::Initialize()
 	mapManager->CreateMap(mapPlan);
 	image->SetDrawnObject(player);
 	mapManager->Accept(image);
-
-	
 	startTime = GetNowCount();
 	image->Initialize();
 	endTime = GetNowCount();
@@ -45,6 +48,11 @@ void GameManager::Main()
 void GameManager::Finalize()
 {
 	image->Finalize();
+}
+
+std::vector<std::vector<MapInformation>>& GameManager::GetMapInfo()
+{
+	return this->mapInfos;
 }
 
 std::shared_ptr<PlayerBase> GameManager::GetPlayer()

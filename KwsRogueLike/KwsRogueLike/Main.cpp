@@ -9,7 +9,6 @@
 
 #define DEBUG 0
 #include "Strings.h"
-#include "Map.h"
 #include "MapInfo.h"
 #include "Image.h"
 #include "Screen.h"

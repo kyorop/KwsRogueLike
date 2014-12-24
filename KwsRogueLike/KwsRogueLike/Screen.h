@@ -23,7 +23,6 @@ public:
 	{}
 
 	void Update(GameManager* game) override;
-	void Update();
 private:
 	static Vector2* coord;
 	bool isMoving;
