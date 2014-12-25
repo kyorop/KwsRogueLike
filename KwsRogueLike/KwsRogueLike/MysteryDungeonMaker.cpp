@@ -1,12 +1,9 @@
-#include <cmath>
 #include <algorithm>
 #include <utility>
 #include <queue>
 #include <map>
 #include "MysteryDungeonMaker.h"
 #include "RandExtended.h"
-#include "Vector2.h"
-#include "ReducedMap.h"
 #include "Section.h"
 #include "Rect.h"
 #include "Component.h"
@@ -14,7 +11,6 @@
 #include "DungeonMakerHelper.h"
 #include "MapInfo.h"
 #include <random>
-#include <ctime>
 
 const int up_down[] = { -1, 0, 1, 0 };
 const int right_left[] = { 0, 1, 0, -1 };
@@ -28,7 +24,7 @@ MysteryDungeonMaker::MysteryDungeonMaker(int mapWidth, int mapHeight, int sectio
 	minRoomHeight(4),
 	roomNum(0),
 	map(mapHeight*sectionHeight, std::vector<ObjectTypeOnMap>(mapWidth*sectionWidth)),
-	sections(sectionHeight, std::vector<Section>(sectionWidth))
+	sections(mapHeight, std::vector<Section>(mapWidth))
 {
 	int sectionNum = mapWidth*mapHeight;
 	this->roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
@@ -64,23 +60,23 @@ KwsRogueLike::vector_2d<MapInformation> MysteryDungeonMaker::CreateDungeon()
 {
 	ResetMap();
 
-	std::vector<Component> sections;
+	std::vector<Component> section_components;
 	for (int i = 0; i < mapHeight; i++)
 	{
 		for (int j = 0; j < mapWidth; j++)
 		{
-			sections.push_back(Component(i, j));
+			section_components.push_back(Component(i, j));
 			this->sections[i][j].SetComponent(i, j);
 		}
 	}
 
 	std::random_device rd;
-	shuffle(sections.begin(), sections.end(), std::mt19937_64(rd()));
+	shuffle(section_components.begin(), section_components.end(), std::mt19937_64(rd()));
 
 	for (int i = 0; i < roomNum; i++)
 	{
-		int i_section = sections[i].i;
-		int j_section = sections[i].j;
+		int i_section = section_components[i].i;
+		int j_section = section_components[i].j;
 
 		int width = GetRandInRange(minRoomWidth, sectionWidth - 4);
 		int height = GetRandInRange(minRoomHeight, sectionHeight - 4);
@@ -89,7 +85,8 @@ KwsRogueLike::vector_2d<MapInformation> MysteryDungeonMaker::CreateDungeon()
 	MakePath();
 
 	KwsRogueLike::vector_2d<MapInformation> infos(mapHeight*sectionHeight, std::vector<MapInformation>(mapWidth*sectionWidth));
-	SetMap(infos);
+	DungeonMakerHelper::SetMapTo(infos, map, sections);
+	DungeonMakerHelper::SetItemTo(infos, sections, 1, 10);
 	return infos;
 }
 
@@ -370,65 +367,6 @@ std::vector<std::vector<Section*>> MysteryDungeonMaker::ClassifyGroups()
 	}
 
 	return groups;
-}
-
-void MysteryDungeonMaker::SetMap(KwsRogueLike::vector_2d<MapInformation>& info)
-{
-	for (int i = 0; i < map.size(); ++i)
-	{
-		for (int j = 0; j < map[i].size(); ++j)
-		{
-			switch (map[i][j])
-			{
-			case ObjectTypeOnMap::WALL: 
-				info[i][j].isWall = true;
-				break;
-			case ObjectTypeOnMap::FLOOR: 
-				info[i][j].isFloor = true;
-				break;
-			case ObjectTypeOnMap::PATH: 
-				info[i][j].isPath = true;
-				break;
-			default: break;
-			}
-		}
-	}
-
-	//ŠK’i‚ÌˆÊ’uŒˆ‚ß
-	std::vector<Component> roomSection;
-	for (auto line : sections)
-	{
-		for (auto section : line)
-		{
-			if (section.HasRoom())
-				roomSection.push_back(section.GetComponent());
-		}
-	}
-
-	std::mt19937 engine(static_cast<unsigned int>(time(nullptr)));
-	std::uniform_int_distribution<int> section_picker(0, roomSection.size()-1);
-	int i_havingStair = section_picker(engine);
-	Section* section_havingStair = &sections[roomSection[i_havingStair].i][roomSection[i_havingStair].j];
-
-	std::uniform_int_distribution<int> i_picker(section_havingStair->GetRoom().y1, section_havingStair->GetRoom().y2);
-	std::uniform_int_distribution<int> j_picker(section_havingStair->GetRoom().x1, section_havingStair->GetRoom().x2);
-	int i_stair = i_picker(engine);
-	int j_stair = j_picker(engine);
-
-	info[i_stair][j_stair].isStair = true;
-}
-
-void MysteryDungeonMaker::SetItem(KwsRogueLike::vector_2d<MapInformation>& info)
-{
-
-}
-
-void MysteryDungeonMaker::SetEnemy(KwsRogueLike::vector_2d<MapInformation>& info)
-{
-}
-
-void MysteryDungeonMaker::SetTrap(KwsRogueLike::vector_2d<MapInformation>& info)
-{
 }
 
 std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& start)

@@ -46,8 +46,4 @@ private:
 	void RemoveRoom(const Rect& room);
 	std::vector<std::vector<Section*>> ClassifyGroups();
 	std::vector<Component> SearchShortestRoute(const Section& start);
-	void SetMap(KwsRogueLike::vector_2d < MapInformation >& info);
-	void SetItem(KwsRogueLike::vector_2d < MapInformation >& info);
-	void SetEnemy(KwsRogueLike::vector_2d < MapInformation >& info);
-	void SetTrap(KwsRogueLike::vector_2d < MapInformation >& info);
 };

@@ -11,6 +11,8 @@ public:
 	virtual int GetLayer() = 0;
 	virtual void Load(ImageManager* manager) = 0;
 	virtual void Draw(ImageManager* manager) = 0;
+	virtual bool GetDrawFlag() = 0;
+	virtual bool IsDead() = 0;
 };
 
 struct DivGraphData

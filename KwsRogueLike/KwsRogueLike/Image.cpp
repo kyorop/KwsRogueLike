@@ -9,6 +9,15 @@
 void ImageManager::Update(GameManager* game)
 {
 	*screenCoord = game->GetScreen().GetCoord();
+
+	for (auto itr = drawnList.begin(); itr != drawnList.end(); ++itr)
+	{
+		if ((*itr)->IsDead())
+		{
+			drawnList.erase(itr);
+			break;
+		}
+	}
 }
 
 ImageManager::ImageManager()

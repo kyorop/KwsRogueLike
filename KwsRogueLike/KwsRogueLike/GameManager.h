@@ -4,6 +4,7 @@
 #include "vector_2d.h"
 
 
+class ItemManager;
 class Vector2;
 class MapInfo;
 class MapManager;
@@ -18,8 +19,8 @@ public:
 	void Initialize();
 	void Main();
 	void Finalize();
-	Screen GetScreen();
-	std::shared_ptr<PlayerBase> GetPlayer();
+	Screen& GetScreen();
+	std::shared_ptr<PlayerBase>& GetPlayer();
 	KwsRogueLike::vector_2d<MapInformation>& GetMapInfo();
 
 private:
@@ -27,5 +28,6 @@ private:
 	std::shared_ptr<Screen> screen;
 	std::shared_ptr<PlayerBase> player;
 	std::shared_ptr<MapManager> mapManager;
+	std::shared_ptr<ItemManager> itemManager;
 	KwsRogueLike::vector_2d<MapInformation> mapInfos;
 };

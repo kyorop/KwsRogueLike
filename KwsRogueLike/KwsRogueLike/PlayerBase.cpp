@@ -2,12 +2,13 @@
 #include "DxLib.h"
 #include "vector2.h"
 #include "Image.h"
+#include "Screen.h"
 #include "GeneralConstant.h"
 
-PlayerBase::PlayerBase(const Vector2& coord)
+PlayerBase::PlayerBase()
 {
-	SetCoordinate(coord.x, coord.y);
 	drawDirection = ScrollingMovement::STOP;
+	SetCoordinate(Vector2(GeneralConstant::playerX, GeneralConstant::playerY));
 }
 
 PlayerBase::~PlayerBase()
@@ -22,6 +23,16 @@ int PlayerBase::GetGold()
 int PlayerBase::GetLevel()
 {
 	return 5;
+}
+
+Vector2 PlayerBase::GetCoordinate() const
+{
+	return Screen::GetCoord() + Vector2(GeneralConstant::playerX, GeneralConstant::playerY);
+}
+
+Vector2 PlayerBase::GetDrawCoord()
+{
+	return Vector2(GeneralConstant::playerX, GeneralConstant::playerY);
 }
 
 int PlayerBase::GetHp()
@@ -50,8 +61,8 @@ void PlayerBase::Load(ImageManager* manager)
 
 void PlayerBase::Draw(ImageManager* manager)
 {
-//	Vector2 coord = GetDrawCoord();
-	DrawGraph(GeneralConstant::playerX, GeneralConstant::playerY,handles[0], true);
+	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handles[0], true);
+	DrawFormatString(100, 100, GetColor(255, 255, 255), "x:%d y:%d", GetCoordinate().x, GetCoordinate().y);
 }
 
 void PlayerBase::Update()

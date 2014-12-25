@@ -6,9 +6,11 @@
 #include "IBattle.h"
 
 class PlayerBase
-	:public ObjectBase,public IDrawable,public IBattle
+	:public ObjectBase, public IBattle
 {
 public:
+	Vector2 GetCoordinate() const override;
+	Vector2 GetDrawCoord() override;
 	int GetHp() override;
 	int GetAttack() override;
 	void TakeDamage(int damage) override;
@@ -16,7 +18,7 @@ public:
 	void Load(ImageManager* manager) override;
 	void Draw(ImageManager* manager) override;
 	
-	explicit PlayerBase(const Vector2& coord);
+	explicit PlayerBase();
 	virtual ~PlayerBase();
 	
 	void Update();

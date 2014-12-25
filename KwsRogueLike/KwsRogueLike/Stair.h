@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include "ObjectBase.h"
-#include "IDrawable.h"
 
-class Stair:public ObjectBase, public IDrawable
+class Stair:public ObjectBase
 {
 public:
 	int GetLayer() override;

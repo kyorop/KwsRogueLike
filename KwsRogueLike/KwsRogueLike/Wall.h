@@ -1,10 +1,9 @@
 ﻿#pragma once
 #include "objectbase.h"
-#include "IDrawable.h"
 
 class Screen;
 class Wall
-	:public ObjectBase, public IDrawable
+	:public ObjectBase
 {
 public:
 	int GetLayer() override;

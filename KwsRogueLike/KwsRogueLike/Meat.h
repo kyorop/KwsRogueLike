@@ -1,14 +1,18 @@
 ﻿#pragma once
 #include "ObjectBase.h"
 
-class Floor
-	:public ObjectBase
+class Vector2;
+
+class Meat:public ObjectBase
 {
 public:
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
 	void Draw(ImageManager* manager) override;
-public:
-	explicit Floor(const Vector2& v);
-	~Floor();
+
+	explicit Meat(const Vector2& coord)
+		:ObjectBase(coord)
+	{}
+private:
+	int handle;
 };

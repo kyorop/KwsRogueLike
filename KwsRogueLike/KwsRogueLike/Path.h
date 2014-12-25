@@ -1,11 +1,10 @@
 ﻿#pragma once
 #include "objectbase.h"
-#include "IDrawable.h"
 
 class Screen;
 
 class Path
-	:public ObjectBase, public IDrawable
+	:public ObjectBase
 {
 public:
 	int GetLayer() override;

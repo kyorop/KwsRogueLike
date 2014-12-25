@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "idrawable.h"
 #include "IGameProcess.h"
 #include "IImageAcceptor.h"
 

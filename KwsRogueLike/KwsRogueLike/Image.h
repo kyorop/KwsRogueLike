@@ -4,7 +4,6 @@
 #include <string>
 #include "IGameProcess.h"
 #include <map>
-#include <list>
 
 class Vector2;
 class IDrawable;
@@ -26,6 +25,7 @@ public:
 	
 	int LoadGraph(const std::string& imgFileAddress);
 	std::vector<int> LoadDivGraph(const std::string& imgFileAddress, int allNum, int xNum, int yNum, int xSize, int ySize);
+
 private:
 	std::vector<int> handleList;
 	std::vector<std::shared_ptr<IDrawable>> drawnList;

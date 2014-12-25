@@ -3,13 +3,22 @@
 #include "Screen.h"
 #include "GeneralConstant.h"
 
+bool ObjectBase::GetDrawFlag()
+{
+	return drawFlag;
+}
+
 ObjectBase::ObjectBase()
-	:coordinate(std::make_shared<Vector2>(0, 0))
+	:coordinate(std::make_shared<Vector2>(0, 0)),
+	drawFlag(true),
+	isDead(false)
 {
 }
 
 ObjectBase::ObjectBase(const Vector2& coord)
-	:coordinate(std::make_shared<Vector2>(0, 0))
+	:coordinate(std::make_shared<Vector2>(0, 0)),
+	drawFlag(true),
+	isDead(false)
 {
 	coordinate->x = coord.x;
 	coordinate->y = coord.y;
@@ -51,6 +60,21 @@ void ObjectBase::AddCoordinate(const Vector2& v)
 size_t ObjectBase::Get_i()
 {
 	return coordinate->y / GeneralConstant::img_size_height;
+}
+
+void ObjectBase::SetDrawFlag(bool flag)
+{
+	drawFlag = flag;
+}
+
+bool ObjectBase::IsDead()
+{
+	return isDead;
+}
+
+void ObjectBase::Kill()
+{
+	isDead = true;
 }
 
 size_t ObjectBase::Get_j()

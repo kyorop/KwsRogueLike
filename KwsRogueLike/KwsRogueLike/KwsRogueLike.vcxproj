@@ -91,6 +91,7 @@
     <ClInclude Include="IGameProcess.h" />
     <ClInclude Include="IImageAcceptor.h" />
     <ClInclude Include="IImageVisitor.h" />
+    <ClInclude Include="IItem.h" />
     <ClInclude Include="IItemTaken.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="IScrollable.h" />
@@ -98,6 +99,7 @@
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapInfo.h" />
+    <ClInclude Include="Meat.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="Path.h" />
@@ -134,6 +136,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapInfo.cpp" />
+    <ClCompile Include="Meat.cpp" />
     <ClCompile Include="MysteryDungeonMaker.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="Path.cpp" />
