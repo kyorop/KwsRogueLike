@@ -136,6 +136,7 @@ void DungeonMakerHelper::SetItemTo(KwsRogueLike::vector_2d<MapInformation>& info
 
 void DungeonMakerHelper::SetEnemyTo(KwsRogueLike::vector_2d<MapInformation>& info, const KwsRogueLike::vector_2d<Section>& sections, size_t enemyMin, size_t enemyMax)
 {
+
 }
 
 void DungeonMakerHelper::SetTrapTo(KwsRogueLike::vector_2d<MapInformation>& info, const KwsRogueLike::vector_2d<Section>& sections, size_t trapMin, size_t trapMax)

@@ -52,7 +52,7 @@ void ReapairHeap(std::vector<std::shared_ptr<IDrawable>>& heap, const int i_end)
 	}
 }
 
-void KwasRogueLike::Util::Image::DoHeapSort(std::vector<std::shared_ptr<IDrawable>>& heap)
+void KwsRogueLike::Util::Image::DoHeapSort(std::vector<std::shared_ptr<IDrawable>>& heap)
 {
 	size_t size = heap.size();
 

@@ -4,7 +4,7 @@
 
 class IDrawable;
 
-namespace KwasRogueLike
+namespace KwsRogueLike
 {
 	namespace Util
 	{

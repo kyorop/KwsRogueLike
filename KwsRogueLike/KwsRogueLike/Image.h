@@ -27,10 +27,10 @@ public:
 	std::vector<int> LoadDivGraph(const std::string& imgFileAddress, int allNum, int xNum, int yNum, int xSize, int ySize);
 
 private:
-	std::vector<int> handleList;
+	std::map<std::string, int> handleMap;
+	std::map<std::string, std::vector<int>> divHandleMap;
+
 	std::vector<std::shared_ptr<IDrawable>> drawnList;
-	std::shared_ptr<Vector2> screenCoord;
-	std::map<std::string, int> loadedImg;
 };
 
 

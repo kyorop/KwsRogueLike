@@ -78,6 +78,7 @@
     <ClInclude Include="Battle.h" />
     <ClInclude Include="DebugMode.h" />
     <ClInclude Include="DungeonMakerHelper.h" />
+    <ClInclude Include="DxLibGraphic.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameManager.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="ConvertRect.cpp" />
     <ClCompile Include="DebugMode.cpp" />
     <ClCompile Include="DungeonMakerHelper.cpp" />
+    <ClCompile Include="DxLibGraphic.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Floor.cpp" />

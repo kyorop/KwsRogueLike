@@ -4,6 +4,7 @@
 #include "Image.h"
 #include "Screen.h"
 #include "GeneralConstant.h"
+#include "Meat.h"
 
 PlayerBase::PlayerBase()
 {
@@ -23,6 +24,11 @@ int PlayerBase::GetGold()
 int PlayerBase::GetLevel()
 {
 	return 5;
+}
+
+void PlayerBase::SetItem(std::shared_ptr<Meat>& item)
+{
+	equips.push_back(item);
 }
 
 Vector2 PlayerBase::GetCoordinate() const
@@ -56,13 +62,17 @@ int PlayerBase::GetLayer()
 
 void PlayerBase::Load(ImageManager* manager)
 {
-	handles = manager->LoadDivGraph("img/Enemies/enemy.png", 96, 12, 8, 32, 32);
+	handles = manager->LoadDivGraph("img/Enemies/enemy.png", 15, 12, 8, 32, 32);
 }
 
 void PlayerBase::Draw(ImageManager* manager)
 {
 	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handles[0], true);
-	DrawFormatString(100, 100, GetColor(255, 255, 255), "x:%d y:%d", GetCoordinate().x, GetCoordinate().y);
+
+	if (!equips.empty())
+	{
+		DrawFormatString(0, 100, GetColor(255, 0, 0), equips[0]->GetExplanation().data());
+	}
 }
 
 void PlayerBase::Update()

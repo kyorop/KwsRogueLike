@@ -36,6 +36,7 @@ void ItemManager::Update(GameManager* game)
 	{
 		if ((*itr)->GetCoordinate() == game->GetPlayer()->GetCoordinate())
 		{
+			game->GetPlayer()->SetItem(*itr);
 			(*itr)->Kill();
 			meats.erase(itr);
 			break;

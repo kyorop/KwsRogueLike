@@ -35,6 +35,7 @@
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Stair.cpp" />
     <ClCompile Include="Meat.cpp" />
+    <ClCompile Include="DxLibGraphic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
@@ -79,5 +80,6 @@
     <ClInclude Include="Stair.h" />
     <ClInclude Include="IItem.h" />
     <ClInclude Include="Meat.h" />
+    <ClInclude Include="DxLibGraphic.h" />
   </ItemGroup>
 </Project>

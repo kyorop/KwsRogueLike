@@ -1,15 +1,11 @@
 ﻿#include <DxLib.h>
 #include "Image.h"
 #include "IDrawable.h"
-#include "GameManager.h"
-#include "Screen.h"
-#include "Vector2.h"
 #include "HeapSort.h"
+#include "DxLibGraphic.h"
 
 void ImageManager::Update(GameManager* game)
 {
-	*screenCoord = game->GetScreen().GetCoord();
-
 	for (auto itr = drawnList.begin(); itr != drawnList.end(); ++itr)
 	{
 		if ((*itr)->IsDead())
@@ -21,7 +17,6 @@ void ImageManager::Update(GameManager* game)
 }
 
 ImageManager::ImageManager()
-	:screenCoord(std::make_shared<Vector2>(0,0))
 {
 }
 
@@ -48,7 +43,7 @@ void ImageManager::SetDrawnObject(const std::shared_ptr<IDrawable>& drawn)
 
 void ImageManager::Initialize()
 {
-	KwasRogueLike::Util::Image::DoHeapSort(drawnList);
+	KwsRogueLike::Util::Image::DoHeapSort(drawnList);
 
 	for (auto drawn : drawnList)
 	{
@@ -66,30 +61,55 @@ void ImageManager::Draw()
 
 void ImageManager::Finalize()
 {
-	for (auto deleteObj : handleList)
+	for (auto& handleItr : handleMap)
 	{
-		DeleteGraph(deleteObj);
+		DeleteGraph(handleItr.second);
+	}
+
+	for (auto& divHandle : divHandleMap)
+	{
+		KwsRogueLike::Util::DeleteGraph(divHandle.second);
 	}
 }
 
 int ImageManager::LoadGraph(const std::string& imgFileAddress)
 {
-	if(loadedImg.find(imgFileAddress) == loadedImg.end())
+	if(handleMap.find(imgFileAddress) == handleMap.end())
 	{
 		int handle = DxLib::LoadGraph(imgFileAddress.data());
-		loadedImg.insert(make_pair(imgFileAddress, handle));
-		handleList.push_back(handle);
+		handleMap.insert(make_pair(imgFileAddress, handle));
 		return handle;
 	}
-	return loadedImg[imgFileAddress];
+	return handleMap[imgFileAddress];
 }
 
 std::vector<int> ImageManager::LoadDivGraph(const std::string& imgFileAddress, int allNum, int xNum, int yNum, int xSize, int ySize)
 {
-	int* handle = new int[allNum];
-	DxLib::LoadDivGraph(imgFileAddress.data(), allNum, xNum, yNum, xSize, ySize, handle);
-	std::vector<int> vHandle(&handle[0], &handle[allNum]);
-	delete[] handle;
-	handleList.insert(end(handleList), begin(vHandle), end(vHandle));
-	return vHandle;
+	if (divHandleMap.find(imgFileAddress) == divHandleMap.end())
+	{
+		auto divHandles = std::make_unique<int[]>(allNum);
+		DxLib::LoadDivGraph(imgFileAddress.data(), allNum, xNum, yNum, xSize, ySize, divHandles.get());
+		this->divHandleMap.insert(make_pair(imgFileAddress, std::vector<int>(&divHandles[0], &divHandles[allNum])));
+
+		return this->divHandleMap[imgFileAddress];
+	}
+	else
+	{
+		auto& divHandles = this->divHandleMap[imgFileAddress];
+		if (divHandles.size() >= allNum)
+		{
+			return std::vector<int>(divHandles[0], divHandles[allNum]);
+		}
+		else
+		{
+			KwsRogueLike::Util::DeleteGraph(divHandles);
+			this->divHandleMap.erase(imgFileAddress);
+
+			auto tempDivHandles = std::make_unique<int[]>(allNum);
+			DxLib::LoadDivGraph(imgFileAddress.data(), allNum, xNum, yNum, xSize, ySize, tempDivHandles.get());
+			this->divHandleMap.insert(make_pair(imgFileAddress, std::vector<int>(&tempDivHandles[0], &tempDivHandles[allNum])));
+
+			return this->divHandleMap[imgFileAddress];
+		}
+	}
 }

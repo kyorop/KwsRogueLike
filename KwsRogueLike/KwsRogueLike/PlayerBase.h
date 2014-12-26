@@ -5,6 +5,8 @@
 #include "ObjectBase.h"
 #include "IBattle.h"
 
+class Meat;
+
 class PlayerBase
 	:public ObjectBase, public IBattle
 {
@@ -24,10 +26,12 @@ public:
 	void Update();
 	int GetGold();
 	int GetLevel();
+	void SetItem(std::shared_ptr<Meat>& item);
 
 private:
 	ScrollingMovement::Direction drawDirection;
 	std::vector<int> handles;
 	int gold = 0;
+	std::vector<std::shared_ptr<Meat>> equips;
 };
 
