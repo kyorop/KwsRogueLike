@@ -1,21 +1,16 @@
 #pragma once
 #include <memory>
-#include "IDrawable.h"
 
 class Screen;
 class Vector2;
-class ObjectBase:public IDrawable
+class ObjectBase
 {
 public:
-	bool GetDrawFlag() override;
-	ObjectBase();
 	explicit ObjectBase(const Vector2& coord);
 	virtual ~ObjectBase();
 
 private:
 	std::shared_ptr<Vector2> coordinate;
-	bool drawFlag;
-	bool isDead;
 
 public:
 	void SetCoordinate(int x, int y);
@@ -26,8 +21,5 @@ public:
 	virtual Vector2 GetDrawCoord();
 	size_t Get_i();
 	size_t Get_j();
-	void SetDrawFlag(bool flag);
-	bool IsDead() override;
-	void Kill();
 };
 

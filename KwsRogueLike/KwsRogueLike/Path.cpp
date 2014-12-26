@@ -5,7 +5,6 @@
 #include "Image.h"
 
 int Path::imgHandle;
-//static int handle;
 
 int Path::GetLayer()
 {
@@ -20,11 +19,6 @@ void Path::Load(ImageManager* manager)
 void Path::Draw(ImageManager* manager)
 {
 	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, imgHandle, true);
-}
-
-Path::Path(const Vector2& v)
-{
-	SetCoordinate(v);
 }
 
 Path::~Path()

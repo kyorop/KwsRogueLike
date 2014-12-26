@@ -1,8 +1,8 @@
 ﻿#pragma once
-#include "ObjectBase.h"
+#include "DrawObject.h"
 
 class Weapon
-	:public ObjectBase
+	:public DrawObject
 {
 public:
 private:

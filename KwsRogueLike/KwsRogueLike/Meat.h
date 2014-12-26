@@ -1,10 +1,10 @@
 ﻿#pragma once
-#include "ObjectBase.h"
 #include "IItem.h"
+#include "DrawObject.h"
 
 class Vector2;
 
-class Meat:public ObjectBase, public IItem
+class Meat:public DrawObject, public IItem
 {
 public:
 	std::string GetName() override;
@@ -15,7 +15,7 @@ public:
 	void Draw(ImageManager* manager) override;
 
 	explicit Meat(const Vector2& coord)
-		:ObjectBase(coord)
+		:DrawObject(coord)
 	{}
 	~Meat(){}
 private:

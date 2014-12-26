@@ -13,6 +13,8 @@ Vector2 Screen::GetCoord()
 
 void Screen::Update(GameManager* game)
 {
+	//game->GetMapInfo()[Get_i()][Get_j()].isTrap;
+
 	char buf[256];
 	GetHitKeyStateAll(buf);
 	int input = buf[KEY_INPUT_RIGHT] + buf[KEY_INPUT_LEFT] + buf[KEY_INPUT_DOWN] + buf[KEY_INPUT_UP];
@@ -68,4 +70,6 @@ void Screen::Update(GameManager* game)
 			moveAmount = 32;
 		}
 	}
+
+	SetCoordinate(*coord);
 }

@@ -1,14 +1,15 @@
 ﻿#pragma once
 #include <vector>
 #include "scrollingmovement.h"
-#include "IDrawable.h"
-#include "ObjectBase.h"
+#include "DrawObject.h"
 #include "IBattle.h"
+#include "generalconstant.h"
+#include "vector2.h"
 
 class Meat;
 
 class PlayerBase
-	:public ObjectBase, public IBattle
+	:public DrawObject, public IBattle
 {
 public:
 	Vector2 GetCoordinate() const override;
@@ -19,8 +20,13 @@ public:
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
 	void Draw(ImageManager* manager) override;
-	
-	explicit PlayerBase();
+
+
+	explicit PlayerBase()
+		: DrawObject(Vector2(GeneralConstant::playerX, GeneralConstant::playerY))
+	{
+	}
+
 	virtual ~PlayerBase();
 	
 	void Update();

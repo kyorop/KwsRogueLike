@@ -1,7 +1,6 @@
 ﻿#include <DxLib.h>
 #include "Floor.h"
 #include "vector2.h"
-#include "Screen.h"
 #include "Image.h"
 
 static int handle;
@@ -19,11 +18,6 @@ void Floor::Load(ImageManager* manager)
 void Floor::Draw(ImageManager* manager)
 {
 	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handle, true);
-}
-
-::Floor::Floor(const Vector2& v)
-{
-	SetCoordinate(v);
 }
 
 Floor::~Floor()

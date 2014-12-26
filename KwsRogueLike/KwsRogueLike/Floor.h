@@ -1,14 +1,18 @@
 ﻿#pragma once
-#include "ObjectBase.h"
+#include "DrawObject.h"
 
 class Floor
-	:public ObjectBase
+	:public DrawObject
 {
 public:
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
 	void Draw(ImageManager* manager) override;
-public:
-	explicit Floor(const Vector2& v);
+
+	explicit Floor(const Vector2& v)
+		:DrawObject(v)
+	{
+	}
+
 	~Floor();
 };

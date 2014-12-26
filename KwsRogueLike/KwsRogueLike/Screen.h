@@ -1,9 +1,10 @@
 ﻿#pragma once
 #include "IGameProcess.h"
+#include "ObjectBase.h"
+#include "vector2.h"
 
-class Vector2;
 class Screen
-	:public IGameProcess
+	:public IGameProcess, private ObjectBase
 {
 public:
 	static Vector2 GetCoord();
@@ -17,10 +18,13 @@ public:
 		LEFT,
 	};
 	explicit Screen()
-		: isMoving(false),
+		:ObjectBase(Vector2(0,0)),
+		isMoving(false),
 		moveAmount(32),
 		direction(STOP)
 	{}
+
+	~Screen(){};
 
 	void Update(GameManager* game) override;
 private:

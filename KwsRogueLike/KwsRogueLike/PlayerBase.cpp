@@ -6,12 +6,6 @@
 #include "GeneralConstant.h"
 #include "Meat.h"
 
-PlayerBase::PlayerBase()
-{
-	drawDirection = ScrollingMovement::STOP;
-	SetCoordinate(Vector2(GeneralConstant::playerX, GeneralConstant::playerY));
-}
-
 PlayerBase::~PlayerBase()
 {
 }

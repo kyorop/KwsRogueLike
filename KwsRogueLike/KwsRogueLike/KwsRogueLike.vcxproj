@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClInclude Include="Battle.h" />
     <ClInclude Include="DebugMode.h" />
+    <ClInclude Include="DrawObject.h" />
     <ClInclude Include="DungeonMakerHelper.h" />
     <ClInclude Include="DxLibGraphic.h" />
     <ClInclude Include="EnemyManager.h" />
@@ -96,7 +97,6 @@
     <ClInclude Include="IItemTaken.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="IScrollable.h" />
-    <ClInclude Include="Item.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapInfo.h" />
@@ -124,6 +124,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConvertRect.cpp" />
     <ClCompile Include="DebugMode.cpp" />
+    <ClCompile Include="DrawObject.cpp" />
     <ClCompile Include="DungeonMakerHelper.cpp" />
     <ClCompile Include="DxLibGraphic.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
@@ -133,7 +134,6 @@
     <ClCompile Include="GeneralConstant.cpp" />
     <ClCompile Include="HeapSort.cpp" />
     <ClCompile Include="Image.cpp" />
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapManager.cpp" />

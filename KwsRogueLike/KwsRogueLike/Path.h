@@ -1,16 +1,18 @@
 ﻿#pragma once
-#include "objectbase.h"
+#include "DrawObject.h"
 
 class Screen;
 
 class Path
-	:public ObjectBase
+	:public DrawObject
 {
 public:
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
 	void Draw(ImageManager* manager) override;
-	explicit Path(const Vector2& v);
+	explicit Path(const Vector2& v)
+		:DrawObject(v)
+	{}
 	~Path();
 private:
 	static int imgHandle;

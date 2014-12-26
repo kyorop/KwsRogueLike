@@ -12,7 +12,6 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
     <ClCompile Include="Image.cpp" />
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapInfo.cpp" />
@@ -36,6 +35,7 @@
     <ClCompile Include="Stair.cpp" />
     <ClCompile Include="Meat.cpp" />
     <ClCompile Include="DxLibGraphic.cpp" />
+    <ClCompile Include="DrawObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
@@ -56,7 +56,6 @@
     <ClInclude Include="IItemTaken.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="IScrollable.h" />
-    <ClInclude Include="Item.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
@@ -81,5 +80,6 @@
     <ClInclude Include="IItem.h" />
     <ClInclude Include="Meat.h" />
     <ClInclude Include="DxLibGraphic.h" />
+    <ClInclude Include="DrawObject.h" />
   </ItemGroup>
 </Project>

@@ -21,11 +21,6 @@ void Wall::Draw(ImageManager* manager)
 	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handle, true);
 }
 
-Wall::Wall(const Vector2& v)
-{
-	SetCoordinate(v);
-}
-
 Wall::~Wall()
 {
 }

@@ -2,8 +2,8 @@
 
 namespace GeneralConstant
 {
-	const int WindowSizeX = 800;//ここの値は、32で割った値が奇数になるものである必要がある
-	const int WindowSizeY = 600;//ここの値も上と同じであるべき
+	const int WindowSizeX = 800;
+	const int WindowSizeY = 600;
 	const int playerX = (WindowSizeX/img_size_width)%2 ? (WindowSizeX / 2) - img_size_width/2 : WindowSizeX/2;
 	const int playerY = (WindowSizeY / 2) - 12;
 	const int mapWidth = 4; 

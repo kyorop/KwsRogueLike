@@ -34,11 +34,6 @@ void EnemyBase::Draw(ImageManager* manager)
 	DrawGraph(scoord.x, scoord.y, handles[0], true);
 }
 
-EnemyBase::EnemyBase(int x, int y, int hp, int offense, int diffense, int movespeed, int level)
-{
-	SetCoordinate(x, y);
-}
-
 EnemyBase::~EnemyBase()
 {
 }
