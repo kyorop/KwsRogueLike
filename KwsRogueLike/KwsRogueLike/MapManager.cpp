@@ -7,6 +7,7 @@
 #include "MapInfo.h"
 #include "Image.h"
 #include "Stair.h"
+#include "GameManager.h"
 
 using namespace GeneralConstant;
 using std::vector;
@@ -16,12 +17,39 @@ void MapManager::Accept(const shared_ptr<ImageManager>& image) const
 {
 	for (auto& object: map)
 	{
-		image->SetDrawnObject(object);
+		image->AddDrawObject(object);
 	}	
 }
 
 void MapManager::Update(GameManager* game)
 {
+}
+
+MapManager::MapManager(const KwsRogueLike::vector_2d<MapInformation>& mapPlan)
+{
+	for (int i = 0; i < tileNumHeight; i++)
+	{
+		for (int j = 0; j < tileNumWidth; j++)
+		{
+			if (mapPlan[i][j].isWall)
+			{
+				map.push_back(std::make_shared<Wall>(Vector2(j*img_size_width, i*img_size_height)));
+			}
+			else if (mapPlan[i][j].isFloor)
+			{
+				map.push_back(std::make_shared<Floor>(Vector2(j*img_size_width, i*img_size_height)));
+			}
+			else if (mapPlan[i][j].isPath)
+			{
+				map.push_back(std::make_shared<Path>(Vector2(j*img_size_width, i*img_size_height)));
+			}
+			
+			if (mapPlan[i][j].isStair)
+			{
+				map.push_back(std::make_shared<Stair>(Vector2(j*img_size_width, i*img_size_height)));
+			}
+		}
+	}
 }
 
 MapManager::~MapManager()
@@ -30,28 +58,6 @@ MapManager::~MapManager()
 
 void MapManager::CreateMap(const vector<vector<MapInformation>>& mapPlan)
 {
-	for (int i = 0; i < tileNumHeight; i++)
-	{
-		for (int j = 0; j < tileNumWidth; j++)
-		{
-			if (mapPlan[i][j].isWall)
-			{
-				map.push_back(std::make_shared<Wall>(Vector2(i*img_size_height, j*img_size_width)));
-			}
-			if (mapPlan[i][j].isFloor)
-			{
-				map.push_back(std::make_shared<Floor>(Vector2(i*img_size_height, j*img_size_width)));
-			}
-			if (mapPlan[i][j].isPath)
-			{
-				map.push_back(std::make_shared<Path>(Vector2(i*img_size_height, j*img_size_width)));
-			}
-			if (mapPlan[i][j].isStair)
-			{
-				map.push_back(std::make_shared<Stair>(Vector2(i*img_size_height, j*img_size_width)));
-			}
-		}
-	}
 }
 
 void MapManager::DebugMode()
@@ -61,35 +67,3 @@ void MapManager::DebugMode()
 void MapManager::Move()
 {
 }
-
-void MapManager::Initialize(std::vector<std::vector<MapInformation>>& mapInfo)
-{
-	for (size_t i = 0; i < 9; i++)
-	{
-		for (size_t j = 0; j < 20; j++)
-		{
-			auto tile = mapInfo[i][j];
-			if (tile.isFloor)
-			{
-				
-			}
-			if (tile.isStair)
-			{
-				
-			}
-			if (tile.isTrap)
-			{
-				
-			}
-			if (tile.isWall)
-			{
-				
-			}
-			if (tile.isPath)
-			{
-				
-			}
-		}
-	}
-}
-

@@ -20,7 +20,7 @@ ImageManager::ImageManager()
 {
 }
 
-void ImageManager::SetDrawnObject(const std::shared_ptr<IDrawable>& drawn)
+void ImageManager::AddDrawObject(const std::shared_ptr<IDrawable>& drawn)
 {
 //	const int thisLayer = drawn->GetLayer();
 //	bool pushed = false;

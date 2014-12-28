@@ -56,7 +56,7 @@ void MysteryDungeonMaker::ResetGroupId()
 	}
 }
 
-KwsRogueLike::vector_2d<MapInformation> MysteryDungeonMaker::CreateDungeon()
+std::vector<std::vector<MapInformation>> MysteryDungeonMaker::CreateMapPlan()
 {
 	ResetMap();
 

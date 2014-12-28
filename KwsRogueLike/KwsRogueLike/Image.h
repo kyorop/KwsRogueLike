@@ -18,7 +18,7 @@ public:
 	void Update(GameManager* game) override;
 
 	ImageManager();
-	void SetDrawnObject(const std::shared_ptr<IDrawable>& drawn);
+	void AddDrawObject(const std::shared_ptr<IDrawable>& drawn);
 	void Initialize();
 	void Draw();
 	void Finalize();

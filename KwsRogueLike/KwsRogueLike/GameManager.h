@@ -2,6 +2,7 @@
 #include <memory>
 #include "MapInfo.h"
 #include "vector_2d.h"
+#include "IDrawable.h"
 
 
 class ItemManager;
@@ -12,16 +13,21 @@ class Floor;
 class ImageManager;
 class Screen;
 class PlayerBase;
-class GameManager
+class GameManager:public IDrawable
 {
 public:
+	int GetLayer() override;
+	void Load(ImageManager* manager) override;
+	void Draw(ImageManager* manager) override;
+	bool GetDrawFlag() override;
+	bool IsDead() override;
 	GameManager();
 	void Initialize();
 	void Main();
 	void Finalize();
 	Screen& GetScreen();
 	std::shared_ptr<PlayerBase>& GetPlayer();
-	KwsRogueLike::vector_2d<MapInformation>& GetMapInfo();
+	const KwsRogueLike::vector_2d<MapInformation>& GetMapInfo();
 
 private:
 	std::shared_ptr<ImageManager> image;
@@ -29,5 +35,5 @@ private:
 	std::shared_ptr<PlayerBase> player;
 	std::shared_ptr<MapManager> mapManager;
 	std::shared_ptr<ItemManager> itemManager;
-	KwsRogueLike::vector_2d<MapInformation> mapInfos;
+	KwsRogueLike::vector_2d<MapInformation> mapPlan;
 };

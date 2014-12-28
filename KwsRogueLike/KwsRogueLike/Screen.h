@@ -4,7 +4,7 @@
 #include "vector2.h"
 
 class Screen
-	:public IGameProcess, private ObjectBase
+	:public IGameProcess
 {
 public:
 	static Vector2 GetCoord();
@@ -17,18 +17,21 @@ public:
 		DOWN,
 		LEFT,
 	};
+
 	explicit Screen()
-		:ObjectBase(Vector2(0,0)),
-		isMoving(false),
+		:isMoving(false),
 		moveAmount(32),
 		direction(STOP)
-	{}
+	{
+	}
 
 	~Screen(){};
 
 	void Update(GameManager* game) override;
+	size_t Get_player_i();
+	size_t Get_player_j();
 private:
-	static Vector2* coord;
+	static Vector2* screenCoord;
 	bool isMoving;
 	int moveAmount;
 	Direction direction;

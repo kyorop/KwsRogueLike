@@ -16,7 +16,7 @@ void ItemManager::CreateItem(KwsRogueLike::vector_2d<MapInformation> infos)
 		{
 			if (infos[i][j].isItem)
 			{
-				meats.push_back(std::make_shared<Meat>(Vector2(i*GeneralConstant::img_size_height, j*GeneralConstant::img_size_width)));
+				meats.push_back(std::make_shared<Meat>(Vector2(j* GeneralConstant::img_size_width, i* GeneralConstant::img_size_height)));
 			}
 		}
 	}
@@ -26,7 +26,7 @@ void ItemManager::Accept(const std::shared_ptr<ImageManager>& image) const
 {
 	for (auto& meat : meats)
 	{
-		image->SetDrawnObject(meat);
+		image->AddDrawObject(meat);
 	}
 }
 

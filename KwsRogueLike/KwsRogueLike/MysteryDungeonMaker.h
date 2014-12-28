@@ -33,7 +33,7 @@ private:
 public:
 	MysteryDungeonMaker(int mapWidth, int mapHeight, int sectionWidth, int sectionHeight);
 	~MysteryDungeonMaker();
-	KwsRogueLike::vector_2d<MapInformation> CreateDungeon();
+	KwsRogueLike::vector_2d<MapInformation> CreateMapPlan();
 	void SetRoomNum(int roomNum);
 
 private:

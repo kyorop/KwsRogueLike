@@ -14,26 +14,50 @@ static int startTime;
 static int endTime;
 static int take;
 
+int GameManager::GetLayer()
+{
+	return 4;
+}
+
+void GameManager::Load(ImageManager* manager)
+{
+}
+
+void GameManager::Draw(ImageManager* manager)
+{
+//	DrawFormatString(0, 115, GetColor(255, 0, 0), "i:%u\nj:%u", screen->Get_player_i(), screen->Get_player_j());
+}
+
+bool GameManager::GetDrawFlag()
+{
+	return true;
+}
+
+bool GameManager::IsDead()
+{
+	return false;
+}
+
 GameManager::GameManager()
 	:image(std::make_shared<ImageManager>()),
 	screen(std::make_shared<Screen>()),
 	player(std::make_shared<PlayerBase>()),
-	mapManager(std::make_shared<MapManager>()),
-	itemManager(std::make_shared<ItemManager>()),
-	mapInfos(GeneralConstant::tileNumHeight, std::vector<MapInformation>(GeneralConstant::tileNumWidth))
+	itemManager(std::make_shared<ItemManager>())
 {
+	MysteryDungeonMaker maker(GeneralConstant::mapWidth, GeneralConstant::mapHeight, GeneralConstant::sectionWidth, GeneralConstant::sectionHeight);
+	mapPlan = maker.CreateMapPlan();
+	mapManager = std::make_shared<MapManager>(mapPlan);
 }
 
 void GameManager::Initialize()
 {
-	MysteryDungeonMaker maker(GeneralConstant::mapWidth, GeneralConstant::mapHeight, GeneralConstant::sectionWidth, GeneralConstant::sectionHeight);
-	auto mapPlan = maker.CreateDungeon();
 	//initialize
 	mapManager->CreateMap(mapPlan);
 	itemManager->CreateItem(mapPlan);
+	image->AddDrawObject(std::shared_ptr<GameManager>(this, [](GameManager*){}));
 
 	//set to image class
-	image->SetDrawnObject(player);
+	image->AddDrawObject(player);
 	mapManager->Accept(image);
 	itemManager->Accept(image);
 	
@@ -62,9 +86,9 @@ void GameManager::Finalize()
 	image->Finalize();
 }
 
-std::vector<std::vector<MapInformation>>& GameManager::GetMapInfo()
+const std::vector<std::vector<MapInformation>>& GameManager::GetMapInfo()
 {
-	return this->mapInfos;
+	return this->mapPlan;
 }
 
 std::shared_ptr<PlayerBase>& GameManager::GetPlayer()

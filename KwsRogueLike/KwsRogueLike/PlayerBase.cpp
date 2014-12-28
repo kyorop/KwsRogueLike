@@ -62,11 +62,6 @@ void PlayerBase::Load(ImageManager* manager)
 void PlayerBase::Draw(ImageManager* manager)
 {
 	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handles[0], true);
-
-	if (!equips.empty())
-	{
-		DrawFormatString(0, 100, GetColor(255, 0, 0), equips[0]->GetExplanation().data());
-	}
 }
 
 void PlayerBase::Update()

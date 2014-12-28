@@ -4,7 +4,7 @@
 #include "GeneralConstant.h"
 
 ObjectBase::ObjectBase(const Vector2& coord)
-	:coordinate(std::make_shared<Vector2>(0, 0))
+	:coordinate(std::make_shared<Vector2>(coord))
 {
 	coordinate->x = coord.x;
 	coordinate->y = coord.y;
