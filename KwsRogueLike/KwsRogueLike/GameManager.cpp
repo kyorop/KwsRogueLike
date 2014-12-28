@@ -25,7 +25,6 @@ void GameManager::Load(ImageManager* manager)
 
 void GameManager::Draw(ImageManager* manager)
 {
-//	DrawFormatString(0, 115, GetColor(255, 0, 0), "i:%u\nj:%u", screen->Get_player_i(), screen->Get_player_j());
 }
 
 bool GameManager::GetDrawFlag()
@@ -41,19 +40,16 @@ bool GameManager::IsDead()
 GameManager::GameManager()
 	:image(std::make_shared<ImageManager>()),
 	screen(std::make_shared<Screen>()),
-	player(std::make_shared<PlayerBase>()),
-	itemManager(std::make_shared<ItemManager>())
+	player(std::make_shared<PlayerBase>())
 {
 	MysteryDungeonMaker maker(GeneralConstant::mapWidth, GeneralConstant::mapHeight, GeneralConstant::sectionWidth, GeneralConstant::sectionHeight);
 	mapPlan = maker.CreateMapPlan();
 	mapManager = std::make_shared<MapManager>(mapPlan);
+	itemManager = std::make_shared<ItemManager>(mapPlan);
 }
 
 void GameManager::Initialize()
 {
-	//initialize
-	mapManager->CreateMap(mapPlan);
-	itemManager->CreateItem(mapPlan);
 	image->AddDrawObject(std::shared_ptr<GameManager>(this, [](GameManager*){}));
 
 	//set to image class

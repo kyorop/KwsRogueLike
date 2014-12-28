@@ -15,13 +15,14 @@ class MapManager
 	:public IGameProcess, public IImageAcceptor
 {
 public:
+	void Initialize() override;
+	void Finalize() override;
 	void Accept(const std::shared_ptr<ImageManager>& image) const override;
 	void Update(GameManager* game) override;
 
 	explicit MapManager(const KwsRogueLike::vector_2d<MapInformation>& mapPlan);
 	~MapManager();
 
-	void CreateMap(const std::vector<std::vector<MapInformation>>& mapPlan);
 	void DebugMode();
 	void Move();
 private:

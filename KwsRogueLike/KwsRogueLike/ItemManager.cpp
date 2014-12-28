@@ -8,7 +8,7 @@
 #include "PlayerBase.h"
 #include "Screen.h"
 
-void ItemManager::CreateItem(KwsRogueLike::vector_2d<MapInformation> infos)
+ItemManager::ItemManager(KwsRogueLike::vector_2d<MapInformation> infos)
 {
 	for (size_t i = 0; i < infos.size(); i++)
 	{
@@ -20,6 +20,14 @@ void ItemManager::CreateItem(KwsRogueLike::vector_2d<MapInformation> infos)
 			}
 		}
 	}
+}
+
+void ItemManager::Initialize()
+{
+}
+
+void ItemManager::Finalize()
+{
 }
 
 void ItemManager::Accept(const std::shared_ptr<ImageManager>& image) const

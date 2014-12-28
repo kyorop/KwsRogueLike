@@ -13,6 +13,14 @@ using namespace GeneralConstant;
 using std::vector;
 using std::shared_ptr;
 
+void MapManager::Initialize()
+{
+}
+
+void MapManager::Finalize()
+{
+}
+
 void MapManager::Accept(const shared_ptr<ImageManager>& image) const
 {
 	for (auto& object: map)
@@ -53,10 +61,6 @@ MapManager::MapManager(const KwsRogueLike::vector_2d<MapInformation>& mapPlan)
 }
 
 MapManager::~MapManager()
-{
-}
-
-void MapManager::CreateMap(const vector<vector<MapInformation>>& mapPlan)
 {
 }
 

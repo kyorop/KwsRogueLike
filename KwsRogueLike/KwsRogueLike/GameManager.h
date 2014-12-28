@@ -30,6 +30,7 @@ public:
 	const KwsRogueLike::vector_2d<MapInformation>& GetMapInfo();
 
 private:
+//	std::vector<std::shared_ptr<IGameProcess>> gameObjects;
 	std::shared_ptr<ImageManager> image;
 	std::shared_ptr<Screen> screen;
 	std::shared_ptr<PlayerBase> player;

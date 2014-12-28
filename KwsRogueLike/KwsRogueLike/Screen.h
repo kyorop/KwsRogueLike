@@ -7,6 +7,8 @@ class Screen
 	:public IGameProcess
 {
 public:
+	void Initialize() override;
+	void Finalize() override;
 	static Vector2 GetCoord();
 
 	enum Direction

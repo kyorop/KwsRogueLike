@@ -8,6 +8,14 @@
 Vector2* Screen::screenCoord = new Vector2(0, 0);
 const int speed = 2;
 
+void Screen::Initialize()
+{
+}
+
+void Screen::Finalize()
+{
+}
+
 Vector2 Screen::GetCoord()
 {
 	return *screenCoord;

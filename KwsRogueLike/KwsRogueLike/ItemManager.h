@@ -10,7 +10,10 @@ class ItemManager
 	:public IGameProcess, public IImageAcceptor
 {
 public:
-	void CreateItem(KwsRogueLike::vector_2d<MapInformation> infos);
+	explicit ItemManager(KwsRogueLike::vector_2d<MapInformation> infos);
+
+	void Initialize() override;
+	void Finalize() override;
 	void Accept(const std::shared_ptr<ImageManager>& image) const override;
 	void Update(GameManager* game) override;
 private:
