@@ -79,8 +79,10 @@
     <ClInclude Include="DebugMode.h" />
     <ClInclude Include="DrawObject.h" />
     <ClInclude Include="DungeonMakerHelper.h" />
+    <ClInclude Include="DungeonSize.h" />
     <ClInclude Include="DxLibGraphic.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="DungeonData.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GeneralConstant.h" />
@@ -99,7 +101,6 @@
     <ClInclude Include="IScrollable.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="MapManager.h" />
-    <ClInclude Include="MapInfo.h" />
     <ClInclude Include="Meat.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
     <ClInclude Include="ObjectBase.h" />
@@ -126,9 +127,11 @@
     <ClCompile Include="DebugMode.cpp" />
     <ClCompile Include="DrawObject.cpp" />
     <ClCompile Include="DungeonMakerHelper.cpp" />
+    <ClCompile Include="DungeonSize.cpp" />
     <ClCompile Include="DxLibGraphic.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="DungeonData.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
@@ -137,7 +140,6 @@
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapManager.cpp" />
-    <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="Meat.cpp" />
     <ClCompile Include="MysteryDungeonMaker.cpp" />
     <ClCompile Include="ObjectBase.cpp" />

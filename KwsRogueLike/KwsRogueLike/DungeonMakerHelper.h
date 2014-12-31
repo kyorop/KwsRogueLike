@@ -4,16 +4,11 @@
 
 class Section;
 class Component;
-struct MapInformation;
-enum class ObjectTypeOnMap;
+struct ObjDataOnTile;
+enum class ObjTypeOnMap;
 namespace DungeonMakerHelper
 {
 	bool HasComponent(const std::vector<Section*>& sections, const Component& component);
 	std::vector<Section*> GetFewestMember(std::vector<std::vector<Section*>> members);
 	void SortByGroupSize(std::vector<std::vector<Section*>>* groups);
-	
-	void SetMapTo(KwsRogueLike::vector_2d<MapInformation>& info, const KwsRogueLike::vector_2d <ObjectTypeOnMap>& map, const KwsRogueLike::vector_2d<Section>& sections);
-	void SetItemTo(KwsRogueLike::vector_2d<MapInformation>& info, const KwsRogueLike::vector_2d<Section>& sections, size_t itemMin, size_t itemMax);
-	void SetEnemyTo(KwsRogueLike::vector_2d<MapInformation>& info, const KwsRogueLike::vector_2d<Section>& sections, size_t enemyMin, size_t enemyMax);
-	void SetTrapTo(KwsRogueLike::vector_2d<MapInformation>& info, const KwsRogueLike::vector_2d<Section>& sections, size_t trapMin, size_t trapMax);
 }

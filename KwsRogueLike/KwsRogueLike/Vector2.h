@@ -9,7 +9,7 @@ public:
 	Vector2(int x, int y);
 	~Vector2();
 	bool operator%(int n); //Vector2型オブジェクトの２つの変数がnで割り切れるかを判別する
-	bool operator==(const Vector2& rhs);
+	bool operator==(const Vector2& rhs)const;
 	Vector2 operator+=(const Vector2&rhs);
 	Vector2 operator-=(const Vector2&rhs);
 	const Vector2 operator+(const Vector2& rhs)const;

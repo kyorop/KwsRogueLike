@@ -1,10 +1,9 @@
 ﻿#pragma once
 #include <memory>
-#include "MapInfo.h"
-#include "vector_2d.h"
 #include "IDrawable.h"
 
 
+class DungeonData;
 class ItemManager;
 class Vector2;
 class MapInfo;
@@ -27,14 +26,12 @@ public:
 	void Finalize();
 	Screen& GetScreen();
 	std::shared_ptr<PlayerBase>& GetPlayer();
-	const KwsRogueLike::vector_2d<MapInformation>& GetMapInfo();
 
 private:
-//	std::vector<std::shared_ptr<IGameProcess>> gameObjects;
 	std::shared_ptr<ImageManager> image;
 	std::shared_ptr<Screen> screen;
 	std::shared_ptr<PlayerBase> player;
 	std::shared_ptr<MapManager> mapManager;
 	std::shared_ptr<ItemManager> itemManager;
-	KwsRogueLike::vector_2d<MapInformation> mapPlan;
+	std::shared_ptr<DungeonData> dungeonData;
 };

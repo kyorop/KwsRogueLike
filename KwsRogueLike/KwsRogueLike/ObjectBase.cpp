@@ -4,56 +4,34 @@
 #include "GeneralConstant.h"
 
 ObjectBase::ObjectBase(const Vector2& coord)
-	:coordinate(std::make_shared<Vector2>(coord))
+	:coord(std::make_shared<Vector2>(coord))
 {
-	coordinate->x = coord.x;
-	coordinate->y = coord.y;
-}
-
-ObjectBase::~ObjectBase()
-{
-}
-
-void ObjectBase::SetCoordinate(int x, int y)
-{
-	coordinate->x = x;
-	coordinate->y = y;
-}
-
-void ObjectBase::SetCoordinate(Vector2 const& coordinate)
-{
-	this->coordinate->x = coordinate.x;
-	this->coordinate->y = coordinate.y;
+	this->coord->x = coord.x;
+	this->coord->y = coord.y;
 }
 
 Vector2 ObjectBase::GetCoordinate()const
 {
-	return Vector2(coordinate->x, coordinate->y);
-}
-
-void ObjectBase::AddCoordinate(int x, int y)
-{
-	coordinate->x += x;
-	coordinate->y += y;
+	return Vector2(coord->x, coord->y);
 }
 
 void ObjectBase::AddCoordinate(const Vector2& v)
 {
-	coordinate->x += v.x;
-	coordinate->y += v.y;
+	coord->x += v.x;
+	coord->y += v.y;
 }
 
 size_t ObjectBase::Get_i()
 {
-	return coordinate->y / GeneralConstant::img_size_height;
+	return coord->y / GeneralConstant::img_size_height;
 }
 
 size_t ObjectBase::Get_j()
 {
-	return coordinate->x / GeneralConstant::img_size_width;
+	return coord->x / GeneralConstant::img_size_width;
 }
 
 Vector2 ObjectBase::GetDrawCoord()
 {
-	return *coordinate - Screen::GetCoord();
+	return *coord - Screen::GetCoord();
 }

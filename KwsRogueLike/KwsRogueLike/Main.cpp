@@ -1,17 +1,7 @@
 #include <DxLib.h>
-#include <vector>
-#include "MysteryDungeonMaker.h"
-#include "PlayerBase.h"
-#include "EnemyBase.h"
-#include "RandExtended.h"
-#include "DebugMode.h"
 #include "GeneralConstant.h"
 
 #define DEBUG 0
-#include "Strings.h"
-#include "MapInfo.h"
-#include "Image.h"
-#include "Screen.h"
 #include "GameManager.h"
 
 using namespace GeneralConstant;

@@ -3,14 +3,15 @@
 #include "IImageAcceptor.h"
 #include "vector_2d.h"
 
-struct MapInformation;
+struct ObjDataOnTile;
 class Meat;
+class Vector2;
 
 class ItemManager
 	:public IGameProcess, public IImageAcceptor
 {
 public:
-	explicit ItemManager(KwsRogueLike::vector_2d<MapInformation> infos);
+	explicit ItemManager(KwsRogueLike::vector_2d<ObjDataOnTile> infos);
 
 	void Initialize() override;
 	void Finalize() override;
@@ -18,4 +19,5 @@ public:
 	void Update(GameManager* game) override;
 private:
 	std::vector<std::shared_ptr<Meat>> meats;
+	std::vector<std::shared_ptr<Meat>>::iterator FindSamePosItem(const Vector2& playerCoord);
 };

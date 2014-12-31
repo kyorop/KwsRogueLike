@@ -4,10 +4,10 @@
 #include "vector2.h"
 #include "wall.h"
 #include "path.h"
-#include "MapInfo.h"
 #include "Image.h"
 #include "Stair.h"
-#include "GameManager.h"
+#include "DungeonData.h"
+#include "DungeonSize.h"
 
 using namespace GeneralConstant;
 using std::vector;
@@ -29,45 +29,25 @@ void MapManager::Accept(const shared_ptr<ImageManager>& image) const
 	}	
 }
 
-void MapManager::Update(GameManager* game)
+void MapManager::GenerateDungeon(const DungeonSize& sizeData, const DungeonData& dungeonData)
 {
-}
-
-MapManager::MapManager(const KwsRogueLike::vector_2d<MapInformation>& mapPlan)
-{
-	for (int i = 0; i < tileNumHeight; i++)
+	for (size_t i = 0; i < sizeData.CalcTileRowNum(); ++i)
 	{
-		for (int j = 0; j < tileNumWidth; j++)
+		for (size_t j = 0; j < sizeData.CalcTileColumnNum(); ++j)
 		{
-			if (mapPlan[i][j].isWall)
-			{
-				map.push_back(std::make_shared<Wall>(Vector2(j*img_size_width, i*img_size_height)));
-			}
-			else if (mapPlan[i][j].isFloor)
-			{
-				map.push_back(std::make_shared<Floor>(Vector2(j*img_size_width, i*img_size_height)));
-			}
-			else if (mapPlan[i][j].isPath)
-			{
-				map.push_back(std::make_shared<Path>(Vector2(j*img_size_width, i*img_size_height)));
-			}
-			
-			if (mapPlan[i][j].isStair)
-			{
+			if (dungeonData.IsThis(ObjTypeOnMap::STAIR, i, i))
 				map.push_back(std::make_shared<Stair>(Vector2(j*img_size_width, i*img_size_height)));
-			}
+
+			if (dungeonData.IsThis(ObjTypeOnMap::WALL, i, j))
+				map.push_back(std::make_shared<Wall>(Vector2(j*img_size_width, i*img_size_height)));
+			else if (dungeonData.IsThis(ObjTypeOnMap::FLOOR, i, j))
+				map.push_back(std::make_shared<Floor>(Vector2(j*img_size_width, i*img_size_height)));
+			else if (dungeonData.IsThis(ObjTypeOnMap::PATH, i, j))
+				map.push_back(std::make_shared<Path>(Vector2(j*img_size_width, i*img_size_height)));
 		}
 	}
 }
 
-MapManager::~MapManager()
-{
-}
-
-void MapManager::DebugMode()
-{
-}
-
-void MapManager::Move()
+void MapManager::Update(GameManager* game)
 {
 }

@@ -24,7 +24,7 @@ bool Vector2::operator%(int n) //Vector2型オブジェクトを渡し、ふたつの座標が共に
 	else return false;
 }
 
-bool Vector2::operator==(const Vector2& rhs)
+bool Vector2::operator==(const Vector2& rhs)const
 {
 	if (x == rhs.x && y == rhs.y)
 		return true;

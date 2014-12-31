@@ -1,13 +1,13 @@
 #pragma once
 #include <vector>
 
-enum class ObjectTypeOnMap;
+enum class ObjTypeOnMap;
 
 class DebugMode
 {
 public:
 	DebugMode();
 	~DebugMode();
-	void StartDebugMode(std::vector<std::vector<ObjectTypeOnMap>>* map);
+	void StartDebugMode(std::vector<std::vector<ObjTypeOnMap>>* map);
 };
 

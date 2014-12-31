@@ -1,14 +1,14 @@
 ﻿#include "GameManager.h"
 #include "Screen.h"
 #include "Image.h"
-#include "Vector2.h"
 #include "MapManager.h"
 #include "DxLib.h"
-#include "MapInfo.h"
 #include "generalconstant.h"
 #include "MysteryDungeonMaker.h"
-#include "PlayerBase.h"
 #include "ItemManager.h"
+#include "PlayerBase.h"
+#include "DungeonSize.h"
+#include "DungeonData.h"
 
 static int startTime;
 static int endTime;
@@ -42,20 +42,23 @@ GameManager::GameManager()
 	screen(std::make_shared<Screen>()),
 	player(std::make_shared<PlayerBase>())
 {
-	MysteryDungeonMaker maker(GeneralConstant::mapWidth, GeneralConstant::mapHeight, GeneralConstant::sectionWidth, GeneralConstant::sectionHeight);
-	mapPlan = maker.CreateMapPlan();
-	mapManager = std::make_shared<MapManager>(mapPlan);
-	itemManager = std::make_shared<ItemManager>(mapPlan);
+//	itemManager = std::make_shared<ItemManager>(mapPlan);
 }
 
 void GameManager::Initialize()
 {
+	DungeonSize dungeonSize(GeneralConstant::mapWidth, GeneralConstant::sectionWidth, GeneralConstant::mapHeight, GeneralConstant::sectionHeight);
+	MysteryDungeonMaker maker(dungeonSize);
+	dungeonData = std::make_shared<DungeonData>(maker.CreateMapPlan());
+	mapManager = std::make_shared<MapManager>();
+	mapManager->GenerateDungeon(dungeonSize, *dungeonData);
+
 	image->AddDrawObject(std::shared_ptr<GameManager>(this, [](GameManager*){}));
 
 	//set to image class
 	image->AddDrawObject(player);
 	mapManager->Accept(image);
-	itemManager->Accept(image);
+//	itemManager->Accept(image);
 	
 	startTime = GetNowCount();
 	image->Initialize();
@@ -65,9 +68,9 @@ void GameManager::Initialize()
 void GameManager::Main()
 {
 	//update
-	screen->Update(this);
+	screen->Update(*dungeonData);
 	mapManager->Update(this);
-	itemManager->Update(this);
+//	itemManager->Update(this);
 	image->Update(this);
 
 	//draw
@@ -80,11 +83,6 @@ void GameManager::Main()
 void GameManager::Finalize()
 {
 	image->Finalize();
-}
-
-const std::vector<std::vector<MapInformation>>& GameManager::GetMapInfo()
-{
-	return this->mapPlan;
 }
 
 std::shared_ptr<PlayerBase>& GameManager::GetPlayer()

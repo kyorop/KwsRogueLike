@@ -1,7 +1,6 @@
 #include "EnemyBase.h"
 #include "DxLib.h"
 #include "vector2.h"
-#include "MapInfo.h"
 #include "Image.h"
 
 int EnemyBase::GetHp()

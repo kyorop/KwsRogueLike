@@ -14,7 +14,6 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="MysteryDungeonMaker.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="Path.cpp" />
@@ -36,6 +35,8 @@
     <ClCompile Include="Meat.cpp" />
     <ClCompile Include="DxLibGraphic.cpp" />
     <ClCompile Include="DrawObject.cpp" />
+    <ClCompile Include="DungeonData.cpp" />
+    <ClCompile Include="DungeonSize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
@@ -57,7 +58,6 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="IScrollable.h" />
     <ClInclude Include="ItemManager.h" />
-    <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="Path.h" />
@@ -81,5 +81,7 @@
     <ClInclude Include="Meat.h" />
     <ClInclude Include="DxLibGraphic.h" />
     <ClInclude Include="DrawObject.h" />
+    <ClInclude Include="DungeonData.h" />
+    <ClInclude Include="DungeonSize.h" />
   </ItemGroup>
 </Project>

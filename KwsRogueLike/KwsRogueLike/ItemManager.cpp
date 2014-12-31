@@ -1,20 +1,20 @@
-﻿#include "ItemManager.h"
+﻿#include <algorithm>
+#include "ItemManager.h"
 #include "Image.h"
-#include "MapInfo.h"
+#include "DungeonData.h"
 #include "Meat.h"
 #include "GeneralConstant.h"
 #include "vector2.h"
 #include "GameManager.h"
 #include "PlayerBase.h"
-#include "Screen.h"
 
-ItemManager::ItemManager(KwsRogueLike::vector_2d<MapInformation> infos)
+ItemManager::ItemManager(KwsRogueLike::vector_2d<ObjDataOnTile> infos)
 {
 	for (size_t i = 0; i < infos.size(); i++)
 	{
 		for (size_t j = 0; j < infos[i].size(); j++)
 		{
-			if (infos[i][j].isItem)
+			if (infos[i][j].Find(ObjTypeOnMap::ITEM))
 			{
 				meats.push_back(std::make_shared<Meat>(Vector2(j* GeneralConstant::img_size_width, i* GeneralConstant::img_size_height)));
 			}
@@ -40,14 +40,16 @@ void ItemManager::Accept(const std::shared_ptr<ImageManager>& image) const
 
 void ItemManager::Update(GameManager* game)
 {
-	for (auto itr = meats.begin(); itr != meats.end(); ++itr)
+	auto takenItem = FindSamePosItem(game->GetPlayer()->GetCoordinate());
+	if (takenItem != meats.end())
 	{
-		if ((*itr)->GetCoordinate() == game->GetPlayer()->GetCoordinate())
-		{
-			game->GetPlayer()->SetItem(*itr);
-			(*itr)->Kill();
-			meats.erase(itr);
-			break;
-		}
+		game->GetPlayer()->SetItem(*takenItem);
+		(*takenItem)->Kill();
+		meats.erase(takenItem);
 	}
+}
+
+std::_Vector_iterator<std::_Vector_val<std::_Simple_types<std::shared_ptr<Meat>>>>ItemManager::FindSamePosItem(const Vector2& playerCoord)
+{
+	return find_if(meats.begin(), meats.end(), [&](const std::shared_ptr<Meat>& item){return playerCoord == item->GetCoordinate(); });
 }

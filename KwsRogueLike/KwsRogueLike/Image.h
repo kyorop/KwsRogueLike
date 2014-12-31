@@ -19,9 +19,9 @@ public:
 
 	ImageManager();
 	void AddDrawObject(const std::shared_ptr<IDrawable>& drawn);
-	void Initialize();
+	void Initialize() override;
 	void Draw();
-	void Finalize();
+	void Finalize() override;
 	
 	int LoadGraph(const std::string& imgFileAddress);
 	std::vector<int> LoadDivGraph(const std::string& imgFileAddress, int allNum, int xNum, int yNum, int xSize, int ySize);
