@@ -5,6 +5,7 @@
 #include "IImageAcceptor.h"
 
 
+class Component;
 class DungeonSize;
 class Vector2;
 class DungeonData;
@@ -33,7 +34,7 @@ public:
 
 	void Accept(const std::shared_ptr<ImageManager>& image) const override;
 
-	void GenerateDungeon(const DungeonSize& sizeData, const DungeonData& dungeonData);
+	void Add(const std::shared_ptr<IDrawable>& tile);
 
 private:
 	std::vector<std::shared_ptr<IDrawable>> map;

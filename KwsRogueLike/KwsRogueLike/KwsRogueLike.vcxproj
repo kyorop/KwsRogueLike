@@ -76,8 +76,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
+    <ClInclude Include="BlockRect.h" />
     <ClInclude Include="DebugMode.h" />
     <ClInclude Include="DrawObject.h" />
+    <ClInclude Include="DungeonDrawing.h" />
+    <ClInclude Include="DungeonGenerator.h" />
     <ClInclude Include="DungeonMakerHelper.h" />
     <ClInclude Include="DungeonSize.h" />
     <ClInclude Include="DxLibGraphic.h" />
@@ -108,9 +111,8 @@
     <ClInclude Include="PlayerBase.h" />
     <ClInclude Include="RandExtended.h" />
     <ClInclude Include="Rect.h" />
-    <ClInclude Include="ReducedMap.h" />
+    <ClInclude Include="RoomData.h" />
     <ClInclude Include="Screen.h" />
-    <ClInclude Include="ScrollingMovement.h" />
     <ClInclude Include="Section.h" />
     <ClInclude Include="SectionUtil.h" />
     <ClInclude Include="Stair.h" />
@@ -122,10 +124,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Battle.cpp" />
+    <ClCompile Include="BlockRect.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConvertRect.cpp" />
     <ClCompile Include="DebugMode.cpp" />
     <ClCompile Include="DrawObject.cpp" />
+    <ClCompile Include="DungeonDrawing.cpp" />
+    <ClCompile Include="DungeonGenerator.cpp" />
     <ClCompile Include="DungeonMakerHelper.cpp" />
     <ClCompile Include="DungeonSize.cpp" />
     <ClCompile Include="DxLibGraphic.cpp" />
@@ -147,9 +152,8 @@
     <ClCompile Include="PlayerBase.cpp" />
     <ClCompile Include="RandExtended.cpp" />
     <ClCompile Include="Rect.cpp" />
-    <ClCompile Include="ReducedMap.cpp" />
+    <ClCompile Include="RoomData.cpp" />
     <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="ScrollingMovement.cpp" />
     <ClCompile Include="Section.cpp" />
     <ClCompile Include="SectionUtil.cpp" />
     <ClCompile Include="Stair.cpp" />

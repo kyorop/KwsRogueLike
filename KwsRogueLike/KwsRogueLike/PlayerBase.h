@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <vector>
-#include "scrollingmovement.h"
 #include "DrawObject.h"
 #include "IBattle.h"
 #include "generalconstant.h"
@@ -35,7 +34,6 @@ public:
 	void SetItem(std::shared_ptr<Meat>& item);
 
 private:
-	ScrollingMovement::Direction drawDirection;
 	std::vector<int> handles;
 	int gold = 0;
 	std::vector<std::shared_ptr<Meat>> equips;

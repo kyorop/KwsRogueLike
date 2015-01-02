@@ -9,6 +9,7 @@
 #include "PlayerBase.h"
 #include "DungeonSize.h"
 #include "DungeonData.h"
+#include "DungeonGenerator.h"
 
 static int startTime;
 static int endTime;
@@ -50,8 +51,9 @@ void GameManager::Initialize()
 	DungeonSize dungeonSize(GeneralConstant::mapWidth, GeneralConstant::sectionWidth, GeneralConstant::mapHeight, GeneralConstant::sectionHeight);
 	MysteryDungeonMaker maker(dungeonSize);
 	dungeonData = std::make_shared<DungeonData>(maker.CreateMapPlan());
-	mapManager = std::make_shared<MapManager>();
-	mapManager->GenerateDungeon(dungeonSize, *dungeonData);
+	
+	DungeonGenerator dGenerator;
+	mapManager = std::make_shared<MapManager>(dGenerator.Generate(dungeonSize, *dungeonData));
 
 	image->AddDrawObject(std::shared_ptr<GameManager>(this, [](GameManager*){}));
 
