@@ -28,22 +28,23 @@ public:
 	~MysteryDungeonMaker();
 
 	void Initialize();
-	void SetRoomNum(int roomNum);
+	void SetRoomNum(unsigned roomNum);
 
 	DungeonData DungeonData();
 	RoomDataStores RoomData();
+
 private:
 	std::unique_ptr<DungeonSize> dungeonSize;
 	const int minRoomWidth = 4;
 	const int minRoomHeight = 4;
 	int roomNum = 0;
-	KwsRogueLike::vector_2d<ObjTypeOnMap> map;
+	KwsRogueLike::vector_2d<ObjTypeOnMap> tiles;
 	KwsRogueLike::vector_2d<Section> sections;
 
 	void ResetMap();
 	void ResetGroupId();
-	void CreateMap();
-	void MakeRoom(const Component& section, int roomWidth, int roomHeight);
+	void CreateDungeon();
+	void MakeRoom(const Component& sectionPos, int roomWidth, int roomHeight);
 	void MakePath();
 	void ConnectAdjacentRoom(Section* center, Section* around);
 	void RemoveRoom(const Rect& room);
