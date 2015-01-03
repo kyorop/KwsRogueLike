@@ -1,14 +1,44 @@
 #pragma once
 #include <string>
-#include "playerbase.h"
+#include "IDrawable.h"
 
-class Strings
+class PlayerBase;
+
+class Strings :public IDrawable
 {
 public:
-	Strings(int floor,PlayerBase *player);
-	Strings();
+	int GetLayer() override
+	{
+		return 10;
+	}
+
+	void Load(ImageManager* manager) override
+	{
+	}
+
+	void Draw(ImageManager* manager) override;
+
+	bool GetDrawFlag() override
+	{
+		return true;
+	}
+
+	bool IsDead() override
+	{
+		return false;
+	}
+
+	Strings(int currentFloor, PlayerBase* player);
 	//階層とプレイヤーデータを受け取って表示
-	void DisplayPlayerData(int floor, PlayerBase* player);
-	~Strings();
+	void DisplayPlayerData();
+
+private:
+	int currentFloor;
+	PlayerBase* player;
+
+	std::string s_floor;
+	std::string s_hp;
+	std::string s_level;
+	std::string s_gold;
 };
 

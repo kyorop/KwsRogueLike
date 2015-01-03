@@ -30,6 +30,8 @@ public:
 	std::shared_ptr<PlayerBase>& GetPlayer();
 
 private:
+	size_t currentFloor=1;
+
 	std::shared_ptr<ImageManager> image;
 	std::shared_ptr<Screen> screen;
 	std::shared_ptr<PlayerBase> player;

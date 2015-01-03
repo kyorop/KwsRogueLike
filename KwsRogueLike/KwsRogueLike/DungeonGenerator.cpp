@@ -1,11 +1,12 @@
 ﻿#include "DungeonGenerator.h"
 #include "MapManager.h"
 #include "DungeonData.h"
-#include "Strings.h"
 #include "DungeonSize.h"
 #include "Wall.h"
 #include "Floor.h"
 #include "path.h"
+#include "GeneralConstant.h"
+#include "Vector2.h"
 
 MapManager DungeonGenerator::Generate(const DungeonSize& sizeData, const DungeonData& dungeonData)
 {

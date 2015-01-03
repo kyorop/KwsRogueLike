@@ -16,6 +16,7 @@
 #include "BlockRect.h"
 #include "Component.h"
 #include "GameManager.h"
+#include "Strings.h"
 
 static int startTime;
 static int endTime;
@@ -71,7 +72,10 @@ void GameScene::Initialize()
 	image->AddDrawObject(player);
 	mapManager->Accept(image);
 	itemManager->Accept(image);
-	
+
+	auto playerStateDisplayer = std::make_shared<Strings>(currentFloor, player.get());
+	image->AddDrawObject(playerStateDisplayer);
+
 	startTime = GetNowCount();
 	image->Initialize();
 	endTime = GetNowCount();
@@ -87,9 +91,9 @@ void GameScene::Main()
 
 	//draw
 	image->Draw();
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "start : %d", startTime);
-	DrawFormatString(0, 20, GetColor(255, 255, 255), "end : %d", endTime);
-	DrawFormatString(0, 40, GetColor(255, 255, 255), "take: %d", endTime - startTime);
+	DrawFormatString(0, 30, GetColor(255, 255, 255), "start : %d", startTime);
+	DrawFormatString(0, 50, GetColor(255, 255, 255), "end : %d", endTime);
+	DrawFormatString(0, 70, GetColor(255, 255, 255), "take: %d", endTime - startTime);
 }
 
 void GameScene::Finalize()
