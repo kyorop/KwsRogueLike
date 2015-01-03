@@ -12,37 +12,37 @@ public:
 	{
 	}
 
-	size_t CalcTileRowNum()const
+	size_t DungeonHeight() const
 	{
 		return sectionHeight*sectionRowNum;
 	}
 
-	size_t CalcTileColumnNum()const
+	size_t DungeonWidth() const
 	{
 		return sectionWidth*sectionColumnNum;
 	}
 
-	size_t CalcSectionNum()const
+	size_t AllSectionNum() const
 	{
 		return sectionRowNum*sectionColumnNum;
 	}
 
-	size_t GetSectionColumnNum() const
+	size_t DungeonColumnNum() const
 	{
 		return sectionColumnNum;
 	}
 
-	size_t GetSectionWidth() const
+	size_t SectionWidth() const
 	{
 		return sectionWidth;
 	}
 
-	size_t GetSectionRowNum() const
+	size_t DungeonRowNum() const
 	{
 		return sectionRowNum;
 	}
 
-	size_t GetSectionHeight() const
+	size_t SectionHeight() const
 	{
 		return sectionHeight;
 	}

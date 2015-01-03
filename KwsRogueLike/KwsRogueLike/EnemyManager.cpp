@@ -1,11 +1,11 @@
 ﻿#include "EnemyManager.h"
-#include "GameManager.h"
+#include "GameScene.h"
 
 void EnemyManager::Initialize()
 {
 }
 
-void EnemyManager::Update(GameManager* game)
+void EnemyManager::Update(GameScene* game)
 {
 }
 

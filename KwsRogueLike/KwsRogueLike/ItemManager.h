@@ -1,22 +1,23 @@
 ﻿#pragma once
-#include "IGameProcess.h"
-#include "IImageAcceptor.h"
-#include "vector_2d.h"
+#include "GameManager.h"
+#include <vector>
 
-struct ObjDataOnTile;
+class DungeonSize;
+class DungeonData;
 class Meat;
 class Vector2;
 
-class ItemManager
-	:public IGameProcess, public IImageAcceptor
+class ItemManager : public GameManager
 {
 public:
-	explicit ItemManager(KwsRogueLike::vector_2d<ObjDataOnTile> infos);
+	ItemManager(){}
 
 	void Initialize() override;
 	void Finalize() override;
 	void Accept(const std::shared_ptr<ImageManager>& image) const override;
-	void Update(GameManager* game) override;
+	void Update(GameScene* game) override;
+
+	void Add(const Meat& meat);
 private:
 	std::vector<std::shared_ptr<Meat>> meats;
 	std::vector<std::shared_ptr<Meat>>::iterator FindSamePosItem(const Vector2& playerCoord);

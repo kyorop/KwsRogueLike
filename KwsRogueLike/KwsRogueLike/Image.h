@@ -15,7 +15,7 @@ class ImageManager
 	:public IGameProcess
 {
 public:
-	void Update(GameManager* game) override;
+	void Update(GameScene* game) override;
 
 	ImageManager();
 	void AddDrawObject(const std::shared_ptr<IDrawable>& drawn);

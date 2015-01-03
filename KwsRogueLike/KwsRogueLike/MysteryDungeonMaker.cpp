@@ -6,13 +6,15 @@
 #include "RandExtended.h"
 #include "Section.h"
 #include "Rect.h"
-#include "Component.h"
 #include "SectionUtil.h"
 #include "DungeonMakerHelper.h"
 #include "DungeonData.h"
 #include "DungeonSize.h"
 #include <random>
 #include "generalconstant.h"
+#include "RoomData.h"
+#include "BlockRect.h"
+#include "Component.h"
 
 const int up_down[] = { -1, 0, 1, 0 };
 const int right_left[] = { 0, 1, 0, -1 };
@@ -20,10 +22,10 @@ const int right_left[] = { 0, 1, 0, -1 };
 
 MysteryDungeonMaker::MysteryDungeonMaker(const DungeonSize& dungeonSize)
 	:dungeonSize(std::make_unique<DungeonSize>(dungeonSize)),
-	map(dungeonSize.CalcTileRowNum(), std::vector<ObjTypeOnMap>(dungeonSize.CalcTileColumnNum())),
-	sections(dungeonSize.GetSectionRowNum(), std::vector<Section>(dungeonSize.GetSectionColumnNum()))
+	map(dungeonSize.DungeonHeight(), std::vector<ObjTypeOnMap>(dungeonSize.DungeonWidth())),
+	sections(dungeonSize.DungeonRowNum(), std::vector<Section>(dungeonSize.DungeonColumnNum()))
 {
-	size_t sectionNum = dungeonSize.CalcSectionNum();
+	size_t sectionNum = dungeonSize.AllSectionNum();
 	roomNum = GetRandInRange(sectionNum / 3, sectionNum / 2);
 }
 
@@ -31,13 +33,17 @@ MysteryDungeonMaker::~MysteryDungeonMaker()
 {
 }
 
-DungeonData MysteryDungeonMaker::CreateMapPlan()
+void MysteryDungeonMaker::Initialize()
 {
 	CreateMap();
-	DungeonData dData(dungeonSize->CalcTileRowNum(), dungeonSize->CalcTileColumnNum());
+}
 
-	const size_t rowNum = dungeonSize->CalcTileRowNum();
-	const size_t columnNum = dungeonSize->CalcTileColumnNum();
+DungeonData MysteryDungeonMaker::DungeonData()
+{
+	::DungeonData dData(dungeonSize->DungeonHeight(), dungeonSize->DungeonWidth());
+
+	const size_t rowNum = dungeonSize->DungeonHeight();
+	const size_t columnNum = dungeonSize->DungeonWidth();
 	for (size_t i = 0; i < rowNum; i++)
 	{
 		for (size_t j = 0; j < columnNum; j++)
@@ -45,13 +51,33 @@ DungeonData MysteryDungeonMaker::CreateMapPlan()
 			dData.AddType(Component(i, j), map[i][j]);
 		}
 	}
+
 	return dData;
+}
+
+RoomDataStores MysteryDungeonMaker::RoomData()
+{
+	RoomDataStores roomData;
+	for (size_t i = 0; i < dungeonSize->DungeonRowNum(); i++)
+	{
+		for (size_t j = 0; j < dungeonSize->DungeonColumnNum(); j++)
+		{
+			if (sections[i][j].HasRoom())
+			{
+				auto rect = sections[i][j].GetRoom();
+				BlockRect blockRect(rect.x1, rect.y1, rect.x2, rect.y2);
+				roomData.Add(blockRect);
+			}
+		}
+	}
+
+	return roomData;
 }
 
 void MysteryDungeonMaker::ResetMap()
 {
-	const size_t rowNum = dungeonSize->CalcTileRowNum();
-	const size_t columnNum = dungeonSize->CalcTileColumnNum();
+	const size_t rowNum = dungeonSize->DungeonHeight();
+	const size_t columnNum = dungeonSize->DungeonWidth();
 	for (size_t i = 0; i < rowNum; i++)
 	{
 		for (size_t j = 0; j < columnNum; j++)
@@ -63,8 +89,8 @@ void MysteryDungeonMaker::ResetMap()
 
 void MysteryDungeonMaker::ResetGroupId()
 {
-	const size_t sectionRowNum = dungeonSize->GetSectionRowNum();
-	const size_t sectionColumnNum = dungeonSize->GetSectionColumnNum();
+	const size_t sectionRowNum = dungeonSize->DungeonRowNum();
+	const size_t sectionColumnNum = dungeonSize->DungeonColumnNum();
 	for (size_t i = 0; i < sectionRowNum; i++)
 	{
 		for (size_t j = 0; j < sectionColumnNum; j++)
@@ -79,8 +105,8 @@ void MysteryDungeonMaker::CreateMap()
 	ResetMap();
 
 	std::vector<Component> section_components;
-	const size_t sectionRowNum = dungeonSize->GetSectionRowNum();
-	const size_t sectionColumnNum = dungeonSize->GetSectionColumnNum();
+	const size_t sectionRowNum = dungeonSize->DungeonRowNum();
+	const size_t sectionColumnNum = dungeonSize->DungeonColumnNum();
 	for (size_t i = 0; i < sectionRowNum; i++)
 	{
 		for (size_t j = 0; j < sectionColumnNum; j++)
@@ -107,14 +133,14 @@ void MysteryDungeonMaker::CreateMap()
 
 void MysteryDungeonMaker::SetRoomNum(int roomNum)
 {
-	if (roomNum <= dungeonSize->CalcSectionNum())
+	if (roomNum <= dungeonSize->AllSectionNum())
 		this->roomNum = roomNum;
 }
 
 void MysteryDungeonMaker::MakeRoom(Component const& section, int roomWidth, int roomHeight)
 {
-	const size_t sectionHeight = dungeonSize->GetSectionHeight();
-	const size_t sectionWidth = dungeonSize->GetSectionWidth();
+	const size_t sectionHeight = dungeonSize->SectionHeight();
+	const size_t sectionWidth = dungeonSize->SectionWidth();
 	Component sectionStartPoint(section.i*sectionHeight, section.j*sectionWidth);
 	Rect temp;//部屋の始点設置可能領域
 	temp.x1 = sectionStartPoint.j + 2;
@@ -138,8 +164,8 @@ void MysteryDungeonMaker::MakeRoom(Component const& section, int roomWidth, int 
 void MysteryDungeonMaker::MakePath()
 {
 	//ステップ1(部屋のあるセクションの上下左右をチェック)
-	int sectionRowNum=dungeonSize->GetSectionRowNum();
-	int sectionColumnNum=dungeonSize->GetSectionColumnNum();
+	int sectionRowNum=dungeonSize->DungeonRowNum();
+	int sectionColumnNum=dungeonSize->DungeonColumnNum();
 	for (int i = 0; i < sectionRowNum; i++)
 	{
 		for (int j = 0; j < sectionColumnNum; j++)
@@ -301,7 +327,7 @@ void MysteryDungeonMaker::ConnectAdjacentRoom(Section* center, Section* around)
 				room_around = room_temp;
 			}
 
-			const size_t sectionHeight = dungeonSize->GetSectionHeight();
+			const size_t sectionHeight = dungeonSize->SectionHeight();
 			int i_border = sectionComp_center.i*sectionHeight + sectionHeight - 1;
 			
 			if (room_center.x2 - room_center.x1 == 0)
@@ -350,8 +376,8 @@ void MysteryDungeonMaker::RemoveRoom(const Rect& room)
 			map[i][j] = ObjTypeOnMap::PATH;
 		}
 	}
-	const size_t sectionHeight = dungeonSize->GetSectionHeight();
-	const size_t sectionWidth = dungeonSize->GetSectionWidth();
+	const size_t sectionHeight = dungeonSize->SectionHeight();
+	const size_t sectionWidth = dungeonSize->SectionWidth();
 	sections[room.y1 / sectionHeight][room.x1 / sectionWidth].RemoveRoom();
 }
 
@@ -360,8 +386,8 @@ std::vector<std::vector<Section*>> MysteryDungeonMaker::ClassifyGroups()
 	std::vector<std::vector<Section*>> groups;
 	int groupId = 0;
 
-	int mapHeight=dungeonSize->GetSectionRowNum();
-	int sectionColumnNum = dungeonSize->GetSectionColumnNum();
+	int mapHeight=dungeonSize->DungeonRowNum();
+	int sectionColumnNum = dungeonSize->DungeonColumnNum();
 	for (int i = 0; i < mapHeight; i++)
 	{
 		for (int j = 0; j < sectionColumnNum; j++)
@@ -405,8 +431,8 @@ std::vector<Component> MysteryDungeonMaker::SearchShortestRoute(const Section& s
 	queue.push(&start);
 	visited.push_back(start.GetComponent());
 
-	int mapHeight=dungeonSize->GetSectionRowNum();
-	int sectionColumnNum = dungeonSize->GetSectionColumnNum();
+	int mapHeight=dungeonSize->DungeonRowNum();
+	int sectionColumnNum = dungeonSize->DungeonColumnNum();
 	while (!queue.empty() && !isGoaled)
 	{
 		current = queue.front();

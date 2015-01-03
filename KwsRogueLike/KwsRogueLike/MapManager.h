@@ -30,7 +30,7 @@ public:
 
 	void Finalize() override;
 
-	void Update(GameManager* game) override;
+	void Update(GameScene* game) override;
 
 	void Accept(const std::shared_ptr<ImageManager>& image) const override;
 

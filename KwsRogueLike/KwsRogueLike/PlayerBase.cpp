@@ -51,7 +51,7 @@ void PlayerBase::TakeDamage(int damage)
 
 int PlayerBase::GetLayer()
 {
-	return 1;
+	return 2;
 }
 
 void PlayerBase::Load(ImageManager* manager)

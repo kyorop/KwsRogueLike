@@ -3,6 +3,7 @@
 #include <memory>
 #include "vector_2d.h"
 
+class RoomDataStores;
 class DungeonSize;
 class Rect;
 class Section;
@@ -26,9 +27,11 @@ public:
 	explicit MysteryDungeonMaker(const DungeonSize& dungeonSize);
 	~MysteryDungeonMaker();
 
-	DungeonData CreateMapPlan();
+	void Initialize();
 	void SetRoomNum(int roomNum);
 
+	DungeonData DungeonData();
+	RoomDataStores RoomData();
 private:
 	std::unique_ptr<DungeonSize> dungeonSize;
 	const int minRoomWidth = 4;

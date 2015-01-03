@@ -6,6 +6,6 @@ class EnemyManager
 {
 public:
 	void Initialize() override;
-	void Update(GameManager* game) override;
+	void Update(GameScene* game) override;
 	void Finalize() override;
 };

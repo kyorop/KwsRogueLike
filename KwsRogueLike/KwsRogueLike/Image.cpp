@@ -4,7 +4,7 @@
 #include "HeapSort.h"
 #include "DxLibGraphic.h"
 
-void ImageManager::Update(GameManager* game)
+void ImageManager::Update(GameScene* game)
 {
 	for (auto itr = drawnList.begin(); itr != drawnList.end(); ++itr)
 	{

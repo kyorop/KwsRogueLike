@@ -1,8 +1,8 @@
 #include <DxLib.h>
 #include "GeneralConstant.h"
+#include "GameScene.h"
 
 #define DEBUG 0
-#include "GameManager.h"
 
 using namespace GeneralConstant;
 
@@ -22,7 +22,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine,
 //	auto player = std::make_shared<PlayerBase>(Vector2(playerX, playerY));
 //	Strings PlayerData; //文字列表示オブジェクト
 
-	GameManager game;
+	GameScene game;
 
 #if DEBUG //敵キャラを一体作る
 	dungeon.DebugMode();

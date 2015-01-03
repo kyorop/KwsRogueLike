@@ -1,10 +1,12 @@
 ﻿#include "BlockRect.h"
 #include "Component.h"
 
-BlockRect::BlockRect(const Component& leftTop, const Component& rightBottom)
-	:leftTop(std::make_unique<Component>(leftTop)),
-	rightBottom(std::make_unique<Component>(rightBottom))
+
+BlockRect::BlockRect(size_t i1, size_t j1, size_t i2, size_t j2) 
+	:leftTop(std::make_unique<Component>(i1,j1)),
+	rightBottom(std::make_unique<Component>(i2,j2))
 {
+
 }
 
 BlockRect::BlockRect(const BlockRect& rhs)

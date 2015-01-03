@@ -1,5 +1,5 @@
 ﻿#include <DxLib.h>
-#include "GameManager.h"
+#include "GameScene.h"
 #include "Screen.h"
 #include "vector2.h"
 #include "GeneralConstant.h"
@@ -42,14 +42,28 @@ PlayerDirection Screen::DecideDirection(const DungeonData& map)
 	size_t j_right = Player_j() + 1;
 	size_t j_left = Player_j() - 1;
 
-	if (buf[KEY_INPUT_RIGHT] && !map.IsThis(ObjTypeOnMap::WALL, i, j_right))
-		return PlayerDirection::RIGHT;
-	if (buf[KEY_INPUT_LEFT] && !map.IsThis(ObjTypeOnMap::WALL, i, j_left))
-		return PlayerDirection::LEFT;
-	if (buf[KEY_INPUT_DOWN] && !map.IsThis(ObjTypeOnMap::WALL, i_down, j))
-		return PlayerDirection::DOWN;
-	if (buf[KEY_INPUT_UP] && !map.IsThis(ObjTypeOnMap::WALL, i_up, j))
-		return PlayerDirection::UP;
+	if (!buf[KEY_INPUT_LSHIFT])
+	{
+		if (buf[KEY_INPUT_RIGHT] && !map.IsThis(ObjTypeOnMap::WALL, i, j_right))
+			return PlayerDirection::RIGHT;
+		if (buf[KEY_INPUT_LEFT] && !map.IsThis(ObjTypeOnMap::WALL, i, j_left))
+			return PlayerDirection::LEFT;
+		if (buf[KEY_INPUT_DOWN] && !map.IsThis(ObjTypeOnMap::WALL, i_down, j))
+			return PlayerDirection::DOWN;
+		if (buf[KEY_INPUT_UP] && !map.IsThis(ObjTypeOnMap::WALL, i_up, j))
+			return PlayerDirection::UP;
+	}
+	else
+	{
+		if (buf[KEY_INPUT_RIGHT])
+			return PlayerDirection::RIGHT;
+		if (buf[KEY_INPUT_LEFT])
+			return PlayerDirection::LEFT;
+		if (buf[KEY_INPUT_DOWN])
+			return PlayerDirection::DOWN;
+		if (buf[KEY_INPUT_UP])
+			return PlayerDirection::UP;
+	}
 
 	return PlayerDirection::STOP;
 }
@@ -84,7 +98,7 @@ bool Screen::Move4Direction(PlayerDirection direction)
 	return false;
 }
 
-void Screen::Update(GameManager* game)
+void Screen::Update(GameScene* game)
 {
 }
 

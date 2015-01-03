@@ -88,6 +88,8 @@
     <ClInclude Include="DungeonData.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameManagerFactory.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="GeneralConstant.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConvertRect.h" />
@@ -97,12 +99,12 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IGameProcess.h" />
     <ClInclude Include="IImageAcceptor.h" />
-    <ClInclude Include="IImageVisitor.h" />
     <ClInclude Include="IItem.h" />
     <ClInclude Include="IItemTaken.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="IScrollable.h" />
     <ClInclude Include="ItemManager.h" />
+    <ClInclude Include="ItemManagerFactory.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="Meat.h" />
     <ClInclude Include="MysteryDungeonMaker.h" />
@@ -139,10 +141,13 @@
     <ClCompile Include="DungeonData.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameManagerFactory.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
     <ClCompile Include="HeapSort.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ItemManager.cpp" />
+    <ClCompile Include="ItemManagerFactory.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Meat.cpp" />

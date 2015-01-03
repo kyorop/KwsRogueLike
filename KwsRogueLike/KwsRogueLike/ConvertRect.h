@@ -1,4 +1,6 @@
-﻿class Rect;
+﻿#pragma once
+
+class Rect;
 
 namespace RectUtils
 {

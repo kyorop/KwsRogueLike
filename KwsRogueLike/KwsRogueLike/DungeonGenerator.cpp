@@ -10,9 +10,9 @@
 MapManager DungeonGenerator::Generate(const DungeonSize& sizeData, const DungeonData& dungeonData)
 {
 	MapManager manager;
-	for (size_t i = 0; i < sizeData.CalcTileRowNum(); ++i)
+	for (size_t i = 0; i < sizeData.DungeonHeight(); ++i)
 	{
-		for (size_t j = 0; j < sizeData.CalcTileColumnNum(); ++j)
+		for (size_t j = 0; j < sizeData.DungeonWidth(); ++j)
 		{
 			if (dungeonData.IsThis(ObjTypeOnMap::WALL, i, j))
 			{

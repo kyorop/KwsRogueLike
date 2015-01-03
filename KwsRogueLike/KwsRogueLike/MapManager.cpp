@@ -27,6 +27,6 @@ void MapManager::Add(const shared_ptr<IDrawable>& tile)
 	map.push_back(tile);
 }
 
-void MapManager::Update(GameManager* game)
+void MapManager::Update(GameScene* game)
 {
 }

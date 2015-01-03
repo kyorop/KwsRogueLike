@@ -1,6 +1,6 @@
+#pragma once
 #include <string>
 #include "playerbase.h"
-#pragma once
 
 class Strings
 {
