@@ -2,95 +2,269 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Battle.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="ConvertRect.cpp" />
     <ClCompile Include="DebugMode.cpp" />
-    <ClCompile Include="DungeonMakerHelper.cpp" />
-    <ClCompile Include="EnemyBase.cpp" />
-    <ClCompile Include="EnemyManager.cpp" />
-    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GeneralConstant.cpp" />
-    <ClCompile Include="Image.cpp" />
-    <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MysteryDungeonMaker.cpp" />
-    <ClCompile Include="ObjectBase.cpp" />
-    <ClCompile Include="Path.cpp" />
-    <ClCompile Include="PlayerBase.cpp" />
-    <ClCompile Include="RandExtended.cpp" />
-    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="Section.cpp" />
-    <ClCompile Include="SectionUtil.cpp" />
     <ClCompile Include="Strings.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Wall.cpp" />
-    <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="HeapSort.cpp" />
-    <ClCompile Include="MapManager.cpp" />
-    <ClCompile Include="Stair.cpp" />
-    <ClCompile Include="Meat.cpp" />
-    <ClCompile Include="DxLibGraphic.cpp" />
-    <ClCompile Include="DrawObject.cpp" />
-    <ClCompile Include="DungeonData.cpp" />
-    <ClCompile Include="DungeonSize.cpp" />
-    <ClCompile Include="DungeonDrawing.cpp" />
-    <ClCompile Include="RoomData.cpp" />
-    <ClCompile Include="BlockRect.cpp" />
     <ClCompile Include="DungeonGenerator.cpp" />
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GameManagerFactory.cpp" />
-    <ClCompile Include="ItemManagerFactory.cpp" />
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Common\DataType</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>Common\DataType</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Common\DataType</Filter>
+    </ClCompile>
+    <ClCompile Include="RandExtended.cpp">
+      <Filter>Common\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockRect.cpp">
+      <Filter>Common\DataType</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonSize.cpp">
+      <Filter>Dungeon\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonData.cpp">
+      <Filter>Dungeon\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Section.cpp">
+      <Filter>Dungeon\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomData.cpp">
+      <Filter>Dungeon\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ConvertRect.cpp">
+      <Filter>Dungeon\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonDrawing.cpp">
+      <Filter>Dungeon\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonMakerHelper.cpp">
+      <Filter>Dungeon\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="HeapSort.cpp">
+      <Filter>Dungeon\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="SectionUtil.cpp">
+      <Filter>Dungeon\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="MysteryDungeonMaker.cpp">
+      <Filter>Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBase.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Meat.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBase.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManagerFactory.cpp">
+      <Filter>GameManager\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManagerFactory.cpp">
+      <Filter>GameManager\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="DxLibGraphic.cpp">
+      <Filter>Graphic\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
     <ClInclude Include="DebugMode.h" />
-    <ClInclude Include="DungeonMakerHelper.h" />
-    <ClInclude Include="EnemyManager.h" />
-    <ClInclude Include="Floor.h" />
     <ClInclude Include="GeneralConstant.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="ConvertRect.h" />
-    <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="IBattle.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IGameProcess.h" />
     <ClInclude Include="IImageAcceptor.h" />
-    <ClInclude Include="IItemTaken.h" />
-    <ClInclude Include="Image.h" />
-    <ClInclude Include="IScrollable.h" />
-    <ClInclude Include="ItemManager.h" />
-    <ClInclude Include="MysteryDungeonMaker.h" />
-    <ClInclude Include="ObjectBase.h" />
-    <ClInclude Include="Path.h" />
-    <ClInclude Include="PlayerBase.h" />
-    <ClInclude Include="RandExtended.h" />
-    <ClInclude Include="Rect.h" />
     <ClInclude Include="Screen.h" />
-    <ClInclude Include="Section.h" />
-    <ClInclude Include="SectionUtil.h" />
     <ClInclude Include="Strings.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Wall.h" />
-    <ClInclude Include="Weapon.h" />
-    <ClInclude Include="HeapSort.h" />
-    <ClInclude Include="MapManager.h" />
-    <ClInclude Include="vector_2d.h" />
-    <ClInclude Include="Stair.h" />
     <ClInclude Include="IItem.h" />
-    <ClInclude Include="Meat.h" />
-    <ClInclude Include="DxLibGraphic.h" />
-    <ClInclude Include="DrawObject.h" />
-    <ClInclude Include="DungeonData.h" />
-    <ClInclude Include="DungeonSize.h" />
-    <ClInclude Include="DungeonDrawing.h" />
-    <ClInclude Include="RoomData.h" />
-    <ClInclude Include="BlockRect.h" />
     <ClInclude Include="DungeonGenerator.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="GameManagerFactory.h" />
-    <ClInclude Include="ItemManagerFactory.h" />
+    <ClInclude Include="Vector2.h">
+      <Filter>Common\DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Common\DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Common\DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="RandExtended.h">
+      <Filter>Common\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockRect.h">
+      <Filter>Common\DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonSize.h">
+      <Filter>Dungeon\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonData.h">
+      <Filter>Dungeon\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Section.h">
+      <Filter>Dungeon\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomData.h">
+      <Filter>Dungeon\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ConvertRect.h">
+      <Filter>Dungeon\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonDrawing.h">
+      <Filter>Dungeon\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonMakerHelper.h">
+      <Filter>Dungeon\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="HeapSort.h">
+      <Filter>Dungeon\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="SectionUtil.h">
+      <Filter>Dungeon\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="MysteryDungeonMaker.h">
+      <Filter>Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBase.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Meat.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBase.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="vector_2d.h">
+      <Filter>Common\DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManagerFactory.h">
+      <Filter>GameManager\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManagerFactory.h">
+      <Filter>GameManager\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="DxLibGraphic.h">
+      <Filter>Graphic\Util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{d293280f-dc27-4524-ab50-52c024ea7332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\DataType">
+      <UniqueIdentifier>{219fc6a8-3055-4d74-bfe4-0f93d9fb882b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Util">
+      <UniqueIdentifier>{f17405a6-1d5e-478e-8a17-fefe7fdeca1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dungeon">
+      <UniqueIdentifier>{e8044004-d8d2-46c8-b020-44c27077dcd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dungeon\Data">
+      <UniqueIdentifier>{05a0d139-1bc5-40c4-a396-01eb8b66a938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dungeon\Util">
+      <UniqueIdentifier>{48ccd456-38e9-471d-8273-517cdbd48575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{cb1903af-efdd-4eb1-a367-f6c57e082a8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameManager">
+      <UniqueIdentifier>{d2b166fd-918f-4969-9f76-54a112cfbc0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameManager\Factory">
+      <UniqueIdentifier>{b3ab3918-6e33-493b-be4d-09e3f1cb81d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{23edb1f5-fdca-4e2f-aa2e-112219607335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphic">
+      <UniqueIdentifier>{733a905c-d00f-4e1c-abe2-ac0119f336c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphic\Util">
+      <UniqueIdentifier>{fa424072-1b4d-4506-93d1-5ccd02c9d5ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

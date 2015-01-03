@@ -100,9 +100,7 @@
     <ClInclude Include="IGameProcess.h" />
     <ClInclude Include="IImageAcceptor.h" />
     <ClInclude Include="IItem.h" />
-    <ClInclude Include="IItemTaken.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="IScrollable.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="ItemManagerFactory.h" />
     <ClInclude Include="MapManager.h" />
