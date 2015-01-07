@@ -35,3 +35,6 @@ Component BlockRect::RightBottom()
 	return *rightBottom;
 }
 
+BlockRect::~BlockRect()
+{
+}

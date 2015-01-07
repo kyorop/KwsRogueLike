@@ -18,6 +18,8 @@ public:
 
 	Component RightBottom();
 
+	~BlockRect();
+
 private:
 	std::unique_ptr<Component> leftTop;
 	std::unique_ptr<Component> rightBottom;

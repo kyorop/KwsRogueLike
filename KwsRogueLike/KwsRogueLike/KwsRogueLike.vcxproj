@@ -86,6 +86,7 @@
     <ClInclude Include="DxLibGraphic.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="DungeonData.h" />
+    <ClInclude Include="EnemyManagerFactory.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameManagerFactory.h" />
@@ -137,6 +138,7 @@
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="DungeonData.cpp" />
+    <ClCompile Include="EnemyManagerFactory.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameManagerFactory.cpp" />

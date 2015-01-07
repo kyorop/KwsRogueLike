@@ -7,26 +7,21 @@
 #include "BlockRect.h"
 #include "Component.h"
 
-ItemManagerFactory::ItemManagerFactory(const DungeonSize& sizeData, const RoomDataStores& roomData)
-{
-	size = std::make_unique<DungeonSize>(sizeData);
-	this->roomData = std::make_unique<RoomDataStores>(roomData);
-}
 
-std::shared_ptr<GameManager> ItemManagerFactory::Create()
+std::shared_ptr<GameManager> ItemManagerFactory::Create(const DungeonSize& sizeData, const RoomDataStores& roomData)
 {
 	auto manager = std::make_shared<ItemManager>();
-	GenerateItem(*manager);
+	GenerateItem(sizeData, roomData, manager);
 	return manager;
 }
 
-void ItemManagerFactory::GenerateItem(ItemManager& manager)
+void ItemManagerFactory::GenerateItem(const DungeonSize& sizeData, const RoomDataStores& roomData, std::shared_ptr<ItemManager>& manager)
 {
-	const size_t roomNum = roomData->RoomNum();
+	const size_t roomNum = roomData.RoomNum();
 	for (size_t i = 0; i < roomNum; ++i)
 	{
-		auto room = roomData->Data(i);
+		auto room = roomData.Data(i);
 		auto coord = room.LeftTopCoord(32, 32);
-		manager.Add(Meat(coord));
+		manager->Add(Meat(coord));
 	}
 }

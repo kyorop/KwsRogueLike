@@ -1,8 +1,9 @@
 ﻿#pragma once
-#include <memory>
 #include <vector>
+#include <memory>
 
 class Vector2;
+
 class BlockRect;
 
 class RoomData
@@ -18,6 +19,8 @@ public:
 
 	Vector2 RightBottomCoord(size_t width, size_t height)const;
 
+	~RoomData();
+
 private:
 	std::unique_ptr<BlockRect> room;
 };
@@ -26,11 +29,11 @@ private:
 class RoomDataStores
 {
 public:
-	size_t RoomNum();
+	size_t RoomNum()const;
 
 	void Add(const BlockRect& data);
 
-	RoomData Data(size_t i);
+	RoomData Data(size_t i)const;
 private:
 	std::vector<RoomData> rooms;
 };

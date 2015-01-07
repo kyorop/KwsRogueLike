@@ -63,8 +63,8 @@ void GameScene::Initialize()
 	mapManager = std::make_shared<MapManager>(dGenerator.Generate(dungeonSize, *dungeonData));
 
 	auto roomData = maker.RoomData();
-	auto factory = std::unique_ptr<GameManagerFactory>(new ItemManagerFactory(dungeonSize, roomData));
-	itemManager = factory->Create();
+	auto factory = std::unique_ptr<GameManagerFactory>(new ItemManagerFactory());
+	itemManager = factory->Create(dungeonSize, roomData);
 
 	image->AddDrawObject(std::shared_ptr<GameScene>(this, [](GameScene*){}));
 

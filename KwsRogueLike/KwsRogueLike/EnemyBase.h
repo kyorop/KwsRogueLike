@@ -15,14 +15,12 @@ public:
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
 	void Draw(ImageManager* manager) override;
+
+	EnemyBase(const Vector2& coord, int hp, int offense, int diffense, int moveSpeed, int level);
+	explicit EnemyBase(const Vector2& coord);
+	~EnemyBase() override;
+
 private:
-	EnemyBase(int x, int y, int hp, int offense, int diffense, int moveSpeed, int level)
-		:DrawObject(Vector2(x,y))
-	{
-	}
-
-	~EnemyBase();
-
 	std::vector<int> handles;
 	PlayerBase* player;
 	bool playerMoved;

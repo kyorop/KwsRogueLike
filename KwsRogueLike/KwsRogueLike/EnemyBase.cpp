@@ -33,6 +33,15 @@ void EnemyBase::Draw(ImageManager* manager)
 	DrawGraph(scoord.x, scoord.y, handles[0], true);
 }
 
+EnemyBase::EnemyBase(const Vector2& coord, int hp, int offense, int diffense, int moveSpeed, int level)
+	:DrawObject(coord)
+{
+}
+
+EnemyBase::EnemyBase(const Vector2& coord)
+	: DrawObject(coord)
+{}
+
 EnemyBase::~EnemyBase()
 {
 }

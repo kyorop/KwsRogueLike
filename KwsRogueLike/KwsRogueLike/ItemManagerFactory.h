@@ -8,13 +8,8 @@ class DungeonSize;
 class ItemManagerFactory : GameManagerFactory
 {
 public:
-	ItemManagerFactory(const DungeonSize& sizeData, const RoomDataStores& roomData);
-
-	std::shared_ptr<GameManager> Create() override;
+	std::shared_ptr<GameManager> Create(const DungeonSize& sizeData, const RoomDataStores& roomData) override;
 
 private:
-	std::unique_ptr<DungeonSize> size;
-	std::unique_ptr<RoomDataStores >roomData;
-
-	void GenerateItem(ItemManager& manager);
+	void GenerateItem(const DungeonSize& sizeData, const RoomDataStores& roomData, std::shared_ptr<ItemManager>& manager);
 };
