@@ -76,6 +76,7 @@ void GameScene::Main()
 	{
 		gameController->Update(this);
 	}
+	player->Update();
 
 	image->Draw();
 }

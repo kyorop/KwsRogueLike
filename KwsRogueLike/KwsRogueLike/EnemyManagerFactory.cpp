@@ -3,6 +3,7 @@
 #include "RoomData.h"
 #include "Faily.h"
 #include "DungeonSize.h"
+#include "Vector2.h"
 
 std::shared_ptr<GameManager> EnemyManagerFactory::Create(const DungeonSize& sizeData, const RoomDataStores& roomData)
 {

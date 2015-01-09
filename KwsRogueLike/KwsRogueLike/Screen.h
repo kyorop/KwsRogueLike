@@ -17,32 +17,29 @@ class Screen
 {
 public:
 	void Initialize() override;
-	void Finalize() override;
-	static Vector2 GetCoord();
 
-	explicit Screen()
-		:isMoving(false),
-		moveAmount(32),
-		direction(PlayerDirection::STOP)
-	{
-	}
+	void Finalize() override;
+
+	static Vector2 GetCoord();
 
 	void Update(GameScene* game) override;
 
 private:
-	static Vector2* screenCoord;
-	
-	bool isMoving;
-	
-	int moveAmount;
-
-	PlayerDirection direction;
-
 	size_t Player_i();
 
 	size_t Player_j();
 
 	PlayerDirection DecideDirection(const DungeonData& map);
 
-	bool Move4Direction(PlayerDirection direction);
+	bool UpdateCoord(PlayerDirection direction);
+
+	void Move(const DungeonData& dungeonData);
+
+	static std::shared_ptr<Vector2> screenCoord;
+	
+	bool isMoving = false;
+	
+	int moveAmount = 32;
+
+	PlayerDirection direction = PlayerDirection::STOP;
 };

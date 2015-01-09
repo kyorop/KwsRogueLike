@@ -5,9 +5,10 @@
 class DrawObject:public ObjectBase, public IDrawable
 {
 public:
-	bool GetDrawFlag() override;
-	bool IsDead() override;
-	void SetDrawFlag(bool isDrawble);
+	bool IsVisible() final;
+
+	bool IsDead() final;
+	
 	void Kill();
 
 	explicit DrawObject(const Vector2& coord)
@@ -15,7 +16,15 @@ public:
 	{
 	}
 
+protected:
+	void SetDrawFlag(bool isDrawble);
+	
+	void MakeVisible();
+	
+	void MakeInvisible();
+
 private:
-	bool isDrawable = true;
+	bool isVisible = true;
+	
 	bool isDead = false;
 };

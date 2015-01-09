@@ -18,7 +18,7 @@ public:
 
 	void Draw(ImageManager* manager) override;
 
-	bool GetDrawFlag() override
+	bool IsVisible() override
 	{
 		return true;
 	}

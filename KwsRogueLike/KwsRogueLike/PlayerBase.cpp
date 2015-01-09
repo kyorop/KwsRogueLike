@@ -56,15 +56,15 @@ int PlayerBase::GetLayer()
 
 void PlayerBase::Load(ImageManager* manager)
 {
-	handles = manager->LoadDivGraph("img/Enemies/enemy.png", 15, 12, 8, 32, 32);
+	handles = manager->LoadDivGraph("img/Enemies/enemy.png", 12*8, 12, 8, 32, 32);
 }
 
 void PlayerBase::Draw(ImageManager* manager)
 {
-	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handles[0], true);
+	DrawGraph(GetDrawCoord().x, GetDrawCoord().y, handles[i_direction], true);
 }
 
-void PlayerBase::Update()
+void PlayerBase::UpdateImgDirection()
 {
 	int Key[256];
 	char tmpKey[256];
@@ -80,18 +80,23 @@ void PlayerBase::Update()
 
 	if (Key[KEY_INPUT_LEFT] != 0)
 	{
-//		divData.animationHandle = 17;	
+		i_direction = 6 + 12 * 1;
 	}
 	if (Key[KEY_INPUT_RIGHT] != 0)
 	{
-//		divData.animationHandle = 29;
+		i_direction = 6 + 12 * 2;
 	}
 	if (Key[KEY_INPUT_UP] != 0)
 	{
-//		divData.animationHandle = 41;
+		i_direction = 6 + 12 * 3;
 	}
 	if (Key[KEY_INPUT_DOWN] != 0)
 	{
-//		divData.animationHandle = 5;
+		i_direction = 6 + 12 * 0;
 	}
+}
+
+void PlayerBase::Update()
+{
+	UpdateImgDirection();
 }

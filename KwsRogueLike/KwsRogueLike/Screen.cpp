@@ -5,7 +5,8 @@
 #include "GeneralConstant.h"
 #include "DungeonData.h"
 
-Vector2* Screen::screenCoord = new Vector2(0, 0);
+std::shared_ptr<Vector2> Screen::screenCoord = std::make_shared<Vector2>(0, 0);
+
 const int speed = 2;
 
 void Screen::Initialize()
@@ -68,7 +69,7 @@ PlayerDirection Screen::DecideDirection(const DungeonData& map)
 	return PlayerDirection::STOP;
 }
 
-bool Screen::Move4Direction(PlayerDirection direction)
+bool Screen::UpdateCoord(PlayerDirection direction)
 {
 	moveAmount -= speed;
 	switch (direction)
@@ -98,17 +99,22 @@ bool Screen::Move4Direction(PlayerDirection direction)
 	return false;
 }
 
-void Screen::Update(GameScene* game)
+void Screen::Move(const DungeonData& dungeonData)
 {
 	if (!isMoving)
 	{
-		direction = DecideDirection(game->GetDungeonData());
+		direction = DecideDirection(dungeonData);
 		if (direction != PlayerDirection::STOP)
 			isMoving = true;
 	}
 	else
 	{
-		if (Move4Direction(direction))
+		if (UpdateCoord(direction))
 			isMoving = false;
 	}
+}
+
+void Screen::Update(GameScene* game)
+{
+	Move(game->GetDungeonData());
 }

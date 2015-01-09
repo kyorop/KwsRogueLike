@@ -1,10 +1,19 @@
 ﻿#include "Faily.h"
 #include "Image.h"
 #include <DxLib.h>
+#include "vector2.h"
+
+void Faily::Initialize()
+{
+}
 
 void Faily::Update(GameScene* game)
 {
 	
+}
+
+void Faily::Finalize()
+{
 }
 
 Faily::Faily(const Vector2& coord, int hp, int offense, int diffense, int moveSpeed, int level)

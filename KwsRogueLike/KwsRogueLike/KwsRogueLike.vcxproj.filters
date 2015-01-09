@@ -68,9 +68,6 @@
     <ClCompile Include="Path.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Meat.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectBase.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -113,7 +110,12 @@
     <ClCompile Include="EnemyManagerFactory.cpp">
       <Filter>GameManager\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Faily.cpp" />
+    <ClCompile Include="Meat.cpp">
+      <Filter>temp</Filter>
+    </ClCompile>
+    <ClCompile Include="Faily.cpp">
+      <Filter>temp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
@@ -187,9 +189,6 @@
     <ClInclude Include="Path.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Meat.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectBase.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -235,7 +234,12 @@
     <ClInclude Include="EnemyManagerFactory.h">
       <Filter>GameManager\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Faily.h" />
+    <ClInclude Include="Meat.h">
+      <Filter>temp</Filter>
+    </ClInclude>
+    <ClInclude Include="Faily.h">
+      <Filter>temp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -273,6 +277,9 @@
     </Filter>
     <Filter Include="Graphic\Util">
       <UniqueIdentifier>{fa424072-1b4d-4506-93d1-5ccd02c9d5ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="temp">
+      <UniqueIdentifier>{ba50b2a1-009c-4e40-8184-41d049c73760}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

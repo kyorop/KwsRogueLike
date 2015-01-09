@@ -19,7 +19,7 @@ public:
 	int GetLayer() override;
 	void Load(ImageManager* manager) override;
 	void Draw(ImageManager* manager) override;
-
+	
 
 	explicit PlayerBase()
 		: DrawObject(Vector2(GeneralConstant::playerX, GeneralConstant::playerY))
@@ -34,8 +34,14 @@ public:
 	void SetItem(std::shared_ptr<Meat>& item);
 
 private:
+	void UpdateImgDirection();
+	
 	std::vector<int> handles;
+
+	int i_direction=6;
+	
 	int gold = 0;
+	
 	std::vector<std::shared_ptr<Meat>> equips;
 };
 

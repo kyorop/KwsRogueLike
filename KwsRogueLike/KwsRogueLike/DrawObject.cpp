@@ -1,8 +1,8 @@
 ﻿#include "DrawObject.h"
 
-bool DrawObject::GetDrawFlag()
+bool DrawObject::IsVisible()
 {
-	return isDrawable;
+	return isVisible;
 }
 
 bool DrawObject::IsDead()
@@ -10,12 +10,23 @@ bool DrawObject::IsDead()
 	return isDead;
 }
 
-void DrawObject::SetDrawFlag(bool isDrawble)
-{
-	this->isDrawable = isDrawble;
-}
-
 void DrawObject::Kill()
 {
 	isDead = true;
+	isVisible = false;
+}
+
+void DrawObject::SetDrawFlag(bool isDrawble)
+{
+	this->isVisible = isDrawble;
+}
+
+void DrawObject::MakeVisible()
+{
+	isVisible = true;
+}
+
+void DrawObject::MakeInvisible()
+{
+	isVisible = false;
 }
