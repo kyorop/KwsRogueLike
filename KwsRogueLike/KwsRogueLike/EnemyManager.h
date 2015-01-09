@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "GameManager.h"
 #include <vector>
+#include <memory>
 
 class EnemyBase;
 
@@ -12,11 +13,11 @@ public:
 	void Finalize() override;
 	void Accept(const std::shared_ptr<ImageManager>& image) const override;
 	
-	void Add(const EnemyBase& enemy);
+	void Add(const std::shared_ptr<EnemyBase>& enemy);
 
 	EnemyManager();
 	~EnemyManager() override;
 
 private:
-	std::vector<EnemyBase> enemies;
+	std::vector<std::shared_ptr<EnemyBase>> enemies;
 };

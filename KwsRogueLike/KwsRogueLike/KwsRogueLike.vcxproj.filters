@@ -110,7 +110,10 @@
     <ClCompile Include="DxLibGraphic.cpp">
       <Filter>Graphic\Util</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyManagerFactory.cpp" />
+    <ClCompile Include="EnemyManagerFactory.cpp">
+      <Filter>GameManager\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Faily.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
@@ -229,7 +232,10 @@
     <ClInclude Include="DxLibGraphic.h">
       <Filter>Graphic\Util</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyManagerFactory.h" />
+    <ClInclude Include="EnemyManagerFactory.h">
+      <Filter>GameManager\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Faily.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">

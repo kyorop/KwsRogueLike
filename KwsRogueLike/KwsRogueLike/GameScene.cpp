@@ -17,33 +17,12 @@
 #include "Component.h"
 #include "GameManager.h"
 #include "Strings.h"
+#include "EnemyManagerFactory.h"
+#include "IGameProcess.h"
 
 static int startTime;
 static int endTime;
 static int take;
-
-int GameScene::GetLayer()
-{
-	return 4;
-}
-
-void GameScene::Load(ImageManager* manager)
-{
-}
-
-void GameScene::Draw(ImageManager* manager)
-{
-}
-
-bool GameScene::GetDrawFlag()
-{
-	return true;
-}
-
-bool GameScene::IsDead()
-{
-	return false;
-}
 
 GameScene::GameScene()
 	:image(std::make_shared<ImageManager>()),
@@ -60,50 +39,63 @@ void GameScene::Initialize()
 	dungeonData = std::make_shared<DungeonData>(maker.DungeonData());
 	
 	DungeonGenerator dGenerator;
-	mapManager = std::make_shared<MapManager>(dGenerator.Generate(dungeonSize, *dungeonData));
-
+	auto mapManager = std::make_shared<MapManager>(dGenerator.Generate(dungeonSize, *dungeonData));
 	auto roomData = maker.RoomData();
-	auto factory = std::unique_ptr<GameManagerFactory>(new ItemManagerFactory());
-	itemManager = factory->Create(dungeonSize, roomData);
 
-	image->AddDrawObject(std::shared_ptr<GameScene>(this, [](GameScene*){}));
+	ItemManagerFactory itemManagerFactory;
+	auto itemManager = itemManagerFactory.Create(dungeonSize, roomData);
+
+	EnemyManagerFactory enemyMngFactory;
+	auto enemyMng = enemyMngFactory.Create(dungeonSize, roomData);
+
+	auto playerStateDisplayer = std::make_shared<Strings>(currentFloor, player.get());
+	
+	gameProcesses.push_back(screen);
+	gameProcesses.push_back(enemyMng);
+	gameProcesses.push_back(mapManager);
+	gameProcesses.push_back(itemManager);
+	gameProcesses.push_back(image);
 
 	//set to image class
 	image->AddDrawObject(player);
+	image->AddDrawObject(playerStateDisplayer);
 	mapManager->Accept(image);
 	itemManager->Accept(image);
+	enemyMng->Accept(image);
 
-	auto playerStateDisplayer = std::make_shared<Strings>(currentFloor, player.get());
-	image->AddDrawObject(playerStateDisplayer);
 
-	startTime = GetNowCount();
-	image->Initialize();
-	endTime = GetNowCount();
+	for (auto& gameController : gameProcesses)
+	{
+		gameController->Initialize();
+	}
 }
 
 void GameScene::Main()
 {
-	//update
-	screen->Update(*dungeonData);
-	mapManager->Update(this);
-	itemManager->Update(this);
-	image->Update(this);
+	for (auto& gameController : gameProcesses)
+	{
+		gameController->Update(this);
+	}
 
-	//draw
 	image->Draw();
-	DrawFormatString(0, 30, GetColor(255, 255, 255), "start : %d", startTime);
-	DrawFormatString(0, 50, GetColor(255, 255, 255), "end : %d", endTime);
-	DrawFormatString(0, 70, GetColor(255, 255, 255), "take: %d", endTime - startTime);
 }
 
 void GameScene::Finalize()
 {
-	image->Finalize();
+	for (auto& gameController : gameProcesses)
+	{
+		gameController->Finalize();
+	}
 }
 
 std::shared_ptr<PlayerBase>& GameScene::GetPlayer()
 {
 	return player;
+}
+
+const DungeonData& GameScene::GetDungeonData()
+{
+	return *dungeonData;
 }
 
 Screen& GameScene::GetScreen()

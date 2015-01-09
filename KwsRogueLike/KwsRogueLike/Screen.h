@@ -28,7 +28,7 @@ public:
 	}
 
 	void Update(GameScene* game) override;
-	void Update(const DungeonData& map);
+
 private:
 	static Vector2* screenCoord;
 	

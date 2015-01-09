@@ -100,13 +100,9 @@ bool Screen::Move4Direction(PlayerDirection direction)
 
 void Screen::Update(GameScene* game)
 {
-}
-
-void Screen::Update(const DungeonData& map)
-{
 	if (!isMoving)
 	{
-		direction = DecideDirection(map);
+		direction = DecideDirection(game->GetDungeonData());
 		if (direction != PlayerDirection::STOP)
 			isMoving = true;
 	}

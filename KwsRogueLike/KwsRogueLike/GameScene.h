@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <memory>
+#include <vector>
 #include "IDrawable.h"
 
 
@@ -13,21 +14,18 @@ class ImageManager;
 class Screen;
 class PlayerBase;
 class GameManager;
+class IGameProcess;
 
-class GameScene:public IDrawable
+class GameScene
 {
 public:
-	int GetLayer() override;
-	void Load(ImageManager* manager) override;
-	void Draw(ImageManager* manager) override;
-	bool GetDrawFlag() override;
-	bool IsDead() override;
 	GameScene();
 	void Initialize();
 	void Main();
 	void Finalize();
 	Screen& GetScreen();
 	std::shared_ptr<PlayerBase>& GetPlayer();
+	const DungeonData& GetDungeonData();
 
 private:
 	size_t currentFloor=1;
@@ -35,7 +33,7 @@ private:
 	std::shared_ptr<ImageManager> image;
 	std::shared_ptr<Screen> screen;
 	std::shared_ptr<PlayerBase> player;
-	std::shared_ptr<MapManager> mapManager;
-	std::shared_ptr<GameManager> itemManager;
 	std::shared_ptr<DungeonData> dungeonData;
+
+	std::vector<std::shared_ptr<IGameProcess>> gameProcesses;
 };
